@@ -1,0 +1,700 @@
+/*Containers*/
+
+#truetalk-container #truetalk-window {
+	z-index: 2147483001!important;
+	position: fixed!important;
+	right: 20px!important;
+	bottom: 95px!important;
+	width: 370px!important;
+	height: 449px!important;
+	background: #fff;
+	box-shadow: 0 5px 40px rgba(0,0,0,.16)!important;
+	border-radius: 10px!important;
+	overflow: hidden!important;
+	border: 3px solid #03B9FF;
+}
+
+#truetalk-container .truetalk-launcher {
+	background: #FF2D85;
+	z-index: 2147483001!important;
+	position: fixed!important;
+	bottom: 20px!important;
+	right: 20px!important;
+	width: 60px!important;
+	height: 60px!important;
+	border-radius: 50%!important;
+	transition: box-shadow 80ms ease-in-out!important;
+	box-shadow: 0 1px 6px rgba(0,0,0,.06),0 2px 32px rgba(0,0,0,.16)!important;
+	-webkit-animation: truetalk-launcher-appear .25s ease!important;
+	animation: truetalk-launcher-appear .25s ease!important;
+}
+
+/*Exit Button*/
+
+#truetalk-container .truetalk-closeButton {
+	z-index: 2147483002;
+	position: absolute;
+	right: 10px;
+	top: 0px;
+	cursor: pointer;
+	color: #03B9FF;
+	font-size: 13px;
+	cursor: pointer;
+}
+
+#truetalk-container .truetalk-closeButton:hover, 
+#truetalk-container .truetalk-closeButton:visited, 
+#truetalk-container .truetalk-closeButton:focus {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+/*Animations*/
+
+@-webkit-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-moz-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-o-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+#truetalk-container .truetalk-recording-live img {
+    -webkit-animation: blink 1s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation: blink 1s;
+    -moz-animation-iteration-count: infinite;
+    -o-animation: blink 1s;
+    -o-animation-iteration-count: infinite;
+}
+
+/*Launcher*/
+
+#truetalk-container .truetalk-launcher-open-icon {
+	z-index: 2147483002;
+	background-image: url(../img/icon-truetalk-logo-square.png);
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+    background-size: 32px 36px;
+    background-repeat: no-repeat;
+    background-position: center 14px;
+    transition: opacity .08s linear,-webkit-transform .16s linear;
+    transition: transform .16s linear,opacity .08s linear;
+    transition: transform .16s linear,opacity .08s linear,-webkit-transform .16s linear;
+    cursor: pointer;
+}
+
+#truetalk-container .truetalk-launcher-close-icon {
+	z-index: 2147483002;
+	background-image: url(../img/icon-launcher-close.png);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-size: 14px 14px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transition: opacity .08s linear,-webkit-transform .16s linear;
+    transition: transform .16s linear,opacity .08s linear;
+    transition: transform .16s linear,opacity .08s linear,-webkit-transform .16s linear;
+    cursor: pointer;
+}
+
+#truetalk-container .truetalk-launcher-open-icon .hidden,
+#truetalk-container .truetalk-launcher-close-icon .hidden {
+	display: none;
+}
+
+/*Header*/
+
+#truetalk-container .truetalk-header {
+	z-index: 2147483001;
+	position: absolute;
+	width: 100%;
+}
+
+#truetalk-container .truetalk-team-avatar-container {
+	display: block;
+	padding: 20px 20px 10px;
+	text-align: left;
+}
+
+#truetalk-container .truetalk-team-avatar-img {
+	position: relative;
+	display: inline-block;
+	padding-right: 5px;
+	vertical-align: middle;
+}
+
+#truetalk-container .truetalk-team-avatar-img img {
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+}
+
+#truetalk-container .truetalk-team-avatar-title {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#truetalk-container .truetalk-team-avatar-title-name {
+	display: block;
+	color: #323232;
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: 700;
+}
+
+#truetalk-container .truetalk-team-avatar-title-company {
+	display: block;
+	color: #323232;
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: 300;
+}
+
+#truetalk-container .truetalk-team-recording-container {
+	display: block;
+	padding: 5px 20px 20px;
+	height: 210px;
+}
+
+#truetalk-container .truetalk-user-recording-container {
+	display: block;
+	padding: 0px 20px 20px;
+	height: 255px;
+}
+
+#truetalk-container .truetalk-completion-hero {
+	display: block;
+	padding: 20px 20px 0px;
+	height: 255px;
+	text-align: center;
+}
+
+#truetalk-container .truetalk-team-recording {
+	display: block;
+	position: relative;
+	border-radius: 10px;
+	height: 210px;
+	width: 330px;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: 50% 50%;
+	box-shadow: 0 5px 40px rgba(0,0,0,.16)!important;
+}
+
+#truetalk-container .truetalk-user-recording {
+	display: block;
+	position: relative;
+	border-radius: 10px;
+	height: 255px;
+	width: 330px;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: 50% 50%;
+	box-shadow: 0 5px 40px rgba(0,0,0,.16)!important;
+}
+
+#truetalk-container .truetalk-audio-only #black-overlay {
+	background: black !important;
+	z-index:1000;
+	left:-5px;
+	top:-5px;
+	/*display: block;*/
+	position: absolute;
+	border-radius: 10px;
+	height: 260px;
+	width: 335px;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: 50% 50%;
+	box-shadow: 0 5px 40px rgba(0,0,0,.16)!important;
+	/*display:none !important;*/
+}
+
+#truetalk-container .truetalk-recording-overlay {
+	z-index: 2147483002;
+	display: block;
+	position: absolute;
+	width: 330px;
+	height: 80px;
+	bottom: 0;
+	left: 0;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	background: black;
+	background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0)); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0)); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0)); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(at bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+}
+
+#truetalk-container .truetalk-team-recording-question {
+	z-index: 2147483003;
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+	display: inline-block;
+	color: #fff;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: 500;
+	width: 270px;
+}
+
+#truetalk-container .truetalk-team-recording-sound {
+	z-index: 2147483003;
+	position: absolute;
+	display: inline-block;
+	right: 15px;
+	bottom: 15px;
+}
+
+#truetalk-container .truetalk-recording-countdown-time {
+	color: #fff;
+    font-size: 160px;
+    line-height: 220px;
+    text-align: center;
+    width: 330px;
+    display: block;
+    height: 255px;
+}
+
+#truetalk-container .truetalk-recording-live {
+	position: absolute;
+	/*display: block;*/
+	right: 0px;
+	top: 10px;
+	z-index: 100;
+}
+
+/*body*/
+
+#truetalk-container .truetalk-body {
+	z-index: 2147483001;
+	position: absolute;
+	bottom: 34px;
+	left: 0;
+	width: 100%;
+	background: #03B9FF;
+}
+
+#truetalk-container .truetalk-body-container {
+	display: block;
+	padding: 20px 10px;
+	background: #03B9FF;
+}
+
+#truetalk-container .truetalk-body-container.completion {
+	padding: 20px 10px 35px;
+	background: #fff;
+}
+
+#truetalk-container .truetalk-body-content {
+	display: block;
+	text-align: center;
+	margin: 0 auto;
+	padding-bottom: 10px;
+}
+
+#truetalk-container .truetalk-body-h1 {
+	display: block;
+	text-align: center;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 22px;
+	color: #fff;
+}
+
+#truetalk-container .truetalk-body-h1.completion {
+	display: block;
+	text-align: center;
+	font-size: 22px;
+	font-weight: 600;
+	line-height: 24px;
+	color: #525252;
+	margin-bottom: 5px;
+}
+
+#truetalk-container .truetalk-body-p.completion {
+	display: block;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+	color: #525252;
+	margin-bottom: 5px;
+}
+
+#truetalk-container .truetalk-body-cta {
+	display: block;
+	text-align: center;
+}
+
+#truetalk-container .truetalk-body-cta.completion {
+	margin-top: 10px;
+}
+
+#truetalk-container .truetalk-body-button {
+  margin: 0 5px;
+  color: white;
+  background: #FF2D85;
+  font-size: 14px;
+  padding: 10px 30px;
+  display: inline-block;
+  margin-bottom: 0;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: 2px solid #FF2D85;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 600;
+  line-height: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 3px 30px rgba(0,0,0,.2)!important;
+}
+#truetalk-container .truetalk-body-button:hover, 
+#truetalk-container .truetalk-body-button:visited, 
+#truetalk-container .truetalk-body-button:focus {
+  color: white;
+  border: 2px solid #FF1F7D;
+  background: #FF1F7D;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 3px 30px rgba(0,0,0,.2)!important;
+}
+
+#truetalk-container .truetalk-body-button.btn-transparent {
+  background: none;
+  border: 2px solid #fff;
+}
+#truetalk-container .truetalk-body-button.btn-transparent:hover, 
+#truetalk-container .truetalk-body-button.btn-transparent:visited, 
+#truetalk-container .truetalk-body-button.btn-transparent:focus {
+  border: 2px solid #fff;
+  background: rgba(255,255,255,0.15);
+}
+
+#truetalk-container .truetalk-body-button.record-starting {
+	background: #AAAAAA;
+	border-color: #AAAAAA; 
+	cursor: auto;
+}
+
+#truetalk-container .truetalk-body-button img {
+	vertical-align: inherit;
+	display: inline-block;
+	padding-right: 5px;
+}
+
+#truetalk-container .truetalk-body-cta-reward {
+	font-size: 13px;
+	line-height: 13px;
+	color: #525252;
+	font-weight: 800;
+	padding: 10px 30px; 
+	border: 3px solid #FF2D85;
+}
+
+/*Footer*/
+
+#truetalk-container .truetalk-footer {
+	z-index: 2147483001;
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	width: 100%;
+	background: #03B9FF;
+}
+
+#truetalk-container .truetalk-footer-container {
+	display: block;
+	padding: 5px 12px;
+	background: #03B9FF;
+}
+
+#truetalk-container .truetalk-footer-details div {
+	display: inline-block;
+	color: #0074F5;
+	font-size: 11px;
+	line-height: 24px;
+}
+
+#truetalk-container .truetalk-footer-details-clickable:hover,
+#truetalk-container .truetalk-footer-details-clickable:focus,
+#truetalk-container .truetalk-footer-details-clickable:visited {
+	cursor: pointer;
+	color: white;
+}
+
+#truetalk-container .truetalk-footer-details-clickable {
+	cursor: pointer;
+}
+
+#truetalk-container .truetalk-footer-powered {
+	position: absolute;
+	right: 15px;
+	font-size: 11px;
+	color: #fff;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#truetalk-container .truetalk-footer-powered:hover,
+#truetalk-container .truetalk-footer-powered:focus,
+#truetalk-container .truetalk-footer-powered:visited {
+	cursor: pointer;
+}
+
+
+/*Default Styling*/
+
+#truetalk-container div {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size-adjust: none;
+	font-size: 100%;
+	font-style: normal;
+	letter-spacing: normal;
+	font-stretch: normal;
+	font-variant: normal;
+	font-weight: 400;
+	font: normal normal 100% Helvetica, Arial, sans-serif;
+	text-align: left;
+	-moz-text-align-last: initial;
+	text-align-last: initial;
+	text-decoration: none;
+	-webkit-text-emphasis: none;
+	text-emphasis: none;
+	text-height: auto;
+	text-indent: 0;
+	text-justify: auto;
+	text-outline: none;
+	text-shadow: none;
+	text-transform: none;
+	text-wrap: normal;
+	alignment-adjust: auto;
+	alignment-baseline: baseline;
+	-webkit-animation: none 0 ease 0 1 normal;
+	animation: none 0 ease 0 1 normal;
+	-webkit-animation-play-state: running;
+	animation-play-state: running;
+	-webkit-appearance: normal;
+	-moz-appearance: normal;
+	appearance: normal;
+	azimuth: center;
+	-webkit-backface-visibility: visible;
+	backface-visibility: visible;
+	background: none 0 0 auto repeat scroll padding-box transparent;
+	background-color: transparent;
+	background-image: none;
+	baseline-shift: baseline;
+	binding: none;
+	bleed: 6pt;
+	bookmark-label: content();
+	bookmark-level: none;
+	bookmark-state: open;
+	bookmark-target: none;
+	border: 0 none transparent;
+	border-radius: 0;
+	bottom: auto;
+	box-align: stretch;
+	-webkit-box-decoration-break: slice;
+	box-decoration-break: slice;
+	box-direction: normal;
+	box-flex: 0.0;
+	box-flex-group: 1;
+	box-lines: single;
+	box-ordinal-group: 1;
+	box-orient: inline-axis;
+	box-pack: start;
+	box-shadow: none;
+	box-sizing: content-box;
+	-webkit-column-break-after: auto;
+	break-after: auto;
+	-webkit-column-break-before: auto;
+	break-before: auto;
+	-webkit-column-break-inside: auto;
+	break-inside: auto;
+	caption-side: top;
+	clear: none;
+	clip: auto;
+	color: inherit;
+	color-profile: auto;
+	-webkit-column-count: auto;
+	-moz-column-count: auto;
+	column-count: auto;
+	-webkit-column-fill: balance;
+	-moz-column-fill: balance;
+	column-fill: balance;
+	-webkit-column-gap: normal;
+	-moz-column-gap: normal;
+	column-gap: normal;
+	-webkit-column-rule: medium medium #1f1f1f;
+	-moz-column-rule: medium medium #1f1f1f;
+	column-rule: medium medium #1f1f1f;
+	-webkit-column-span: 1;
+	-moz-column-span: 1;
+	column-span: 1;
+	-webkit-column-width: auto;
+	-moz-column-width: auto;
+	column-width: auto;
+	-webkit-columns: auto auto;
+	-moz-columns: auto auto;
+	columns: auto auto;
+	content: normal;
+	counter-increment: none;
+	counter-reset: none;
+	crop: auto;
+	cursor: auto;
+	direction: ltr;
+	display: inline;
+	dominant-baseline: auto;
+	drop-initial-after-adjust: text-after-edge;
+	drop-initial-after-align: baseline;
+	drop-initial-before-adjust: text-before-edge;
+	drop-initial-before-align: caps-height;
+	drop-initial-size: auto;
+	drop-initial-value: initial;
+	elevation: level;
+	empty-cells: show;
+	fit: fill;
+	fit-position: 0 0;
+	float: none;
+	float-offset: 0 0;
+	grid-columns: none;
+	grid-rows: none;
+	hanging-punctuation: none;
+	height: auto;
+	hyphenate-after: auto;
+	hyphenate-before: auto;
+	hyphenate-character: auto;
+	hyphenate-lines: no-limit;
+	hyphenate-resource: none;
+	-webkit-hyphens: manual;
+	-ms-hyphens: manual;
+	hyphens: manual;
+	icon: auto;
+	image-orientation: auto;
+	image-rendering: auto;
+	image-resolution: normal;
+	inline-box-align: last;
+	left: auto;
+	line-height: inherit;
+	line-stacking: inline-line-height exclude-ruby consider-shifts;
+	list-style: disc outside none;
+	margin: 0;
+	marks: none;
+	marquee-direction: forward;
+	marquee-loop: 1;
+	marquee-play-count: 1;
+	marquee-speed: normal;
+	marquee-style: scroll;
+	max-height: none;
+	max-width: none;
+	min-height: 0;
+	min-width: 0;
+	move-to: normal;
+	nav-down: auto;
+	nav-index: auto;
+	nav-left: auto;
+	nav-right: auto;
+	nav-up: auto;
+	opacity: 1;
+	orphans: 2;
+	outline: medium none invert;
+	outline-offset: 0;
+	overflow: visible;
+	overflow-style: auto;
+	padding: 0;
+	page: auto;
+	page-break-after: auto;
+	page-break-before: auto;
+	page-break-inside: auto;
+	page-policy: start;
+	-webkit-perspective: none;
+	perspective: none;
+	-webkit-perspective-origin: 50% 50%;
+	perspective-origin: 50% 50%;
+	position: static;
+	presentation-level: 0;
+	punctuation-trim: none;
+	quotes: none;
+	rendering-intent: auto;
+	resize: none;
+	right: auto;
+	rotation: 0;
+	rotation-point: 50% 50%;
+	ruby-align: auto;
+	ruby-overhang: none;
+	ruby-position: before;
+	ruby-span: none;
+	size: auto;
+	string-set: none;
+	table-layout: auto;
+	top: auto;
+	-webkit-transform: none;
+	transform: none;
+	-webkit-transform-origin: 50% 50% 0;
+	transform-origin: 50% 50% 0;
+	-webkit-transform-style: flat;
+	transform-style: flat;
+	transition: all 0 ease 0;
+	unicode-bidi: normal;
+	vertical-align: baseline;
+	white-space: normal;
+	white-space-collapse: collapse;
+	widows: 2;
+	width: auto;
+	word-break: normal;
+	word-spacing: normal;
+	word-wrap: normal;
+	z-index: auto;
+	text-align: start;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
