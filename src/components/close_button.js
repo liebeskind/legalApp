@@ -8,7 +8,7 @@ export default class CloseButton extends Component {
 	render() {
 		return (
 			<div>
-				<div className="truetalk-closeButton" onClick={this.closeWidget.bind(this)}>close x</div>
+				<div className="superfood-closeButton" onClick={this.closeWidget.bind(this)}>close x</div>
 			</div>
 		)
 	}

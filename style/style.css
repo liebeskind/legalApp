@@ -1,6 +1,6 @@
 /*Containers*/
 
-#truetalk-container #truetalk-window {
+#superfood-container #superfood-window {
 	z-index: 2147483001!important;
 	position: fixed!important;
 	right: 20px!important;
@@ -14,7 +14,7 @@
 	border: 3px solid #03B9FF;
 }
 
-#truetalk-container .truetalk-launcher {
+#superfood-container .superfood-launcher {
 	background: #FF2D85;
 	z-index: 2147483001!important;
 	position: fixed!important;
@@ -25,13 +25,13 @@
 	border-radius: 50%!important;
 	transition: box-shadow 80ms ease-in-out!important;
 	box-shadow: 0 1px 6px rgba(0,0,0,.06),0 2px 32px rgba(0,0,0,.16)!important;
-	-webkit-animation: truetalk-launcher-appear .25s ease!important;
-	animation: truetalk-launcher-appear .25s ease!important;
+	-webkit-animation: superfood-launcher-appear .25s ease!important;
+	animation: superfood-launcher-appear .25s ease!important;
 }
 
 /*Exit Button*/
 
-#truetalk-container .truetalk-closeButton {
+#superfood-container .superfood-closeButton {
 	z-index: 2147483002;
 	position: absolute;
 	right: 10px;
@@ -42,9 +42,9 @@
 	cursor: pointer;
 }
 
-#truetalk-container .truetalk-closeButton:hover, 
-#truetalk-container .truetalk-closeButton:visited, 
-#truetalk-container .truetalk-closeButton:focus {
+#superfood-container .superfood-closeButton:hover, 
+#superfood-container .superfood-closeButton:visited, 
+#superfood-container .superfood-closeButton:focus {
 	text-decoration: underline;
 	cursor: pointer;
 }
@@ -84,7 +84,7 @@
         opacity: 1;
     }
 }
-#truetalk-container .truetalk-recording-live img {
+#superfood-container .superfood-recording-live img {
     -webkit-animation: blink 1s;
     -webkit-animation-iteration-count: infinite;
     -moz-animation: blink 1s;
@@ -95,9 +95,9 @@
 
 /*Launcher*/
 
-#truetalk-container .truetalk-launcher-open-icon {
+#superfood-container .superfood-launcher-open-icon {
 	z-index: 2147483002;
-	background-image: url(../img/icon-truetalk-logo-square.png);
+	background-image: url(../img/icon-superfood-logo-square.png);
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -111,7 +111,7 @@
     cursor: pointer;
 }
 
-#truetalk-container .truetalk-launcher-close-icon {
+#superfood-container .superfood-launcher-close-icon {
 	z-index: 2147483002;
 	background-image: url(../img/icon-launcher-close.png);
     position: absolute;
@@ -127,45 +127,45 @@
     cursor: pointer;
 }
 
-#truetalk-container .truetalk-launcher-open-icon .hidden,
-#truetalk-container .truetalk-launcher-close-icon .hidden {
+#superfood-container .superfood-launcher-open-icon .hidden,
+#superfood-container .superfood-launcher-close-icon .hidden {
 	display: none;
 }
 
 /*Header*/
 
-#truetalk-container .truetalk-header {
+#superfood-container .superfood-header {
 	z-index: 2147483001;
 	position: absolute;
 	width: 100%;
 }
 
-#truetalk-container .truetalk-team-avatar-container {
+#superfood-container .superfood-team-avatar-container {
 	display: block;
 	padding: 20px 20px 10px;
 	text-align: left;
 }
 
-#truetalk-container .truetalk-team-avatar-img {
+#superfood-container .superfood-team-avatar-img {
 	position: relative;
 	display: inline-block;
 	padding-right: 5px;
 	vertical-align: middle;
 }
 
-#truetalk-container .truetalk-team-avatar-img img {
+#superfood-container .superfood-team-avatar-img img {
 	height: 30px;
 	width: 30px;
 	border-radius: 50%;
 }
 
-#truetalk-container .truetalk-team-avatar-title {
+#superfood-container .superfood-team-avatar-title {
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
 }
 
-#truetalk-container .truetalk-team-avatar-title-name {
+#superfood-container .superfood-team-avatar-title-name {
 	display: block;
 	color: #323232;
 	font-size: 12px;
@@ -173,7 +173,7 @@
 	font-weight: 700;
 }
 
-#truetalk-container .truetalk-team-avatar-title-company {
+#superfood-container .superfood-team-avatar-title-company {
 	display: block;
 	color: #323232;
 	font-size: 12px;
@@ -181,26 +181,26 @@
 	font-weight: 300;
 }
 
-#truetalk-container .truetalk-team-recording-container {
+#superfood-container .superfood-team-recording-container {
 	display: block;
 	padding: 5px 20px 20px;
 	height: 210px;
 }
 
-#truetalk-container .truetalk-user-recording-container {
+#superfood-container .superfood-user-recording-container {
 	display: block;
 	padding: 0px 20px 20px;
 	height: 255px;
 }
 
-#truetalk-container .truetalk-completion-hero {
+#superfood-container .superfood-completion-hero {
 	display: block;
 	padding: 20px 20px 0px;
 	height: 255px;
 	text-align: center;
 }
 
-#truetalk-container .truetalk-team-recording {
+#superfood-container .superfood-team-recording {
 	display: block;
 	position: relative;
 	border-radius: 10px;
@@ -215,7 +215,7 @@
 	box-shadow: 0 5px 40px rgba(0,0,0,.16)!important;
 }
 
-#truetalk-container .truetalk-user-recording {
+#superfood-container .superfood-user-recording {
 	display: block;
 	position: relative;
 	border-radius: 10px;
@@ -230,7 +230,7 @@
 	box-shadow: 0 5px 40px rgba(0,0,0,.16)!important;
 }
 
-#truetalk-container .truetalk-audio-only #black-overlay {
+#superfood-container .superfood-audio-only #black-overlay {
 	background: black !important;
 	z-index:1000;
 	left:-5px;
@@ -250,7 +250,7 @@
 	/*display:none !important;*/
 }
 
-#truetalk-container .truetalk-recording-overlay {
+#superfood-container .superfood-recording-overlay {
 	z-index: 2147483002;
 	display: block;
 	position: absolute;
@@ -267,7 +267,7 @@
 	background: linear-gradient(at bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
 }
 
-#truetalk-container .truetalk-team-recording-question {
+#superfood-container .superfood-team-recording-question {
 	z-index: 2147483003;
 	position: absolute;
 	left: 10px;
@@ -280,7 +280,7 @@
 	width: 270px;
 }
 
-#truetalk-container .truetalk-team-recording-sound {
+#superfood-container .superfood-team-recording-sound {
 	z-index: 2147483003;
 	position: absolute;
 	display: inline-block;
@@ -288,7 +288,7 @@
 	bottom: 15px;
 }
 
-#truetalk-container .truetalk-recording-countdown-time {
+#superfood-container .superfood-recording-countdown-time {
 	color: #fff;
     font-size: 160px;
     line-height: 220px;
@@ -298,7 +298,7 @@
     height: 255px;
 }
 
-#truetalk-container .truetalk-recording-live {
+#superfood-container .superfood-recording-live {
 	position: absolute;
 	/*display: block;*/
 	right: 0px;
@@ -308,7 +308,7 @@
 
 /*body*/
 
-#truetalk-container .truetalk-body {
+#superfood-container .superfood-body {
 	z-index: 2147483001;
 	position: absolute;
 	bottom: 34px;
@@ -317,25 +317,25 @@
 	background: #03B9FF;
 }
 
-#truetalk-container .truetalk-body-container {
+#superfood-container .superfood-body-container {
 	display: block;
 	padding: 20px 10px;
 	background: #03B9FF;
 }
 
-#truetalk-container .truetalk-body-container.completion {
+#superfood-container .superfood-body-container.completion {
 	padding: 20px 10px 35px;
 	background: #fff;
 }
 
-#truetalk-container .truetalk-body-content {
+#superfood-container .superfood-body-content {
 	display: block;
 	text-align: center;
 	margin: 0 auto;
 	padding-bottom: 10px;
 }
 
-#truetalk-container .truetalk-body-h1 {
+#superfood-container .superfood-body-h1 {
 	display: block;
 	text-align: center;
 	font-size: 18px;
@@ -344,7 +344,7 @@
 	color: #fff;
 }
 
-#truetalk-container .truetalk-body-h1.completion {
+#superfood-container .superfood-body-h1.completion {
 	display: block;
 	text-align: center;
 	font-size: 22px;
@@ -354,7 +354,7 @@
 	margin-bottom: 5px;
 }
 
-#truetalk-container .truetalk-body-p.completion {
+#superfood-container .superfood-body-p.completion {
 	display: block;
 	text-align: center;
 	font-size: 14px;
@@ -364,16 +364,16 @@
 	margin-bottom: 5px;
 }
 
-#truetalk-container .truetalk-body-cta {
+#superfood-container .superfood-body-cta {
 	display: block;
 	text-align: center;
 }
 
-#truetalk-container .truetalk-body-cta.completion {
+#superfood-container .superfood-body-cta.completion {
 	margin-top: 10px;
 }
 
-#truetalk-container .truetalk-body-button {
+#superfood-container .superfood-body-button {
   margin: 0 5px;
   color: white;
   background: #FF2D85;
@@ -397,9 +397,9 @@
   cursor: pointer;
   box-shadow: 0 3px 30px rgba(0,0,0,.2)!important;
 }
-#truetalk-container .truetalk-body-button:hover, 
-#truetalk-container .truetalk-body-button:visited, 
-#truetalk-container .truetalk-body-button:focus {
+#superfood-container .superfood-body-button:hover, 
+#superfood-container .superfood-body-button:visited, 
+#superfood-container .superfood-body-button:focus {
   color: white;
   border: 2px solid #FF1F7D;
   background: #FF1F7D;
@@ -408,30 +408,30 @@
   box-shadow: 0 3px 30px rgba(0,0,0,.2)!important;
 }
 
-#truetalk-container .truetalk-body-button.btn-transparent {
+#superfood-container .superfood-body-button.btn-transparent {
   background: none;
   border: 2px solid #fff;
 }
-#truetalk-container .truetalk-body-button.btn-transparent:hover, 
-#truetalk-container .truetalk-body-button.btn-transparent:visited, 
-#truetalk-container .truetalk-body-button.btn-transparent:focus {
+#superfood-container .superfood-body-button.btn-transparent:hover, 
+#superfood-container .superfood-body-button.btn-transparent:visited, 
+#superfood-container .superfood-body-button.btn-transparent:focus {
   border: 2px solid #fff;
   background: rgba(255,255,255,0.15);
 }
 
-#truetalk-container .truetalk-body-button.record-starting {
+#superfood-container .superfood-body-button.record-starting {
 	background: #AAAAAA;
 	border-color: #AAAAAA; 
 	cursor: auto;
 }
 
-#truetalk-container .truetalk-body-button img {
+#superfood-container .superfood-body-button img {
 	vertical-align: inherit;
 	display: inline-block;
 	padding-right: 5px;
 }
 
-#truetalk-container .truetalk-body-cta-reward {
+#superfood-container .superfood-body-cta-reward {
 	font-size: 13px;
 	line-height: 13px;
 	color: #525252;
@@ -442,7 +442,7 @@
 
 /*Footer*/
 
-#truetalk-container .truetalk-footer {
+#superfood-container .superfood-footer {
 	z-index: 2147483001;
 	position: absolute;
 	bottom: 0px;
@@ -451,31 +451,31 @@
 	background: #03B9FF;
 }
 
-#truetalk-container .truetalk-footer-container {
+#superfood-container .superfood-footer-container {
 	display: block;
 	padding: 5px 12px;
 	background: #03B9FF;
 }
 
-#truetalk-container .truetalk-footer-details div {
+#superfood-container .superfood-footer-details div {
 	display: inline-block;
 	color: #0074F5;
 	font-size: 11px;
 	line-height: 24px;
 }
 
-#truetalk-container .truetalk-footer-details-clickable:hover,
-#truetalk-container .truetalk-footer-details-clickable:focus,
-#truetalk-container .truetalk-footer-details-clickable:visited {
+#superfood-container .superfood-footer-details-clickable:hover,
+#superfood-container .superfood-footer-details-clickable:focus,
+#superfood-container .superfood-footer-details-clickable:visited {
 	cursor: pointer;
 	color: white;
 }
 
-#truetalk-container .truetalk-footer-details-clickable {
+#superfood-container .superfood-footer-details-clickable {
 	cursor: pointer;
 }
 
-#truetalk-container .truetalk-footer-powered {
+#superfood-container .superfood-footer-powered {
 	position: absolute;
 	right: 15px;
 	font-size: 11px;
@@ -484,16 +484,16 @@
 	cursor: pointer;
 }
 
-#truetalk-container .truetalk-footer-powered:hover,
-#truetalk-container .truetalk-footer-powered:focus,
-#truetalk-container .truetalk-footer-powered:visited {
+#superfood-container .superfood-footer-powered:hover,
+#superfood-container .superfood-footer-powered:focus,
+#superfood-container .superfood-footer-powered:visited {
 	cursor: pointer;
 }
 
 
 /*Default Styling*/
 
-#truetalk-container div {
+#superfood-container div {
 	font-family: Helvetica, Arial, sans-serif;
 	font-size-adjust: none;
 	font-size: 100%;

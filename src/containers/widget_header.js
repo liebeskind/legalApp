@@ -5,11 +5,10 @@ import * as actions from '../actions';
 
 //Component
 import RecordingContainer from '../components/recording_container';
-import ZiggeoRecorder from '../containers/ziggeoRecorder';
 import AvatarHeader from '../components/avatar_header';
 
 //images
-import speaking from '../img/speaking.jpg';
+// import speaking from '../img/speaking.jpg';
 
 class WidgetHeader extends Component {
 	constructor(props) {
@@ -22,18 +21,18 @@ class WidgetHeader extends Component {
 		console.log(this.props.recordingStatus)
 		if (this.props.recordingStatus === 'pre_record') {
 			const teamRecordingStyle = {
-			  backgroundImage: 'url(' + speaking + ')',
+			  // backgroundImage: 'url(' + speaking + ')',
 			};
 			return <RecordingContainer videoCaption={this.props.videoCaption} imageStyle={teamRecordingStyle} />
 		} else {
-			return <ZiggeoRecorder id={this.props.campaignInfo.companyId} videoCaption={this.props.videoCaption} companyName={this.props.campaignInfo.companyName}/>
+			return
 		}
 	}
 
 	render() {
 		
 		return (
-			<div className="truetalk-header">
+			<div className="superfood-header">
 				<AvatarHeader />
 				{this.renderVideo()}
 			</div>

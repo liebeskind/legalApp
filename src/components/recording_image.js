@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import imageUrl from '../img/icon-recording.png';
+// import imageUrl from '../img/icon-recording.png';
 
 export default class RecordingImage extends Component {
 	constructor(props) {
@@ -8,8 +8,8 @@ export default class RecordingImage extends Component {
 	
 	render() {
 		return (
-			<div className="truetalk-recording-live">
-          <img src={imageUrl} />
+			<div className="superfood-recording-live">
+          // <img src={imageUrl} />
       </div>
 		)
 	}

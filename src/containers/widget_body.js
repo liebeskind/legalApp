@@ -7,8 +7,8 @@ import * as actions from '../actions';
 import BodyButton from '../components/body_button';
 
 //Images
-import audioIcon from '../img/icon-audio.png';
-import videoIcon from '../img/icon-video.png';
+// import audioIcon from '../img/icon-audio.png';
+// import videoIcon from '../img/icon-video.png';
 
 class WidgetBody extends Component {
 	constructor(props) {
@@ -18,7 +18,8 @@ class WidgetBody extends Component {
 	}
 
 	getImage() {
-		return this.props.audioOnly ? audioIcon : videoIcon;
+		return;
+		// return this.props.audioOnly ? audioIcon : videoIcon;
 	}
 
 	renderButton() {
@@ -45,11 +46,11 @@ class WidgetBody extends Component {
 					<BodyButton buttonText={"Video"} clicked={() => {
 						this.props.recordingStatusChanged('begin_record'); 
 						this.props.audioOnlyChanged(false);}
-					} buttonImg={videoIcon} />
+					} />
 					<BodyButton buttonText={"Audio"} clicked={() => {
 						this.props.recordingStatusChanged('begin_record'); 
 						this.props.audioOnlyChanged(true);}
-					} buttonImg={audioIcon} />
+					} />
 				</div>
 			)
 		}
@@ -73,13 +74,13 @@ class WidgetBody extends Component {
 
 	render() {
 		return (
-			<div className="truetalk-body">
-				<div className="truetalk-body-container">
-					<div className="truetalk-body-content">
-						<div className="truetalk-body-h1">{this.renderText()}</div>
-						<div className="truetalk-body-p"></div>
+			<div className="superfood-body">
+				<div className="superfood-body-container">
+					<div className="superfood-body-content">
+						<div className="superfood-body-h1">{this.renderText()}</div>
+						<div className="superfood-body-p"></div>
 					</div>
-					<div className="truetalk-body-cta">
+					<div className="superfood-body-cta">
 						{this.renderButton()}
 					</div>
 				</div>

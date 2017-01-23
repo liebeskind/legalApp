@@ -5,30 +5,34 @@ const FETCH_CAMPAIGN_INFO = 'FETCH_CAMPAIGN_INFO';
 const RECORDING_STATUS_CHANGED = 'RECORDING_STATUS_CHANGED';
 const AUDIO_ONLY_CHANGED = 'AUDIO_ONLY_CHANGED';
 
-const config = {
-  apiKey: "",
-  databaseURL: ""
-}
+var config = {
+    apiKey: "AIzaSyBNpbvruUr-xr4s06uRmoU8ABNcLllBbMA",
+    authDomain: "superfood-d8075.firebaseapp.com",
+    databaseURL: "https://superfood-d8075.firebaseio.com",
+    storageBucket: "superfood-d8075.appspot.com",
+    messagingSenderId: "164065335476"
+  };
 Firebase.initializeApp(config);
 
 export function fetchCompanyCampaignInfo(companyName) {
-  const ref = Firebase.database().ref('companyCampaigns').child(companyName);
+  // const ref = Firebase.database().ref('companyCampaigns').child(companyName);
 
-  return (dispatch) => {
-    ref.on('value', (snapshot) => {
-      if (snapshot.val()) {
-        dispatch({
-          type: FETCH_CAMPAIGN_INFO,
-          payload: snapshot.val()
-        });
-      } else {
-        dispatch({
-          type: FETCH_CAMPAIGN_INFO,
-          payload: null
-        });
-      }
-    });
-  };
+  // return (dispatch) => {
+  //   ref.on('value', (snapshot) => {
+  //     if (snapshot.val()) {
+  //       dispatch({
+  //         type: FETCH_CAMPAIGN_INFO,
+  //         payload: snapshot.val()
+  //       });
+  //     } else {
+  //       dispatch({
+  //         type: FETCH_CAMPAIGN_INFO,
+  //         payload: null
+  //       });
+  //     }
+  //   });
+  // };
+  return (dispatch) => {}
 }
 
 export function recordingStatusChanged(recordStatus) {
@@ -48,6 +52,10 @@ export function audioOnlyChanged(audioOnlyBool) {
     })
   }
 }
+
+
+
+
 
 // export function fetchDraftList() {
 //   var ref = Firebase.database().ref('draftList');

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import volumeBars from '../img/volumebars.png';
+// import volumeBars from '../img/volumebars.png';
 
 export default class RecordingContainer extends Component {
 	constructor(props) {
@@ -12,12 +12,12 @@ export default class RecordingContainer extends Component {
 
 	render() {
 		return (
-			<div className="truetalk-team-recording-container">
-				<div className="truetalk-team-recording" style={this.props.imageStyle}>
-					<div className="truetalk-team-recording-overlay"></div>
-					<div className="truetalk-team-recording-question">{this.props.videoCaption}</div>
-					<div className="truetalk-team-recording-sound">
-						<img src={volumeBars} />
+			<div className="superfood-team-recording-container">
+				<div className="superfood-team-recording" style={this.props.imageStyle}>
+					<div className="superfood-team-recording-overlay"></div>
+					<div className="superfood-team-recording-question">{this.props.videoCaption}</div>
+					<div className="superfood-team-recording-sound">
+						// <img src={volumeBars} />
 					</div>
 				</div>
 			</div>

@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 
+//containers
+import WidgetBody from './widget_body';
+import WidgetHeader from './widget_header';
+
 //components
-import NavBar from '../components/navbar';
-import Footer from '../components/footer';
-import GridList from '../components/grid_list';
+import CloseButton from '../components/close_button';
+import WidgetFooter from '../components/widget_footer';
 
 class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
 	constructor(props) {
@@ -21,15 +23,24 @@ class App extends Component { //Functional component isn't aware of state and do
     this.props.fetchCompanyCampaignInfo('testCompany');
   }
 
+  renderHeader() {
+  	if (!this.props.campaignInfo) return <div>Loading...</div>
+  		return <WidgetHeader videoCaption={this.props.campaignInfo.videoCaption} />
+  }
+
 	render() {
 		return (
-			<MuiThemeProvider>
-				<div>
-					<NavBar />
-					<GridList />
-					<Footer companyName="Superfood App" />
+			<div>
+				<div id="superfood-container">
+					
+					<div id="superfood-window">
+						<CloseButton color={"blue"} />
+						{this.renderHeader()}
+						<WidgetBody />
+						<WidgetFooter />
+					</div>
 				</div>
-			</MuiThemeProvider>
+			</div>
 		);
 	}
 };

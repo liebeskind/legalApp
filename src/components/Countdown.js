@@ -30,7 +30,7 @@ export default class Countdown extends Component {
 	render(){
 		return (
 			<div>
-				<div className="truetalk-recording-countdown-time">{this.state.secondsRemaining}</div>
+				<div className="superfood-recording-countdown-time">{this.state.secondsRemaining}</div>
 			</div>
 		)
 	}
