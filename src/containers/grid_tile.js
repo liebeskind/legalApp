@@ -48,11 +48,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function getStyles(props, context) {
   var _titleBar;
+  var _primaryBenefit1Bar;
+  var _primaryBenefit2Bar;
+  var _primaryBenefit3Bar;
 
   var _context$muiTheme = context.muiTheme,
       baseTheme = _context$muiTheme.baseTheme,
       gridTile = _context$muiTheme.gridTile;
-
 
   var actionPos = props.actionIcon && props.actionPosition;
 
@@ -66,8 +68,36 @@ function getStyles(props, context) {
     titleBar: (_titleBar = {
       position: 'absolute',
       left: 0,
-      right: 0
+      right: 0,
+      textAlign: "center"
     }, (0, _defineProperty3.default)(_titleBar, props.titlePosition, 0), (0, _defineProperty3.default)(_titleBar, 'height', props.subtitle ? 68 : 48), (0, _defineProperty3.default)(_titleBar, 'background', props.titleBackground), (0, _defineProperty3.default)(_titleBar, 'display', 'flex'), (0, _defineProperty3.default)(_titleBar, 'alignItems', 'center'), _titleBar),
+    primaryBenefit1Bar: (_primaryBenefit1Bar = {
+      position: 'absolute',
+      paddingRight: "16px",
+      borderRadius: "20px",
+      left: "50%",
+      width: "250px",
+      marginLeft: "-125px", //Imperfect way of doing this
+      textAlign: "center"
+    }, (0, _defineProperty3.default)(_primaryBenefit1Bar, 'top', 75), (0, _defineProperty3.default)(_primaryBenefit1Bar, 'height', 40), (0, _defineProperty3.default)(_primaryBenefit1Bar, 'background', "#4848F0"), (0, _defineProperty3.default)(_primaryBenefit1Bar, 'opacity', 0.75), (0, _defineProperty3.default)(_primaryBenefit1Bar, 'display', 'flex'), (0, _defineProperty3.default)(_primaryBenefit1Bar, 'alignItems', 'center'), _primaryBenefit1Bar),
+    primaryBenefit2Bar: (_primaryBenefit2Bar = {
+      position: 'absolute',
+      paddingRight: "16px",
+      borderRadius: "20px",
+      left: "50%",
+      width: "250px",
+      marginLeft: "-125px", //Imperfect way of doing this
+      textAlign: "center"
+    }, (0, _defineProperty3.default)(_primaryBenefit2Bar, 'top', 125), (0, _defineProperty3.default)(_primaryBenefit2Bar, 'height', 40), (0, _defineProperty3.default)(_primaryBenefit2Bar, 'background', '#4848F0'), (0, _defineProperty3.default)(_primaryBenefit2Bar, 'opacity', 0.75), (0, _defineProperty3.default)(_primaryBenefit2Bar, 'display', 'flex'), (0, _defineProperty3.default)(_primaryBenefit2Bar, 'alignItems', 'center'), _primaryBenefit2Bar),
+    primaryBenefit3Bar: (_primaryBenefit3Bar = {
+      position: 'absolute',
+      paddingRight: "16px",
+      borderRadius: "20px",
+      left: "50%",
+      width: "250px",
+      marginLeft: "-125px", //Imperfect way of doing this
+      textAlign: "center"
+    }, (0, _defineProperty3.default)(_primaryBenefit3Bar, 'top', 175), (0, _defineProperty3.default)(_primaryBenefit3Bar, 'height', 40), (0, _defineProperty3.default)(_primaryBenefit3Bar, 'background', '#4848F0'), (0, _defineProperty3.default)(_primaryBenefit3Bar, 'opacity', 0.75), (0, _defineProperty3.default)(_primaryBenefit3Bar, 'display', 'flex'), (0, _defineProperty3.default)(_primaryBenefit3Bar, 'alignItems', 'center'), _primaryBenefit3Bar),
     titleWrap: {
       flexGrow: 1,
       marginLeft: actionPos !== 'left' ? baseTheme.spacing.desktopGutterLess : 0,
@@ -76,19 +106,48 @@ function getStyles(props, context) {
       overflow: 'hidden'
     },
     title: {
-      fontSize: '16px',
+      fontSize: '24px',
       textOverflow: 'ellipsis',
       overflow: 'hidden',
-      whiteSpace: 'nowrap'
+      whiteSpace: 'nowrap',
+      paddingRight: '4px' //Because adding 4px padding to 'percentage'
     },
     subtitle: {
       fontSize: '12px',
       textOverflow: 'ellipsis',
       overflow: 'hidden',
-      whiteSpace: 'nowrap'
+      whiteSpace: 'nowrap',
+      paddingRight: '4px' //Because adding 4px padding to 'percentage'
     },
     actionIcon: {
       order: actionPos === 'left' ? -1 : 1
+    },
+    percentage: {
+      order: -1,
+      fontSize: '16px',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      color: 'white',
+      paddingLeft: '4px'
+    },
+    primaryBenefit1: {
+      fontSize: '16px',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap'
+    },
+    primaryBenefit2: {
+      fontSize: '16px',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap'
+    },
+    primaryBenefit3: {
+      fontSize: '16px',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap'
     },
     childImg: {
       height: '100%',
@@ -158,15 +217,19 @@ var GridTile = function (_Component) {
       var _props = this.props,
           title = _props.title,
           subtitle = _props.subtitle,
+          primaryBenefit1 = _props.primaryBenefit1,
+          primaryBenefit2 = _props.primaryBenefit2,
+          primaryBenefit3 = _props.primaryBenefit3,
           titlePosition = _props.titlePosition,
           titleBackground = _props.titleBackground,
           titleStyle = _props.titleStyle,
           actionIcon = _props.actionIcon,
+          percentage = _props.percentage,
           actionPosition = _props.actionPosition,
           style = _props.style,
           children = _props.children,
           containerElement = _props.containerElement,
-          other = (0, _objectWithoutProperties3.default)(_props, ['title', 'subtitle', 'titlePosition', 'titleBackground', 'titleStyle', 'actionIcon', 'actionPosition', 'style', 'children', 'containerElement']);
+          other = (0, _objectWithoutProperties3.default)(_props, ['title', 'subtitle', 'percentage', 'primaryBenefit1', 'primaryBenefit2', 'primaryBenefit3','titlePosition', 'titleBackground', 'titleStyle', 'actionIcon', 'actionPosition', 'style', 'children', 'containerElement']);
       var prepareStyles = this.context.muiTheme.prepareStyles;
 
       var styles = getStyles(this.props, this.context);
@@ -174,16 +237,21 @@ var GridTile = function (_Component) {
 
       var titleBar = null;
 
+      var titleStylePrepared = prepareStyles(styles.titleWrap)
+      var titleStyle2 = function(input) {
+      	return prepareStyles((0, _simpleAssign2.default)(input, titleStyle))
+      }
+
       if (title) {
         titleBar = _react2.default.createElement(
           'div',
           { key: 'titlebar', style: prepareStyles(styles.titleBar) },
           _react2.default.createElement(
             'div',
-            { style: prepareStyles(styles.titleWrap) },
+            { style: titleStylePrepared },
             _react2.default.createElement(
               'div',
-              { style: prepareStyles((0, _simpleAssign2.default)(styles.title, titleStyle)) },
+              { style: titleStyle2(styles.title) },
               title
             ),
             subtitle ? _react2.default.createElement(
@@ -192,11 +260,76 @@ var GridTile = function (_Component) {
               subtitle
             ) : null
           ),
+          percentage ? _react2.default.createElement(
+            'div',
+            { style: prepareStyles(styles.percentage) },
+            percentage
+          ) : null,
           actionIcon ? _react2.default.createElement(
             'div',
             { style: prepareStyles(styles.actionIcon) },
             actionIcon
           ) : null
+        );
+      }
+
+      var primaryBenefit1Bar = null;
+
+      if (primaryBenefit1) {
+        primaryBenefit1Bar = _react2.default.createElement(
+          'div',
+          { key: 'primaryBenefit1Bar', style: prepareStyles(styles.primaryBenefit1Bar) },
+          _react2.default.createElement(
+            'div',
+            { style: titleStylePrepared },
+            _react2.default.createElement(
+              'div',
+              { style: prepareStyles((0, _simpleAssign2.default)(styles.primaryBenefit1, titleStyle)) },
+              primaryBenefit1
+            ),
+            null
+          ),
+          null
+        );
+      }
+
+      var primaryBenefit2Bar = null;
+
+      if (primaryBenefit2) {
+        primaryBenefit2Bar = _react2.default.createElement(
+          'div',
+          { key: 'primaryBenefit2Bar', style: prepareStyles(styles.primaryBenefit2Bar) },
+          _react2.default.createElement(
+            'div',
+            { style: titleStylePrepared },
+            _react2.default.createElement(
+              'div',
+              { style: prepareStyles((0, _simpleAssign2.default)(styles.primaryBenefit2, titleStyle)) },
+              primaryBenefit2
+            ),
+            null
+          ),
+          null
+        );
+      }
+
+      var primaryBenefit3Bar = null;
+
+      if (primaryBenefit3) {
+        primaryBenefit3Bar = _react2.default.createElement(
+          'div',
+          { key: 'primaryBenefit3Bar', style: prepareStyles(styles.primaryBenefit3Bar) },
+          _react2.default.createElement(
+            'div',
+            { style: titleStylePrepared },
+            _react2.default.createElement(
+              'div',
+              { style: prepareStyles((0, _simpleAssign2.default)(styles.primaryBenefit3, titleStyle)) },
+              primaryBenefit3
+            ),
+            null
+          ),
+          null
         );
       }
 
@@ -222,7 +355,7 @@ var GridTile = function (_Component) {
         style: prepareStyles(mergedRootStyles)
       }, other);
 
-      return _react2.default.isValidElement(containerElement) ? _react2.default.cloneElement(containerElement, containerProps, [newChildren, titleBar]) : _react2.default.createElement(containerElement, containerProps, [newChildren, titleBar]);
+      return _react2.default.isValidElement(containerElement) ? _react2.default.cloneElement(containerElement, containerProps, [newChildren, titleBar, primaryBenefit1Bar, primaryBenefit2Bar, primaryBenefit3Bar]) : _react2.default.createElement(containerElement, containerProps, [newChildren, titleBar, primaryBenefit1Bar, primaryBenefit2Bar, primaryBenefit3Bar]);
     }
   }]);
   return GridTile;
@@ -283,6 +416,10 @@ process.env.NODE_ENV !== "production" ? GridTile.propTypes = {
    * Title to be displayed on tile.
    */
   title: _react.PropTypes.node,
+  percentage: _react.PropTypes.node,
+  primaryBenefit1: _react.PropTypes.node,
+  primaryBenefit2: _react.PropTypes.node,
+  primaryBenefit3: _react.PropTypes.node,
   /**
    * Style used for title bar background.
    * Useful for setting custom gradients for example

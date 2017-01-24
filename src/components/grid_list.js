@@ -22,25 +22,39 @@ const styles = {
 const tilesData = [
   {
     img: 'src/img/goji.png',
-    title: '100%',
-    author: 'jill111',
-    featured: true
+    title: 'Goji',
+    author: 'Berry'
   },
   {
     img: 'src/img/kava.jpg',
-    title: '95%',
-    author: 'pashminu',
+    title: 'Kava',
+    author: 'Root',
   },
   {
     img: 'src/img/maca.jpg',
-    title: '92%',
-    author: 'Danson67',
+    title: 'Maca',
+    author: 'Root',
   },
   {
     img: 'src/img/reishi.jpg',
-    title: '91%',
-    author: 'fancycrave1',
-  }
+    title: 'Reishi',
+    author: 'Mushroom',
+  },
+  {
+    img: 'src/img/shiitake.jpg',
+    title: 'Shiitake',
+    author: 'Mushroom',
+  },
+  {
+    img: 'src/img/turmeric.jpg',
+    title: 'Turmeric',
+    author: 'Spice',
+  },
+  {
+    img: 'src/img/maca.png',
+    title: 'Maca',
+    author: 'Root',
+  },
 ];
 
 /**
@@ -57,10 +71,15 @@ const GridListExampleComplex = () => (
     >
       {tilesData.map((tile) => (
         <GridTile
-          key={tile.img}
+          key={tile.img} //Change this
           title={tile.title}
+          primaryBenefit1="Antioxidant"
+          primaryBenefit2="Anti-Aging"
+          primaryBenefit3="Women's Health"
+          subtitle={tile.author}
           actionIcon={<IconButton><FavoriteBorder color="white" /></IconButton>}
           actionPosition="right"
+          percentage="90%"
           titlePosition="top"
           titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
           cols={tile.featured ? 3 : 1}
