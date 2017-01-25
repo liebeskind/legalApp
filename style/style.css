@@ -1,3 +1,76 @@
+.cardContentWrapper {
+	position: absolute;
+	display:inline-block;
+	left: 0;
+	top: 15%;
+	bottom:0;
+}
+
+.leftTextBox {
+	position:relative;
+	width: 28%;
+	padding: 10px;
+	padding-top: 5px;
+	background-color: rgba(0,0,0,.3);
+	overflow-y: hidden;
+	float:left;
+	top: 5%;
+}
+
+.leftText {
+	opacity: 1.0;
+	color: white;
+}
+
+#descriptionId {
+	text-align:center;
+}
+
+/*#leftTextContent {
+	font-size: 16px;
+}*/
+
+.rightTextBox {
+	position: relative;
+	width: 28%;
+	padding: 10px;
+	padding-top: 5px;
+	background-color: rgba(0,0,0,.3);
+	overflow-y: hidden;
+	float:right;
+	top: 5%;
+}
+
+.rightText {
+	opacity: 1.0;
+	color: white;
+}
+
+#secondaryBenefitsId {
+	text-align:center;
+}
+
+#sideEffectsId {
+	text-align:center;
+	
+}
+
+#funFactsId {
+	text-align:center;
+	
+}
+
+#funFactsContent {
+	padding-left: 7px;
+}
+
+#sideEffectsContent {
+	padding-left: 7px;
+}
+/*.rightTextContent {
+	font-size: 16px;
+}*/
+
 /*Containers*/
 
 #superfood-container #superfood-window {
