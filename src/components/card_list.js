@@ -113,7 +113,7 @@ function getStyles(props, context) {
       paddingRight: '4px' //Because adding 4px padding to 'percentage'
     },
     subtitle: {
-      fontSize: '12px',
+      fontSize: '16px',
       textOverflow: 'ellipsis',
       overflow: 'hidden',
       whiteSpace: 'nowrap',

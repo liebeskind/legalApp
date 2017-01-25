@@ -1,58 +1,61 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../actions';
+import React from 'react';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
-//containers
-import WidgetBody from './widget_body';
-import WidgetHeader from './widget_header';
+import GridTile from '../components/card_expanded'
 
-//components
-import CloseButton from '../components/close_button';
-import WidgetFooter from '../components/widget_footer';
+import IconButton from 'material-ui/IconButton';
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import FavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 
-class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
-	constructor(props) {
-		super(props);
-		this.state = {
-			videos: []
-		};
-	}
+import RaisedButton from 'material-ui/RaisedButton'
+import {GridList} from 'material-ui/GridList';
 
-	componentWillMount() {
-    this.props.fetchCompanyCampaignInfo('testCompany');
-  }
-
-  renderHeader() {
-  	if (!this.props.campaignInfo) return <div>Loading...</div>
-  		return <WidgetHeader videoCaption={this.props.campaignInfo.videoCaption} />
-  }
-
-	render() {
-		return (
-			<div>
-				<div id="superfood-container">
-					
-					<div id="superfood-window">
-						<CloseButton color={"blue"} />
-						{this.renderHeader()}
-						<WidgetBody />
-						<WidgetFooter />
-					</div>
-				</div>
-			</div>
-		);
-	}
+const buttonStyle = {
+  position: 'absolute',
+  display: 'block',
+  width: '250px',
+  left: '50%',
+  top: '100px',
+  marginLeft: '-125px',
 };
 
-function mapStateToProps(state) {
-	return {campaignInfo: state.campaignInfo}
+const styles = {
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+  gridList: {
+    width: window.innerWidth,
+    height: window.innerHeight,
+    // overflowY: 'auto',
+  },
+};
+
+const labelStyle = {
+	fontSize: "24px",
 }
 
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ 
-		fetchCompanyCampaignInfo: actions.fetchCompanyCampaignInfo
-	}, dispatch)
-}
+const FoodCard = () => (
+		<GridTile
+      key= "123456" //Change this
+      title= "Reishi"
+      primaryBenefit1="Antioxidant"
+      primaryBenefit2="Anti-Aging"
+      primaryBenefit3="Women's Health"
+      subtitle= "Mushroom"
+      actionIcon={<IconButton><FavoriteBorder viewBox="0 0 22 22" color="white" /></IconButton>}
+      actionPosition="right"
+      percentage="90%"
+      titlePosition="top"
+      titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+      
+    >
+    	<img src="src/img/reishi.jpg"/>
+    	<RaisedButton label="More Info" labelStyle={labelStyle} labelPosition="after" primary={true} style={buttonStyle} />
+      
+    </GridTile>
+);
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default FoodCard;

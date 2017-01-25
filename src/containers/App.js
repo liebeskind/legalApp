@@ -9,6 +9,8 @@ import NavBar from '../components/navbar';
 import Footer from '../components/footer';
 import GridList from '../components/grid_list';
 
+import FoodCard from '../containers/food_card'
+
 class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
 	constructor(props) {
 		super(props);
@@ -26,6 +28,7 @@ class App extends Component { //Functional component isn't aware of state and do
 			<MuiThemeProvider>
 				<div>
 					<NavBar />
+					<FoodCard />
 					<GridList />
 					<Footer companyName="Superfood App" />
 				</div>

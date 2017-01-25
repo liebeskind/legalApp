@@ -4,7 +4,8 @@ import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import FavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 
-import GridTile from '../containers/grid_tile'
+import GridTile from '../components/card_list'
+import FoodCard from '../containers/food_card'
 
 const styles = {
   root: {
@@ -15,7 +16,7 @@ const styles = {
   gridList: {
     width: window.innerWidth,
     height: window.innerHeight,
-    overflowY: 'auto',
+    // overflowY: 'auto',
   },
 };
 
@@ -61,11 +62,11 @@ const tilesData = [
  * This example demonstrates "featured" tiles, using the `rows` and `cols` props to adjust the size of the tile.
  * The tiles have a customised title, positioned at the top and with a custom gradient `titleBackground`.
  */
-const GridListExampleComplex = () => (
+const GridListComplex = () => (
   <div style={styles.root}>
     <GridList
-      cols={3}
-      cellHeight={window.innerHeight/3}
+      cols={2}
+      cellHeight={window.innerHeight/2}
       padding={1}
       style={styles.gridList}
     >
@@ -82,8 +83,8 @@ const GridListExampleComplex = () => (
           percentage="90%"
           titlePosition="top"
           titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-          cols={tile.featured ? 3 : 1}
-          rows={tile.featured ? 2 : 1}
+          cols={1}
+          // rows={tile.featured ? 2 : 1}
         >
           <img src={tile.img} />
         </GridTile>
@@ -92,4 +93,4 @@ const GridListExampleComplex = () => (
   </div>
 );
 
-export default GridListExampleComplex;
+export default GridListComplex;
