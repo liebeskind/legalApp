@@ -1,20 +1,17 @@
 .cardContentWrapper {
 	position: absolute;
-	display:inline-block;
 	left: 0;
-	top: 15%;
+	top: 18%;
 	bottom:0;
 }
 
 .leftTextBox {
-	position:relative;
+	display: inline-block;
+	vertical-align: top;
 	width: 28%;
 	padding: 10px;
-	padding-top: 5px;
 	background-color: rgba(0,0,0,.3);
 	overflow-y: hidden;
-	float:left;
-	top: 5%;
 }
 
 .leftText {
@@ -30,15 +27,22 @@
 	font-size: 16px;
 }*/
 
+.centerContainer {
+	display: inline-block;
+	vertical-align: top;
+	width: 42%;
+	margin-left: 1%;
+	margin-right: 1%;	
+}
+
 .rightTextBox {
-	position: relative;
+	display: inline-block;
+	vertical-align: top;
 	width: 28%;
 	padding: 10px;
-	padding-top: 5px;
 	background-color: rgba(0,0,0,.3);
 	overflow-y: hidden;
-	float:right;
-	top: 5%;
+	
 }
 
 .rightText {
@@ -70,6 +74,48 @@
 /*.rightTextContent {
 	font-size: 16px;
 }*/
+
+#actionButton {
+  position: absolute;
+  width: 30%;
+  max-width: 30%;
+  min-width: 30%;
+  left: 35%;
+  top: 5%;
+}
+
+#attributeButton1 {
+  position: absolute;
+  width: 30%;
+  max-width: 40%;
+  min-width: 40%;
+  left: 30%;
+  top: 20%;
+  opacity: 0.85;
+  border-radius: 20px;
+}
+
+#attributeButton2 {
+  position: absolute;
+  width: 30%;
+  max-width: 40%;
+  min-width: 40%;
+  left: 30%;
+  top: 30%;
+	opacity: 0.85;
+	border-radius: 20px;
+}
+
+#attributeButton3 {
+  position: absolute;
+  width: 30%;
+  max-width: 40%;
+  min-width: 40%;
+  left: 30%;
+  top: 40%;
+  opacity: 0.85;
+  border-radius: 20px;
+}
 
 /*Containers*/
 

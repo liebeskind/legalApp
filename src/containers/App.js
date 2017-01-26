@@ -7,9 +7,7 @@ import * as actions from '../actions';
 //components
 import NavBar from '../components/navbar';
 import Footer from '../components/footer';
-import GridList from '../components/grid_list';
-
-import FoodCard from '../containers/food_card'
+import CardController from '../containers/card_controller'
 
 class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
 	constructor(props) {
@@ -28,8 +26,7 @@ class App extends Component { //Functional component isn't aware of state and do
 			<MuiThemeProvider>
 				<div>
 					<NavBar />
-					<FoodCard />
-					<GridList />
+					<CardController />
 					<Footer companyName="Superfood App" />
 				</div>
 			</MuiThemeProvider>
