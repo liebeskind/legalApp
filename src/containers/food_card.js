@@ -22,10 +22,11 @@ const styles = {
   	color: 'white'
   },
   actionButton: {
-	  width: '100%'
+	  width: '100%',
+	  height: '50px'
   },
   attributeButton1: {
-	  marginTop: '10px',
+	  marginTop: '40px',
 	  opacity: '0.85',
 	  borderRadius: '20px'
   },
