@@ -19,6 +19,9 @@ class App extends Component { //Functional component isn't aware of state and do
 	}
 
 	componentWillMount() {
+		this.props.fetchSuperfoodNames();
+		this.props.fetchSuperfoodType();
+		this.props.fetchTypeOptions();
     // this.props.fetchCompanyCampaignInfo('testCompany');
   }
 
@@ -27,7 +30,7 @@ class App extends Component { //Functional component isn't aware of state and do
 			<MuiThemeProvider>
 				<div>
 					<NavBar />
-					<EditProducts />
+					<EditProducts foodNames={this.props.superfoodNames} foodTypes={this.props.superfoodType} typeOptions={this.props.typeOptions} />
 					<CardController />
 					<Footer companyName="Superfood App" />
 				</div>
@@ -37,12 +40,18 @@ class App extends Component { //Functional component isn't aware of state and do
 };
 
 function mapStateToProps(state) {
-	return {campaignInfo: state.campaignInfo}
+	return {
+		superfoodNames: state.superfoodNames,
+		superfoodType: state.superfoodType,
+		typeOptions: state.typeOptions,
+	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ 
-		fetchCompanyCampaignInfo: actions.fetchCompanyCampaignInfo
+		fetchSuperfoodNames: actions.fetchSuperfoodNames,
+		fetchSuperfoodType: actions.fetchSuperfoodType,
+		fetchTypeOptions: actions.fetchTypeOptions,
 	}, dispatch)
 }
 

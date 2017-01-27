@@ -4,32 +4,29 @@ import {bindActionCreators} from 'redux';
 import * as actions from '../actions';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-
-const itemsArray = [];
-const itemsObject = [];
-
-const items = [];
-for (let i = 0; i < 100; i++ ) {
-  items.push(<MenuItem value={i} key={i} primaryText={`Item ${i}`} />);
-}
+import TextField from 'material-ui/TextField';
 
 class EditProducts extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: 2
+			foodChoice: 'acai'
 		}
-		this.mapObject = this.mapObject.bind(this)
-		this.renderItem = this.renderItem.bind(this)
+		this.mapObject = this.mapObject.bind(this);
+		this.renderSelectItemList = this.renderSelectItemList.bind(this);
 	}
 
 	componentWillMount() {
-		this.props.fetchSuperfoodNames();
-		this.props.fetchSuperfoodType();
 	}
 
-	handleChange = (event, index, value) => {
-    this.setState({value});
+	handleFoodChoiceChange = (event, index, foodChoice) => {
+    this.setState({foodChoice});
+    this.setState({showProductCard: foodChoice});   
+  };
+
+  handleSelectedTypeChange = (event, index, selectedType) => {
+    this.setState({selectedType});
+    this.props.setSelectedFoodType(this.state.showProductCard, selectedType);
   };
 
 	mapObject(object, callback) {
@@ -38,13 +35,31 @@ class EditProducts extends Component {
 	  });
 	}
 
-	renderItem(item, itemKey) {
+	renderSelectItemList(item) {
 		return (
 			this.mapObject(item, function (key, value) {
-				itemsArray.push(<MenuItem value={value} key={key} primaryText={`Hi {value}`} />);
-				itemsObject[itemKey] = value;
+				return <MenuItem value={key} key={key} primaryText={`${value}`} />;
 			  // return <div>{value}</div>;
 			})
+		)
+	}
+
+	renderProductCard() {
+		console.log(this.state.showProductCard)
+		if (!this.state.showProductCard) return
+		return (
+			<div>
+				<SelectField
+	        value={this.props.foodTypes[this.state.showProductCard]}
+	        onChange={this.handleSelectedTypeChange}
+	        maxHeight={200}
+	      >
+	        {this.renderSelectItemList(this.props.typeOptions)} 
+	      </SelectField>
+				<TextField floatingLabelText="Description" />
+				<TextField floatingLabelText="Side Effects" />
+				<TextField floatingLabelText="Fun Facts" />
+			</div>
 		)
 	}
 
@@ -52,13 +67,13 @@ class EditProducts extends Component {
 		return (
 			<div>
 				<SelectField
-	        value={this.state.value}
-	        onChange={this.handleChange}
+	        value={this.state.foodChoice}
+	        onChange={this.handleFoodChoiceChange}
 	        maxHeight={200}
 	      >
-	      	{this.renderItem(this.props.superfoodNames, 'name')}
-	        {items} 
+	        {this.renderSelectItemList(this.props.foodNames)} 
 	      </SelectField>
+	      {this.renderProductCard(this.state.showProductCard)}
       </div>
 		)
 	}
@@ -67,16 +82,13 @@ class EditProducts extends Component {
 //Receive data from reducers
 function mapStateToProps(state) {
 	return {
-		superfoodNames: state.superfoodNames,
-		superfoodType: state.superfoodType
 	}
 }
 
 //Send things to 'actions'
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ 
-		fetchSuperfoodNames: actions.fetchSuperfoodNames,
-		fetchSuperfoodType: actions.fetchSuperfoodType
+	return bindActionCreators({
+		setSelectedFoodType: actions.setSelectedFoodType,
 	}, dispatch)
 }
 

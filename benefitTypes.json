@@ -59,6 +59,13 @@
 		"kava": "Kava",
 		"cacao": "Cacao",
 		"flaxseed": "Flaxseed"
+	},
+	"TypeOptions" : {
+		"mushroom": "Mushroom",
+		"berry": "Berry",
+		"root": "Root",
+		"spice": "Spice",
+		"seed": "Seed"
 	}
 	
 }

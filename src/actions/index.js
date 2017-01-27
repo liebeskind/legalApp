@@ -3,6 +3,8 @@ import Firebase from 'firebase';
 
 const FETCH_SUPERFOOD_NAMES = 'FETCH_SUPERFOOD_NAMES';
 const FETCH_SUPERFOOD_TYPE = 'FETCH_SUPERFOOD_TYPE';
+const FETCH_TYPE_OPTIONS = 'FETCH_TYPE_OPTIONS';
+const GET_SELECTED_FOOD_TYPE = 'GET_SELECTED_FOOD_TYPE'
 
 // const FETCH_CAMPAIGN_INFO = 'FETCH_CAMPAIGN_INFO';
 // const RECORDING_STATUS_CHANGED = 'RECORDING_STATUS_CHANGED';
@@ -35,14 +37,13 @@ export function fetchSuperfoodNames() {
       }
     });
   };
-  // return (dispatch) => {}
 }
 
 export function fetchSuperfoodType() {
   const ref = Firebase.database().ref('SuperfoodType')
 
   return (dispatch) => {
-    ref.once('value', (snapshot) => {
+    ref.on('value', (snapshot) => {
       if (snapshot.val()) {
         dispatch({
           type: FETCH_SUPERFOOD_TYPE,
@@ -56,27 +57,36 @@ export function fetchSuperfoodType() {
       }
     });
   };
-  // return (dispatch) => {}
 }
 
-export function recordingStatusChanged(recordStatus) {
-  return dispatch => {
-    dispatch({
-      type: RECORDING_STATUS_CHANGED,
-      payload: recordStatus
-    })
-  }
+export function fetchTypeOptions() {
+  const ref = Firebase.database().ref('TypeOptions')
+
+  return (dispatch) => {
+    ref.once('value', (snapshot) => {
+      if (snapshot.val()) {
+        dispatch({
+          type: FETCH_TYPE_OPTIONS,
+          payload: snapshot.val()
+        });
+      } else {
+        dispatch({
+          type: FETCH_TYPE_OPTIONS,
+          payload: null
+        });
+      }
+    });
+  };
 }
 
-export function audioOnlyChanged(audioOnlyBool) {
-  return dispatch => {
-    dispatch({
-      type: AUDIO_ONLY_CHANGED,
-      payload: audioOnlyBool
-    })
-  }
+export function setSelectedFoodType(foodKey, foodType) {
+  var toUpdate = {};
+  toUpdate[foodKey] = foodType;
+  const ref = Firebase.database().ref('SuperfoodType').update(toUpdate, function(err) {
+    if (err) return console.log(err)
+      return console.log("Successfully updated food type for " +foodKey)
+  })
 }
-
 
 
 
