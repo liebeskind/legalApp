@@ -4,7 +4,8 @@ import Firebase from 'firebase';
 const FETCH_SUPERFOOD_NAMES = 'FETCH_SUPERFOOD_NAMES';
 const FETCH_SUPERFOOD_TYPE = 'FETCH_SUPERFOOD_TYPE';
 const FETCH_TYPE_OPTIONS = 'FETCH_TYPE_OPTIONS';
-const GET_SELECTED_FOOD_TYPE = 'GET_SELECTED_FOOD_TYPE'
+const GET_SELECTED_FOOD_TYPE = 'GET_SELECTED_FOOD_TYPE';
+const SET_SELECTED_FOOD_TYPE = 'SET_SELECTED_FOOD_TYPE';
 
 // const FETCH_CAMPAIGN_INFO = 'FETCH_CAMPAIGN_INFO';
 // const RECORDING_STATUS_CHANGED = 'RECORDING_STATUS_CHANGED';
@@ -82,10 +83,23 @@ export function fetchTypeOptions() {
 export function setSelectedFoodType(foodKey, foodType) {
   var toUpdate = {};
   toUpdate[foodKey] = foodType;
-  const ref = Firebase.database().ref('SuperfoodType').update(toUpdate, function(err) {
-    if (err) return console.log(err)
-      return console.log("Successfully updated food type for " +foodKey)
-  })
+
+  return (dispatch) => {
+    const ref = Firebase.database().ref('SuperfoodType').update(toUpdate, function(err) {
+      if (err) {
+        console.log(err)
+        dispatch({
+          type: SET_SELECTED_FOOD_TYPE,
+          payload: null
+        })
+      } else {
+        dispatch({
+          type: SET_SELECTED_FOOD_TYPE,
+          payload: ref
+        })
+      }
+    })
+  }
 }
 
 
