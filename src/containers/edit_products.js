@@ -14,6 +14,9 @@ class EditProducts extends Component {
 		}
 		this.mapObject = this.mapObject.bind(this);
 		this.renderSelectItemList = this.renderSelectItemList.bind(this);
+		this.setDescription = this.setDescription.bind(this);
+		this.setFunFacts = this.setFunFacts.bind(this);
+		this.setSideEffects = this.setSideEffects.bind(this);
 	}
 
 	componentWillMount() {
@@ -21,7 +24,10 @@ class EditProducts extends Component {
 
 	handleFoodChoiceChange = (event, index, foodChoice) => {
     this.setState({foodChoice});
-    this.setState({showProductCard: foodChoice});   
+    this.setState({showProductCard: foodChoice});
+    this.props.getSelectedDescription(foodChoice);
+    this.props.getSelectedFunFacts(foodChoice);
+    this.props.getSelectedSideEffects(foodChoice);
   };
 
   handleSelectedTypeChange = (event, index, selectedType) => {
@@ -44,6 +50,18 @@ class EditProducts extends Component {
 		)
 	}
 
+	setDescription(event) {
+		this.props.setSelectedDescription(this.state.showProductCard, event.target.value)
+	}
+
+	setFunFacts(event) {
+		this.props.setSelectedFunFacts(this.state.showProductCard, event.target.value)
+	}
+
+	setSideEffects(event) {
+		this.props.setSelectedSideEffects(this.state.showProductCard, event.target.value)
+	}
+
 	renderProductCard() {
 		console.log(this.state.showProductCard)
 		if (!this.state.showProductCard) return
@@ -56,9 +74,9 @@ class EditProducts extends Component {
 	      >
 	        {this.renderSelectItemList(this.props.typeOptions)} 
 	      </SelectField>
-				<TextField floatingLabelText="Description" />
-				<TextField floatingLabelText="Side Effects" />
-				<TextField floatingLabelText="Fun Facts" />
+				<TextField value={this.props.selectedDescription} onChange={this.setDescription} multiLine={true} rows={2} rowsMax={6} floatingLabelText="Description" />
+				<TextField value={this.props.selectedSideEffects} onChange={this.setSideEffects} multiLine={true} rows={2} rowsMax={4} floatingLabelText="Side Effects" />
+				<TextField value={this.props.selectedFunFacts} onChange={this.setFunFacts} multiLine={true} rows={2} rowsMax={4} floatingLabelText="Fun Facts" />
 			</div>
 		)
 	}
@@ -82,13 +100,23 @@ class EditProducts extends Component {
 //Receive data from reducers
 function mapStateToProps(state) {
 	return {
+		selectedDescription: state.selectedDescription,
+		selectedFunFacts: state.selectedFunFacts,
+		selectedSideEffects: state.selecSideEffects,
 	}
 }
 
 //Send things to 'actions'
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
+		getSelectedDescription: actions.getSelectedDescription,
+		getSelectedFunFacts: actions.getSelectedFunFacts,
+		getSelectedSideEffects: actions.getSelectedSideEffects,
+
 		setSelectedFoodType: actions.setSelectedFoodType,
+		setSelectedDescription: actions.setSelectedDescription,
+		setSelectedFunFacts: actions.setSelectedFunFacts,
+		setSelectedSideEffects: actions.setSelectedSideEffects,
 	}, dispatch)
 }
 
