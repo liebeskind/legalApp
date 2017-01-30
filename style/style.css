@@ -1,12 +1,13 @@
 .cardContentWrapper {
 	position: absolute;
-	left: 0;
+	left: 30%;
 	top: 18%;
 	bottom:0;
 }
 
 .leftTextBox {
-	display: inline-block;
+	/*display: inline-block;*/
+	display:none;
 	vertical-align: top;
 	width: 28%;
 	padding: 10px;
@@ -36,7 +37,8 @@
 }
 
 .rightTextBox {
-	display: inline-block;
+	/*display: inline-block;*/
+	display:none;
 	vertical-align: top;
 	width: 28%;
 	padding: 10px;

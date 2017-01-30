@@ -47,7 +47,7 @@ const styles = {
 };
 
 const FoodCard = () => (
-	<Card initiallyExpanded={false}>
+	<Card initiallyExpanded={true}>
 	<CardMedia
       overlayContentStyle={styles.overlay}
       expandable={false}
@@ -91,10 +91,19 @@ const FoodCard = () => (
     <CardText expandable={true}>
       This is a basic description of Reishi and its incredible healing power.
     </CardText>
-    <CardActions expandable={true}>
-      <FlatButton label="Action1" />
-      <FlatButton label="Action2" />
-    </CardActions>
+    <CardTitle expandable={true} title="Secondary Benefits" />
+    <CardText expandable={true}>
+      This is a basic description of Reishi and its incredible healing power.
+    </CardText>
+    <CardTitle expandable={true} title="Side Effects" />
+    <CardText expandable={true}>
+      This is a basic description of Reishi and its incredible healing power.
+    </CardText>
+    <CardTitle expandable={true} title="Fun Facts" />
+    <CardText expandable={true}>
+      This is a basic description of Reishi and its incredible healing power.
+    </CardText>
+    
   </Card>
 );
 
