@@ -6,6 +6,8 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
 
+import BenefitTable from '../components/benefit_table';
+
 class EditProducts extends Component {
 	constructor(props) {
 		super(props);
@@ -74,6 +76,7 @@ class EditProducts extends Component {
 	      >
 	        {this.renderSelectItemList(this.props.typeOptions)} 
 	      </SelectField>
+	      <BenefitTable benefitList={this.props.benefitList} />
 				<TextField value={this.props.selectedDescription} onChange={this.setDescription} multiLine={true} rows={2} rowsMax={6} floatingLabelText="Description" />
 				<TextField value={this.props.selectedSideEffects} onChange={this.setSideEffects} multiLine={true} rows={2} rowsMax={4} floatingLabelText="Side Effects" />
 				<TextField value={this.props.selectedFunFacts} onChange={this.setFunFacts} multiLine={true} rows={2} rowsMax={4} floatingLabelText="Fun Facts" />

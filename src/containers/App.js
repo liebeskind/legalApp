@@ -8,7 +8,8 @@ import * as actions from '../actions';
 import NavBar from '../components/navbar';
 import Footer from '../components/footer';
 import EditProducts from '../containers/edit_products';
-import CardController from '../containers/card_controller';
+import GridList from '../components/grid_list';
+import FoodCard from '../containers/food_card'
 
 class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
 	constructor(props) {
@@ -22,6 +23,7 @@ class App extends Component { //Functional component isn't aware of state and do
 		this.props.fetchSuperfoodNames();
 		this.props.fetchSuperfoodType();
 		this.props.fetchTypeOptions();
+		this.props.fetchBenefitList();
     // this.props.fetchCompanyCampaignInfo('testCompany');
   }
 
@@ -30,8 +32,9 @@ class App extends Component { //Functional component isn't aware of state and do
 			<MuiThemeProvider>
 				<div>
 					<NavBar />
-					<EditProducts foodNames={this.props.superfoodNames} foodTypes={this.props.superfoodType} typeOptions={this.props.typeOptions} />
-					<CardController />
+					<EditProducts foodNames={this.props.superfoodNames} foodTypes={this.props.superfoodType} typeOptions={this.props.typeOptions} benefitList={this.props.benefitList} />
+					<FoodCard />
+					<GridList />
 					<Footer companyName="Superfood App" />
 				</div>
 			</MuiThemeProvider>
@@ -44,6 +47,7 @@ function mapStateToProps(state) {
 		superfoodNames: state.superfoodNames,
 		superfoodType: state.superfoodType,
 		typeOptions: state.typeOptions,
+		benefitList: state.benefitList,
 	}
 }
 
@@ -52,6 +56,7 @@ function mapDispatchToProps(dispatch) {
 		fetchSuperfoodNames: actions.fetchSuperfoodNames,
 		fetchSuperfoodType: actions.fetchSuperfoodType,
 		fetchTypeOptions: actions.fetchTypeOptions,
+		fetchBenefitList: actions.fetchBenefitList,
 	}, dispatch)
 }
 

@@ -4,6 +4,7 @@ import Firebase from 'firebase';
 const FETCH_SUPERFOOD_NAMES = 'FETCH_SUPERFOOD_NAMES';
 const FETCH_SUPERFOOD_TYPE = 'FETCH_SUPERFOOD_TYPE';
 const FETCH_TYPE_OPTIONS = 'FETCH_TYPE_OPTIONS';
+const FETCH_BENEFIT_LIST = 'FETCH_BENEFIT_LIST';
 
 const GET_SELECTED_FOOD_TYPE = 'GET_SELECTED_FOOD_TYPE';
 const SET_SELECTED_FOOD_TYPE = 'SET_SELECTED_FOOD_TYPE';
@@ -80,6 +81,26 @@ export function fetchTypeOptions() {
       } else {
         dispatch({
           type: FETCH_TYPE_OPTIONS,
+          payload: null
+        });
+      }
+    });
+  };
+}
+
+export function fetchBenefitList() {
+  const ref = Firebase.database().ref('BenefitTypes')
+
+  return (dispatch) => {
+    ref.once('value', (snapshot) => {
+      if (snapshot.val()) {
+        dispatch({
+          type: FETCH_BENEFIT_LIST,
+          payload: snapshot.val()
+        });
+      } else {
+        dispatch({
+          type: FETCH_BENEFIT_LIST,
           payload: null
         });
       }
