@@ -76,7 +76,7 @@ class EditProducts extends Component {
 	      >
 	        {this.renderSelectItemList(this.props.typeOptions)} 
 	      </SelectField>
-	      <BenefitTable benefitList={this.props.benefitList} />
+	      <BenefitTable setSelectedBenefitValue={this.props.setSelectedBenefitValue} benefitList={this.props.benefitList} />
 				<TextField value={this.props.selectedDescription} onChange={this.setDescription} multiLine={true} rows={2} rowsMax={6} floatingLabelText="Description" />
 				<TextField value={this.props.selectedSideEffects} onChange={this.setSideEffects} multiLine={true} rows={2} rowsMax={4} floatingLabelText="Side Effects" />
 				<TextField value={this.props.selectedFunFacts} onChange={this.setFunFacts} multiLine={true} rows={2} rowsMax={4} floatingLabelText="Fun Facts" />
@@ -103,23 +103,14 @@ class EditProducts extends Component {
 //Receive data from reducers
 function mapStateToProps(state) {
 	return {
-		selectedDescription: state.selectedDescription,
-		selectedFunFacts: state.selectedFunFacts,
-		selectedSideEffects: state.selecSideEffects,
+		// selectedSideEffects: state.selecSideEffects,
 	}
 }
 
 //Send things to 'actions'
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		getSelectedDescription: actions.getSelectedDescription,
-		getSelectedFunFacts: actions.getSelectedFunFacts,
-		getSelectedSideEffects: actions.getSelectedSideEffects,
-
-		setSelectedFoodType: actions.setSelectedFoodType,
-		setSelectedDescription: actions.setSelectedDescription,
-		setSelectedFunFacts: actions.setSelectedFunFacts,
-		setSelectedSideEffects: actions.setSelectedSideEffects,
+		// setSelectedBenefitValue: actions.setSelectedBenefitValue,
 	}, dispatch)
 }
 
