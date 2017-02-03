@@ -9,6 +9,7 @@ export default class CompanyCreator extends Component {
   render() {
     return (
       <div>
+        COMPANIES GO HERE
       </div>
     )
   }

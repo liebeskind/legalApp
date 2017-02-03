@@ -8,13 +8,21 @@ import * as actions from '../actions';
 import NavBar from '../components/navbar';
 import Footer from '../components/Footer';
 import MainContent from '../components/MainContent';
+import DocumentManager from '../components/DocumentManager';
+import DirectorsAndOfficers from '../components/DirectorsAndOfficers';
+import CompanyCreator from '../components/CompanyCreator';
+import SideNav from '../components/SideNav';
 
 //containers
-import SideNav from '../containers/SideNav';
 
 class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
   constructor(props) {
     super(props);
+    this.selected = {
+      DocumentManager: 0,
+      CompanyCreator: 1,
+      DirectorsAndOfficers: 2
+    };
     this.state = {
       videos: [],
       loaded: { // would be an empty object
@@ -34,7 +42,18 @@ class App extends Component { //Functional component isn't aware of state and do
             sigZ: 'Benefactor'
           }
         },
-      }
+        documents: {
+          x: {
+            footerTitle: 'Doc 1',
+            agreementType: 'Notary'
+          },
+          y: {
+            footerTitle: 'Doc 2',
+            agreementType: 'Will'
+          }
+        }
+      },
+      selectedName: 'DocumentManager'
     };
   }
 
@@ -42,13 +61,22 @@ class App extends Component { //Functional component isn't aware of state and do
     // this.props.fetchBenefitList();
   }
 
+  onSideNavClick(name) {
+    console.log(name);
+    this.setState({selectedName: name});
+  }
+
   render() {
     return (
       <MuiThemeProvider>
         <div>
           <NavBar />
-          <SideNav />
-          <MainContent mainContentSelector={'DocumentManager'} />
+          <SideNav onClick={this.onSideNavClick.bind(this)} items={Object.keys(this.selected)} />
+          <MainContent selected={this.selected[this.state.selectedName]} loaded={this.state.loaded}>
+            <DocumentManager />
+            <CompanyCreator />
+            <DirectorsAndOfficers />
+          </MainContent>
           <Footer companyName="Legal App" />
         </div>
       </MuiThemeProvider>
