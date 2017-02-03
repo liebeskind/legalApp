@@ -23,7 +23,7 @@ class App extends Component { //Functional component isn't aware of state and do
     super(props);
 
     // bind local functions
-    bindAll(['updateSigName', 'updateCompanyName', 'onSave', 'onSideNavClick', 'uploadFile', 'updateSignatoryTitle', 'selectSignatory', 'sendDocumentUpdate', 'updateAsField'], this);
+    bindAll(['updateSigName', 'updateCompanyName', 'onSave', 'onSideNavClick', 'uploadFile', 'updateSignatoryTitle', 'selectSignatory', 'sendDocumentUpdate', 'updateDocumentSelections'], this);
 
     this.selected = {
       DocumentManager: 0,
@@ -105,12 +105,13 @@ class App extends Component { //Functional component isn't aware of state and do
     this.setState({loaded})
   }
 
-  updateAsField(documentKey, companyKey, asField) {
+  updateDocumentSelections(documentKey, companyKey, asField, signatory) {
     let loaded = this.state.loaded;
     loaded.companiesPerDocument = loaded.companiesPerDocument || {};
     loaded.companiesPerDocument[documentKey] = loaded.companiesPerDocument[documentKey] || {};
     loaded.companiesPerDocument[documentKey][companyKey] = loaded.companiesPerDocument[documentKey][companyKey] || {};
     loaded.companiesPerDocument[documentKey][companyKey].asField = asField
+    loaded.companiesPerDocument[documentKey][companyKey].signatory = signatory
     this.setState({loaded})
   }
 
@@ -127,7 +128,7 @@ class App extends Component { //Functional component isn't aware of state and do
             </div>
             <div className="mainContentContainer">
               <MainContent selected={this.selected[this.state.selectedName]} loaded={this.state.loaded}>
-                <DocumentManager documents={this.state.loaded.documents} loaded={this.state.loaded} sendDocumentUpdate={this.sendDocumentUpdate} updateAsField={this.updateAsField} />
+                <DocumentManager documents={this.state.loaded.documents} loaded={this.state.loaded} sendDocumentUpdate={this.sendDocumentUpdate} updateDocumentSelections={this.updateDocumentSelections} selectSignatory={this.selectSignatory} />
                 <CompanyCreator companies={this.state.loaded.companies} sigs={this.state.loaded.sigs} officersOfCompany={this.state.loaded.officersOfCompany} selectSignatory={this.selectSignatory} updateSignatoryTitle={this.updateSignatoryTitle} updateCompanyName={this.updateCompanyName} />
                 <DirectorsAndOfficers sigs={this.state.loaded.sigs} updateSigName={this.updateSigName} />
               </MainContent>

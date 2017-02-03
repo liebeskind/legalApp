@@ -20,7 +20,7 @@ export default class CompanyToDocumentUtility extends Component {
       selectedSig: false
     }
 
-    bindAll(['mapObject', 'renderPanelHeader', 'renderPanelBody', 'renderPanels', 'updateAsField', 'renderSelectItemList', 'selectSignatory'], this);
+    bindAll(['mapObject', 'renderPanelHeader', 'renderPanelBody', 'renderPanels', 'updateDocumentSelections', 'renderSelectItemList', 'renderSignatory', 'selectSignatory'], this);
   }
 
   mapObject(object, callback) {
@@ -34,7 +34,7 @@ export default class CompanyToDocumentUtility extends Component {
     if (key && this.props && this.props.companiesPerDocument && this.props.companiesPerDocument[this.props.documentEditing] && this.props.companiesPerDocument[this.props.documentEditing][key]) {
       this.setState({updatedAsField: this.props.companiesPerDocument[this.props.documentEditing][key].asField})
     } else {
-      this.setState({updatedAsField: false})
+      this.setState({updatedAsField: false, selectedSig: false})
     }
   }
 
@@ -83,9 +83,9 @@ export default class CompanyToDocumentUtility extends Component {
     this.setState({updatedAsField: event.target.value})
   }
 
-  updateAsField() {
-    this.props.updateAsField(this.props.documentEditing, this.state.editing, this.state.updatedAsField)
-    this.setState({editing: false, updatedAsField: false})
+  updateDocumentSelections() {
+    this.props.updateDocumentSelections(this.props.documentEditing, this.state.editing, this.state.updatedAsField, this.state.selectedSig)
+    this.setState({editing: false, updatedAsField: false, selectedSig: false})
   }
 
   renderSelectItemList(items) {
@@ -100,6 +100,7 @@ export default class CompanyToDocumentUtility extends Component {
 
   selectSignatory(event, index, selectedType) {
     this.setState({selectedSig: selectedType})
+    this.props.selectSignatory(this.props.documentEditing, this.state.editing, this.state.selectedType);
   }
 
   renderEditBody() {
@@ -111,6 +112,8 @@ export default class CompanyToDocumentUtility extends Component {
     if (this.state.selectedSig) {
       currentValue = this.props.sigs[this.state.selectedSig];
       // currentValue = this.props.sigs[this.state.selectedSig].name + " | " + this.props.officersOfCompany[this.state.editing][this.state.selectedSig].title;
+    } else if (this.props.companiesPerDocument && this.props.companiesPerDocument[this.props.documentEditing] && this.props.companiesPerDocument[this.props.documentEditing][this.state.editing] && this.props.companiesPerDocument[this.props.documentEditing][this.state.editing].signatory) {
+      this.setState({selectedSig: this.props.companiesPerDocument[this.props.documentEditing][this.state.editing].signatory})
     }
 
     return (
@@ -139,7 +142,7 @@ export default class CompanyToDocumentUtility extends Component {
                 <a href="#" onClick = {()=>this.editItem(false)} className="panel-action-item">Cancel</a>
               </li>
               <li>
-                <a href="#" onClick = {this.updateAsField} className="panel-action-item btn-primary btn">Save</a>
+                <a href="#" onClick = {this.updateDocumentSelections} className="panel-action-item btn-primary btn">Save</a>
               </li>
             </ul>
           </div>
@@ -187,6 +190,21 @@ export default class CompanyToDocumentUtility extends Component {
 
   }
 
+  renderSignatory(key) {
+    if (this.props.companiesPerDocument && this.props.companiesPerDocument[this.props.documentEditing] && this.props.companiesPerDocument[this.props.documentEditing][key] && this.props.companiesPerDocument[this.props.documentEditing][key].signatory) {
+        // <h5 className="lightgray mb0">Signatory: {this.props.sigs[this.props.companiesPerDocument[this.props.documentEditing][key].signatory].name} | {this.props.officersOfCompany[this.props.companiesPerDocument[this.props.documentEditing][key].signatory].title}</h5>
+
+      return (
+        <h5 className="lightgray mb0">Signatory: {this.props.sigs[this.props.companiesPerDocument[this.props.documentEditing][key].signatory].name}</h5>
+      )
+    } else {
+      return (
+        <h5 className="lightgray mb0">No Signatory Selected</h5>
+      )
+    }
+
+  }
+
   renderPanelBody(key, value) {
     return (
       <div className="panel-body">
@@ -194,7 +212,7 @@ export default class CompanyToDocumentUtility extends Component {
           <div className="col-xs-12">
             <h5 className="lightgray mb0">Company: {value.name}</h5>
             {this.renderAsField(key)}
-            <h5 className="lightgray mb0">Signatory: Name | Title</h5>
+            {this.renderSignatory(key)}
           </div>
         </div>
       </div>
