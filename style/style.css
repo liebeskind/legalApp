@@ -19,6 +19,16 @@
   display: inline-block;
 }
 
+/*------ICONS-------*/
+.arrowIcon {
+  margin-left: 16px;
+}
+
+/*------BUTTONS-------*/
+.subpanel-btn {
+  float: right;
+}
+
 /*------PANELS-------*/
 
 .panel-header, .panel-body, ul.panel-body>li, ol.panel-body>li, .panel-footer {

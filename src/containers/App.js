@@ -61,6 +61,8 @@ class App extends Component { //Functional component isn't aware of state and do
 
   updateName(key, value) {
     let loaded = this.state.loaded;
+    loaded.sigs = loaded.sigs || {};
+    loaded.sigs[key] = loaded.sigs[key] || {};
     loaded.sigs[key].name = value
     this.setState({loaded})
   }

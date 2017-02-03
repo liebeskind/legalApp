@@ -10,16 +10,9 @@ export default class MainContent extends Component {
     }
   }
 
-  content() {
-    return React.Children.map(this.props.children, child =>
-      console.log(child)
-    );
-  }
-
   render() {
     return (
       <div>
-        {this.content()}
         {this.props.children[this.props.selected]}
       </div>
     )

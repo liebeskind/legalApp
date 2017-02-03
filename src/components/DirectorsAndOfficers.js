@@ -18,6 +18,7 @@ class DirectorsAndOfficers extends Component {
     this.renderPanelBody = this.renderPanelBody.bind(this);
     this.renderPanels = this.renderPanels.bind(this);
     this.updateName = this.updateName.bind(this);
+    this.addSignatory = this.addSignatory.bind(this);
   }
 
   mapObject(object, callback) {
@@ -29,6 +30,22 @@ class DirectorsAndOfficers extends Component {
   editItem(key) {
     this.setState({editing: key})
     key ? this.setState({updatedName: this.props.sigs[key].name}) : this.setState({updatedName: false})
+  }
+
+  generateKey() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 6; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  }
+
+  addSignatory() {
+    let key = "Sig " + this.generateKey();
+    this.setState({editing: key})
+    // key &&  ? this.setState({updatedName: this.props.sigs[key].name}) : this.setState({updatedName: false}) 
   }
 
   deleteItemByKey(key) {
@@ -146,6 +163,9 @@ class DirectorsAndOfficers extends Component {
   render() {
     return (
       <div>
+      <div className="subpanel-btn">
+        <a href="#" onClick = {this.addSignatory}>Add Signatory<img className="arrowIcon" src="../src/img/arrow-circle-right.svg" /></a>
+      </div>
       {this.renderEditPanel()}
       {this.renderPanels()}
       </div>
