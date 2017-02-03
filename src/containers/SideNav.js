@@ -8,7 +8,7 @@ const style = {
   margin: '16px 32px 16px 0',
 };
 
-const MenuExampleSimple = () => (
+const SideNav = () => (
   <div>
     <Paper style={style}>
       <Menu>
@@ -20,4 +20,4 @@ const MenuExampleSimple = () => (
   </div>
 );
 
-export default MenuExampleSimple;
+export default SideNav;

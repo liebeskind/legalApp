@@ -5,7 +5,6 @@ import DocumentManager from '../components/DocumentManager';
 import CompanyManager from '../components/CompanyCreator';
 import DirectorsAndOfficers from '../components/DirectorsAndOfficers';
 
-
 export default class MainContent extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +12,7 @@ export default class MainContent extends Component {
 
   render() {
     return (
-      <DocumentManager />
+      <DirectorsAndOfficers />
     )
   }
 }
