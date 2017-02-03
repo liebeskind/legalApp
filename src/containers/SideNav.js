@@ -7,32 +7,32 @@ import * as actions from '../actions';
 
 
 class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
-	constructor(props) {
-		super(props);
-	}
-
-	componentWillMount() {
-		// this.props.fetchBenefitList();
+  constructor(props) {
+    super(props);
   }
 
-	render() {
-		return (	
-			<div>
-			</div>
-		);
-	}
+  componentWillMount() {
+    // this.props.fetchBenefitList();
+  }
+
+  render() {
+    return (  
+      <div>
+      </div>
+    );
+  }
 };
 
 function mapStateToProps(state) {
-	return {
-		// benefitList: state.benefitList,
-	}
+  return {
+    // benefitList: state.benefitList,
+  }
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ 
-		// fetchBenefitList: actions.fetchBenefitList,
-	}, dispatch)
+  return bindActionCreators({ 
+    // fetchBenefitList: actions.fetchBenefitList,
+  }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

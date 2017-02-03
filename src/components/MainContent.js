@@ -3,23 +3,23 @@ import {Grid} from 'react-bootstrap';
 
 export default class MainContent extends Component {
 
-	constructor(props) {
-		super(props);
-	}
+  constructor(props) {
+    super(props);
+  }
 
-	renderContent() {
-		if (this.props.mainContentSelector === 'documentManager') {
-			return (
-				<div></div>
-			)
-		}
-	}
+  renderContent() {
+    if (this.props.mainContentSelector === 'documentManager') {
+      return (
+        <div></div>
+      )
+    }
+  }
 
-	render() {
-		return (
-			<div>
-				
-			</div>
-		)
-	}
+  render() {
+    return (
+      <div>
+        
+      </div>
+    )
+  }
 }
