@@ -1,0 +1,1 @@
+{"sigs":{"sigX":{"name":"John"},"sigY":{"name":"Sally"},"sigZ":{"name":"Ted"}},"companies":{"compX":{"name":"Google"},"compY":{"name":"Exxon"},"compZ":{"name":"Target"}},"officers":{"compX":{"sigX":"Director","sigZ":"Benefactor"}},"documents":{"x":{"footerTitle":"Doc 1","agreementType":"Notary"},"y":{"footerTitle":"Doc 2","agreementType":"Will"}}}
