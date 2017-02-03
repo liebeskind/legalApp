@@ -61,6 +61,12 @@ class App extends Component { //Functional component isn't aware of state and do
     // this.props.fetchBenefitList();
   }
 
+  // In Chrome, this requires setting "Ask where to save each file before downloading" or it will save to default
+  onSave() {
+    let blob = new Blob(['{"sigs":{"sigX":{"name":"John"},"sigY":{"name":"Sally"},"sigZ":{"name":"Ted"}},"companies":{"compX":{"name":"Google"},"compY":{"name":"Exxon"},"compZ":{"name":"Target"}},"officers":{"compX":{"sigX":"Director","sigZ":"Benefactor"}},"documents":{"x":{"footerTitle":"Doc 1","agreementType":"Notary"},"y":{"footerTitle":"Doc 2","agreementType":"Will"}}}'], { type: 'text/plain;charset=utf-8' });
+    saveAs(blob, 'savedLegal.txt');
+  }
+
   onSideNavClick(name) {
     console.log(name);
     this.setState({selectedName: name});
@@ -71,6 +77,7 @@ class App extends Component { //Functional component isn't aware of state and do
       <MuiThemeProvider>
         <div>
           <NavBar />
+          <button onClick={this.onSave} type='button'>Save</button>
           <SideNav onClick={this.onSideNavClick.bind(this)} items={Object.keys(this.selected)} />
           <MainContent selected={this.selected[this.state.selectedName]} loaded={this.state.loaded}>
             <DocumentManager />
