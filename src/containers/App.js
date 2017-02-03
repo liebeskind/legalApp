@@ -25,40 +25,23 @@ class App extends Component { //Functional component isn't aware of state and do
     };
     this.state = {
       videos: [],
-      loaded: { // would be an empty object
-        sigs: {
-          sigX: {name: 'John'},
-          sigY: {name: 'Sally'},
-          sigZ: {name: 'Ted'}
-        },
-        companies: {
-          compX: {name: 'Google'},
-          compY: {name: 'Exxon'},
-          compZ: {name: 'Target'}
-        },
-        officers: {
-          compX: {
-            sigX: 'Director',
-            sigZ: 'Benefactor'
-          }
-        },
-        documents: {
-          x: {
-            footerTitle: 'Doc 1',
-            agreementType: 'Notary'
-          },
-          y: {
-            footerTitle: 'Doc 2',
-            agreementType: 'Will'
-          }
-        }
-      },
+      loaded: {sigs: {}, companies: {}, documents: {}, officers: {}},
       selectedName: 'DocumentManager'
     };
   }
 
   componentWillMount() {
     // this.props.fetchBenefitList();
+  }
+
+  uploadFile(e) {
+    var reader = new FileReader();
+
+    reader.onload = function() {
+      this.setState({loaded: JSON.parse(reader.result)});
+    }.bind(this)
+
+    reader.readAsText(e.target.files[0]);
   }
 
   // In Chrome, this requires setting "Ask where to save each file before downloading" or it will save to default
@@ -68,7 +51,6 @@ class App extends Component { //Functional component isn't aware of state and do
   }
 
   onSideNavClick(name) {
-    console.log(name);
     this.setState({selectedName: name});
   }
 
@@ -78,6 +60,7 @@ class App extends Component { //Functional component isn't aware of state and do
         <div>
           <NavBar />
           <button onClick={this.onSave.bind(this)} type='button'>Save</button>
+          <input type="file" id="input" onChange={this.uploadFile.bind(this)} />
           <SideNav onClick={this.onSideNavClick.bind(this)} items={Object.keys(this.selected)} />
           <MainContent selected={this.selected[this.state.selectedName]} loaded={this.state.loaded}>
             <DocumentManager />
@@ -98,7 +81,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ 
+  return bindActionCreators({
     // fetchBenefitList: actions.fetchBenefitList,
   }, dispatch)
 }
