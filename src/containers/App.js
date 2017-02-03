@@ -32,7 +32,7 @@ class App extends Component { //Functional component isn't aware of state and do
     };
     this.state = {
       videos: [],
-      loaded: {sigs: {}, companies: {}, documents: {}, officersOfCompany: {}},
+      loaded: {sigs: {}, companies: {}, documents: {}, officersOfCompany: {}, companiesPerDocument: {}},
       selectedName: 'DocumentManager'
     };
   }
@@ -105,6 +105,14 @@ class App extends Component { //Functional component isn't aware of state and do
     this.setState({loaded})
   }
 
+  updateAsField(documentKey, companyKey, asField) {
+    let loaded = this.state.loaded;
+    loaded.companiesPerDocument = loaded.companiesPerDocument || {};
+    loaded.companiesPerDocument[companyKey] = loaded.companiesPerDocument[companyKey] || {};
+    loaded.companiesPerDocument[companyKey].asField = asField
+    this.setState({loaded})
+  }
+
   render() {
     return (
       <MuiThemeProvider>
@@ -118,7 +126,7 @@ class App extends Component { //Functional component isn't aware of state and do
             </div>
             <div className="mainContentContainer">
               <MainContent selected={this.selected[this.state.selectedName]} loaded={this.state.loaded}>
-                <DocumentManager documents={this.state.loaded.documents} sendDocumentUpdate={this.sendDocumentUpdate} />
+                <DocumentManager documents={this.state.loaded.documents} loaded={this.state.loaded} sendDocumentUpdate={this.sendDocumentUpdate} updateAsField={this.updateAsField} />
                 <CompanyCreator companies={this.state.loaded.companies} sigs={this.state.loaded.sigs} officersOfCompany={this.state.loaded.officersOfCompany} selectSignatory={this.selectSignatory} updateSignatoryTitle={this.updateSignatoryTitle} updateCompanyName={this.updateCompanyName} />
                 <DirectorsAndOfficers sigs={this.state.loaded.sigs} updateSigName={this.updateSigName} />
               </MainContent>

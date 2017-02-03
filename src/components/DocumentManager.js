@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
+import Subheader from 'material-ui/Subheader';
 
 //Components
 import AddButton from '../components/AddButton'
+import CompanyToDocumentUtility from '../components/CompanyToDocumentUtility'
 import { bindAll } from './util';
 
 export default class DocumentManager extends Component {
@@ -88,14 +90,15 @@ export default class DocumentManager extends Component {
   }
 
   renderEditBody() {
-    let key = this.state.editing ? this.state.editing : 1;
-
+    let key = this.state.editing;
     return (
       <div>
         <div className="panel-body">
           <div className="col-xs-12">
             <h5 className="lightgray mb0">Document Title: <TextField id={key} value={this.state.updatedFooterTitle} onChange={this.footerTitleChanged} /></h5>
-            <h5 className="lightgray mb0">Agreement Type: <TextField id={key} value={this.state.updatedAgreementType} onChange={this.agreementTypeChanged} /></h5>
+            <h5 className="lightgray mb0">Agreement Type (optional): <TextField id={key} value={this.state.updatedAgreementType} onChange={this.agreementTypeChanged} /></h5>
+            <Subheader>Companies</Subheader>
+            <CompanyToDocumentUtility updateAsField={this.props.updateAsField} documentEditing={key} sigs={this.props.loaded.sigs} documents={this.props.loaded.documents} companies={this.props.loaded.companies} officersOfCompany={this.props.loaded.officersOfCompany} companiesPerDocument={this.props.loaded.officersOfCompany} />
           </div>
         </div>
         <div className="row">
