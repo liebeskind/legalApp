@@ -1,38 +1,23 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../actions';
+import React from 'react';
+import Paper from 'material-ui/Paper';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
 
-//components
-
-
-class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
-  constructor(props) {
-    super(props);
-  }
-
-  componentWillMount() {
-    // this.props.fetchBenefitList();
-  }
-
-  render() {
-    return (  
-      <div>
-      </div>
-    );
-  }
+const style = {
+  display: 'inline-block',
+  margin: '16px 32px 16px 0',
 };
 
-function mapStateToProps(state) {
-  return {
-    // benefitList: state.benefitList,
-  }
-}
+const MenuExampleSimple = () => (
+  <div>
+    <Paper style={style}>
+      <Menu>
+        <MenuItem primaryText="Document Manager" />
+        <MenuItem primaryText="Company Creator" />
+        <MenuItem primaryText="Directors And Officers" />
+      </Menu>
+    </Paper>
+  </div>
+);
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ 
-    // fetchBenefitList: actions.fetchBenefitList,
-  }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default MenuExampleSimple;

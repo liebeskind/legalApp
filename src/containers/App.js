@@ -48,7 +48,7 @@ class App extends Component { //Functional component isn't aware of state and do
         <div>
           <NavBar />
           <SideNav />
-          <MainContent />
+          <MainContent mainContentSelector={'DocumentManager'} />
           <Footer companyName="Legal App" />
         </div>
       </MuiThemeProvider>
