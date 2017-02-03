@@ -109,7 +109,7 @@ export default class CompanyCreator extends Component {
         </div>
         <List>
           <Subheader>Signatories</Subheader>
-          {this.generateSignatoryList(this.props.sigs, this.props.officersOfCompany)}
+          {this.generateEditableSignatoryList(this.props.sigs, this.props.officersOfCompany)}
         </List>
         <div className="row">
           <div className="col-sm-12">
@@ -161,6 +161,8 @@ export default class CompanyCreator extends Component {
         <div className="row mb16">
           <div className="col-xs-12">
             <h5 className="lightgray mb0">Name: {value.name}</h5>
+            <Subheader>Signatories</Subheader>
+            {this.generateSignatoryList(key, this.props.sigs, this.props.officersOfCompany)}
           </div>
         </div>
       </div>
@@ -184,7 +186,7 @@ export default class CompanyCreator extends Component {
     )
   }
 
-  generateSignatoryList(sigs, officersOfCompany) {
+  generateEditableSignatoryList(sigs, officersOfCompany) {
     var officers = officersOfCompany ? officersOfCompany[this.state.editing] : {};
     return (
       this.mapObject(sigs, (key, value) => {
@@ -197,6 +199,26 @@ export default class CompanyCreator extends Component {
             key={key}
             value={key}
             secondaryText={this.generateSecondaryText(officer, key)}
+            >
+            </ListItem>
+          </div>
+        )
+      })
+    )
+  }
+
+  generateSignatoryList(companyKey, sigs, officersOfCompany) {
+    console.log(officersOfCompany[companyKey])
+    if (!officersOfCompany[companyKey]) return;
+    return (
+      this.mapObject(officersOfCompany[companyKey], (key, officer) => {
+        officer.title = officer.title ? officer.title : '';
+        return (
+          <div key={key}>
+            <ListItem
+            primaryText={sigs[key].name +" : "+ officer.title}
+            key={key}
+            value={key}
             >
             </ListItem>
           </div>
