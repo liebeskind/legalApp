@@ -111,18 +111,6 @@ export default class CompanyCreator extends Component {
           <Subheader>Signatories</Subheader>
           {this.generateSignatoryList(this.props.sigs, this.props.officersOfCompany)}
         </List>
-        <div className="row">
-          <div className="col-sm-12">
-            <ul className="panel-action-list">
-              <li>
-                <a href="#" onClick = {()=>this.editItem(false)} className="panel-action-item">Cancel</a>
-              </li>
-              <li>
-                <a href="#" onClick = {this.updateName} className="panel-action-item btn-primary btn">Save</a>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
     )
   }
@@ -177,6 +165,13 @@ export default class CompanyCreator extends Component {
     this.props.updateSignatoryTitle(this.state.editing, key, title);
   }
 
+  generateSecondaryText(officer, key) {
+    if (!officer.selected) return
+    return (
+    <TextField className = "signatoryTitleField" id="signatoryTitle" hintText="Title at this company" value={officer.title} onChange={(event, title)=>this.signatoryTitleChanged(key, title)} />
+    )
+  }
+
   generateSignatoryList(sigs, officersOfCompany) {
     var officers = officersOfCompany ? officersOfCompany[this.state.editing] : {};
     return (
@@ -189,9 +184,7 @@ export default class CompanyCreator extends Component {
             primaryText={value.name}
             key={key}
             value={key}
-            secondaryText={
-              <TextField className = "signatoryTitleField" id="signatoryTitle" hintText="Title at this company" value={officer.title} onChange={(event, title)=>this.signatoryTitleChanged(key, title)} />
-            }
+            secondaryText={this.generateSecondaryText(officer, key)}
             >
             </ListItem>
           </div>
