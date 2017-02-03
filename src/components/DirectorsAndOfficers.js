@@ -161,6 +161,7 @@ class DirectorsAndOfficers extends Component {
   }
 
   renderAddButton() {
+    if (this.state.editing) return
     return (
       <div className="subpanel-btn">
         <a href="#" onClick = {this.addSignatory}>Add Signatory<img className="arrowIcon" src="../src/img/arrow-circle-right.svg" /></a>
