@@ -3,9 +3,12 @@ import {Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
 
 export default class NavBar extends Component {
 
-	constructor(props) {
-		super(props);
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      
+    }
+  }
 
   render() {
     return (
