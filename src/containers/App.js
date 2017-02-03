@@ -3,6 +3,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
+import DocumentManager from '../components/DocumentManager';
+import DirectorsAndOfficers from '../components/DirectorsAndOfficers';
+import CompanyCreator from '../components/CompanyCreator';
 
 //components
 import NavBar from '../components/navbar';
@@ -15,6 +18,11 @@ import SideNav from '../containers/SideNav';
 class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
   constructor(props) {
     super(props);
+    this.selected = {
+      DocumentManager: 0,
+      CompanyCreator: 1,
+      DirectorsAndOfficers: 2
+    };
     this.state = {
       videos: [],
       loaded: { // would be an empty object
@@ -34,12 +42,27 @@ class App extends Component { //Functional component isn't aware of state and do
             sigZ: 'Benefactor'
           }
         },
+        documents: {
+          x: {
+            footerTitle: 'Doc 1',
+            agreementType: 'Notary'
+          },
+          y: {
+            footerTitle: 'Doc 2',
+            agreementType: 'Will'
+          }
+        }
       }
     };
+    this.selectedName = 'DocumentManager';
   }
 
   componentWillMount() {
     // this.props.fetchBenefitList();
+  }
+
+  onSideNavClick() {
+    // change selected state
   }
 
   render() {
@@ -47,8 +70,12 @@ class App extends Component { //Functional component isn't aware of state and do
       <MuiThemeProvider>
         <div>
           <NavBar />
-          <SideNav />
-          <MainContent mainContentSelector={'DocumentManager'} />
+          <SideNav onClick={this.onSideNavClick} />
+          <MainContent selected={this.selected[this.selectedName]} loaded={this.state.loaded}>
+            <DocumentManager />
+            <CompanyCreator />
+            <DirectorsAndOfficers />
+          </MainContent>
           <Footer companyName="Legal App" />
         </div>
       </MuiThemeProvider>

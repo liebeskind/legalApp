@@ -12,8 +12,11 @@ export default class MainContent extends Component {
   }
 
   render() {
+
     return (
-      <DocumentManager />
+      <div>
+        {this.props.children[this.props.selected]}
+      </div>
     )
   }
 }

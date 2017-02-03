@@ -9,6 +9,7 @@ export default class DocumentManager extends Component {
   render() {
     return (
       <div>
+        DOCS GO HERE
       </div>
     )
   }
