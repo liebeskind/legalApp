@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import SelectedBenefitValueReducer from './selectedBenefitValue_reducer';
+import UpdateNameReducer from './updateNameReducer';
 
 const rootReducer = combineReducers({
-  selectedBenefitValue: SelectedBenefitValueReducer
+  updatedName: UpdateNameReducer
 });
 
 export default rootReducer;

@@ -2,6 +2,7 @@ import _ from 'lodash';
 import Firebase from 'firebase';
 
 const FETCH_COMPANIES = 'FETCH_COMPANIES';
+const UPDATE_NAME = 'UPDATE_NAME';
 
 const SET_SELECTED_BENEFIT_VALUE = 'SET_SELECTED_BENEFIT_VALUE';
 const GET_SELECTED_DESCRIPTION = 'GET_SELECTED_DESCRIPTION';
@@ -15,6 +16,17 @@ var config = {
     // messagingSenderId: "164065335476"
   };
 Firebase.initializeApp(config);
+
+export function updateName(key, value) {
+  let toUpdate = {}
+  toUpdate[key] = value
+  return (dispatch) => {
+    dispatch({
+      type: UPDATE_NAME,
+      payload: toUpdate
+    });
+  };
+}
 
 export function fetchCompanies() {
   const ref = Firebase.database().ref('Companies')

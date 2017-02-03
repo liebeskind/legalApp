@@ -1,3 +1,89 @@
+/*------CONTAINERS-------*/
+.container {
+  background-color: #f5f5f5;
+} 
+.mainContainer {
+  position: relative;
+  display: inline-block;
+  margin-top: 32px;
+  width: 100%;
+}
+.mainContentContainer {
+  position: relative;
+  display: inline-block;
+  min-width: 50%; 
+}
+
+.sideNavContainer {
+  float: left;
+  display: inline-block;
+}
+
+/*------ICONS-------*/
+.arrowIcon {
+  margin-left: 16px;
+}
+
+/*------BUTTONS-------*/
+.subpanel-btn {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+/*------PANELS-------*/
+
+.panel-header, .panel-body, ul.panel-body>li, ol.panel-body>li, .panel-footer {
+  position: relative;
+  margin: 0;
+  padding: 20px;
+  border-top: 1px solid #dce0e0;
+}
+
+.panel-header {
+  color: #565a5c;
+  font-size: 16px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.panel-dark, .panel-header {
+  background-color: #edefed;
+}
+.panel-light {
+  background-color: white; 
+}
+.panel-header:first-child, .panel-body:first-child, ul.panel-body>li:first-child, ol.panel-body>li:first-child, .panel-footer:first-child {
+  border-top: 0;
+}
+.panel {
+  border: 1px solid #dce0e0;
+  background-color: #fff;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.panel-dark {
+  background-color: #f5f5f5;
+}
+.panel-no-border {
+  border: 0;
+}
+.panel-no-margin {
+  margin-bottom: 0;
+}
+.panel-action-list {
+  list-style: none;
+  float: right;
+}
+.panel-action-list li {
+  display: inline-block;
+}
+.panel-action-item {
+  padding-left: 20px;
+  color: #3E7EDF;
+  font-size: 14px;
+  margin-left: 16px;
+}
+
 /*Default Styling*/
 
 #superfood-container div {

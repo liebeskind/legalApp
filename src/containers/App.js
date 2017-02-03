@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 
+import {update} from 'react-addons-update';
+
 //components
 import NavBar from '../components/navbar';
 import Footer from '../components/Footer';
@@ -18,6 +20,7 @@ import SideNav from '../components/SideNav';
 class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
   constructor(props) {
     super(props);
+    this.updateName = this.updateName.bind(this);
     this.selected = {
       DocumentManager: 0,
       CompanyCreator: 1,
@@ -56,19 +59,33 @@ class App extends Component { //Functional component isn't aware of state and do
     this.setState({selectedName: name});
   }
 
+  updateName(key, value) {
+    let loaded = this.state.loaded;
+    loaded.sigs = loaded.sigs || {};
+    loaded.sigs[key] = loaded.sigs[key] || {};
+    loaded.sigs[key].name = value
+    this.setState({loaded})
+  }
+
   render() {
     return (
       <MuiThemeProvider>
-        <div>
+        <div className="container">
           <NavBar />
-          <button onClick={this.onSave.bind(this)} type='button'>Save</button>
-          <input type="file" id="input" onChange={this.uploadFile.bind(this)} />
-          <SideNav onClick={this.onSideNavClick.bind(this)} items={Object.keys(this.selected)} />
-          <MainContent selected={this.selected[this.state.selectedName]} loaded={this.state.loaded}>
-            <DocumentManager />
-            <CompanyCreator />
-            <DirectorsAndOfficers />
-          </MainContent>
+          <div className="mainContainer">
+            <button onClick={this.onSave.bind(this)} type='button'>Save</button>
+            <input type="file" id="input" onChange={this.uploadFile.bind(this)} />
+            <div className="sideNavContainer" >
+              <SideNav onClick={this.onSideNavClick.bind(this)} items={Object.keys(this.selected)} />
+            </div>
+            <div className="mainContentContainer">
+              <MainContent selected={this.selected[this.state.selectedName]} loaded={this.state.loaded}>
+                <DocumentManager />
+                <CompanyCreator />
+                <DirectorsAndOfficers sigs={this.state.loaded.sigs} updateName={this.updateName} />
+              </MainContent>
+            </div>
+          </div>
           <Footer companyName="Legal App" />
         </div>
       </MuiThemeProvider>
