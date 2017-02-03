@@ -86,7 +86,7 @@ class App extends Component { //Functional component isn't aware of state and do
               </MainContent>
             </div>
           </div>
-          <Footer companyName="Legal App" />
+          <Footer companyName="Cascade" />
         </div>
       </MuiThemeProvider>
     );

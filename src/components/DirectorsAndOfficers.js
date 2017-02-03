@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../actions';
-
-class DirectorsAndOfficers extends Component {
+export default class DirectorsAndOfficers extends Component {
 
   constructor(props) {
     super(props);
@@ -46,10 +42,6 @@ class DirectorsAndOfficers extends Component {
     let key = "Sig " + this.generateKey();
     this.setState({editing: key})
     // key &&  ? this.setState({updatedName: this.props.sigs[key].name}) : this.setState({updatedName: false}) 
-  }
-
-  deleteItemByKey(key) {
-
   }
 
   renderEditPanel() {
@@ -179,17 +171,3 @@ class DirectorsAndOfficers extends Component {
     )
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    // updatedName: state.updatedName,
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ 
-    // updateNameInDb: actions.updateName,
-  }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DirectorsAndOfficers)
