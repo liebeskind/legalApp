@@ -9,57 +9,57 @@ import NavBar from '../components/navbar';
 import Footer from '../components/footer';
 
 class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
-	constructor(props) {
-		super(props);
-		this.state = {
-			videos: [],
-			loaded: { // would be an empty object
-				sigs: {
-					sigX: {name: 'John'},
-					sigY: {name: 'Sally'},
-					sigZ: {name: 'Ted'}
-				},
-				companies: {
-					compX: {name: 'Google'},
-					compY: {name: 'Exxon'},
-					compZ: {name: 'Target'}
-				},
-				officers: {
-					compX: {
-						sigX: 'Director',
-						sigZ: 'Benefactor'
-					}
-				},
-			}
-		};
-	}
-
-	componentWillMount() {
-		// this.props.fetchBenefitList();
+  constructor(props) {
+    super(props);
+    this.state = {
+      videos: [],
+      loaded: { // would be an empty object
+        sigs: {
+          sigX: {name: 'John'},
+          sigY: {name: 'Sally'},
+          sigZ: {name: 'Ted'}
+        },
+        companies: {
+          compX: {name: 'Google'},
+          compY: {name: 'Exxon'},
+          compZ: {name: 'Target'}
+        },
+        officers: {
+          compX: {
+            sigX: 'Director',
+            sigZ: 'Benefactor'
+          }
+        },
+      }
+    };
   }
 
-	render() {
-		return (
-			<MuiThemeProvider>
-				<div>
-					<NavBar />
-					<Footer companyName="Legal App" />
-				</div>
-			</MuiThemeProvider>
-		);
-	}
+  componentWillMount() {
+    // this.props.fetchBenefitList();
+  }
+
+  render() {
+    return (
+      <MuiThemeProvider>
+        <div>
+          <NavBar />
+          <Footer companyName="Legal App" />
+        </div>
+      </MuiThemeProvider>
+    );
+  }
 };
 
 function mapStateToProps(state) {
-	return {
-		// benefitList: state.benefitList,
-	}
+  return {
+    // benefitList: state.benefitList,
+  }
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ 
-		// fetchBenefitList: actions.fetchBenefitList,
-	}, dispatch)
+  return bindActionCreators({ 
+    // fetchBenefitList: actions.fetchBenefitList,
+  }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -17,8 +17,8 @@ injectTapEventPlugin();
 const createStoreWithMiddleware = applyMiddleware(reduxThunk, ReduxPromise)(createStore);
 
 ReactDOM.render(
-	<Provider store={createStoreWithMiddleware(reducers)}>
-		<App />
-	</Provider>
-	, document.querySelector('.container')
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <App />
+  </Provider>
+  , document.querySelector('.container')
 );
