@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../actions';
 
-export default class DirectorsAndOfficers extends Component {
+class DirectorsAndOfficers extends Component {
 
   constructor(props) {
     super(props);
@@ -149,3 +152,17 @@ export default class DirectorsAndOfficers extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    // updatedName: state.updatedName,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ 
+    // updateNameInDb: actions.updateName,
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DirectorsAndOfficers)
