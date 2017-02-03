@@ -10,12 +10,6 @@ export default class NavBar extends Component {
     }
   }
 
-  // const NavBar = React.createClass({
-  //   handleSelect(eventKey) {
-  //     event.preventDefault();
-  //     alert(`selected ${eventKey}`);
-  //   },
-
   render() {
     return (
       <Nav bsStyle="tabs" activeKey="1" onSelect={this.handleSelect}>

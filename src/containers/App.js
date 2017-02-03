@@ -6,7 +6,11 @@ import * as actions from '../actions';
 
 //components
 import NavBar from '../components/navbar';
-import Footer from '../components/footer';
+import Footer from '../components/Footer';
+import MainContent from '../components/MainContent';
+
+//containers
+import SideNav from '../containers/SideNav';
 
 class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
   constructor(props) {
@@ -43,6 +47,8 @@ class App extends Component { //Functional component isn't aware of state and do
       <MuiThemeProvider>
         <div>
           <NavBar />
+          <SideNav />
+          <MainContent />
           <Footer companyName="Legal App" />
         </div>
       </MuiThemeProvider>
