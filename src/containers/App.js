@@ -19,13 +19,15 @@ import { generatePDF } from '../helpers/pdf';
 
 //containers
 
+var pdfTestData = {agreement: 'TEST AGREEMENT', sigs: [{name: 'John', company: 'Google'}, {name: 'Sally', title: 'Director'}, {name: 'John', title: 'Executive Vice President'}]};
+
 class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
   constructor(props) {
     super(props);
 
     // bind local functions
     bindAll(['updateName', 'onSave', 'onSideNavClick', 'uploadFile'], this);
-    generatePDF();
+    generatePDF(pdfTestData);
 
     this.selected = {
       DocumentManager: 0,
