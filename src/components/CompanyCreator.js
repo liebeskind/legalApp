@@ -190,9 +190,7 @@ export default class CompanyCreator extends Component {
             key={key}
             value={key}
             secondaryText={
-              <p>
-                <TextField id="signatoryTitle" hintText="Title at this company" value={this.state.value} onChange={this.signatoryTitleChanged} />
-              </p>
+              <TextField className = "signatoryTitleField" id="signatoryTitle" hintText="Title at this company" value={this.state.value} onChange={this.signatoryTitleChanged} />
             }
             >
             </ListItem>

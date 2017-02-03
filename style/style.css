@@ -19,9 +19,9 @@
   display: inline-block;
 }
 
-/*.listItemContainer {
-  display: inline-block;
-}*/
+.signatoryTitleField {
+  height: 32px !important;
+}
 
 /*------ICONS-------*/
 .arrowIcon {
