@@ -20,7 +20,8 @@ import SideNav from '../components/SideNav';
 class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
   constructor(props) {
     super(props);
-    this.updateName = this.updateName.bind(this);
+    this.updateSigName = this.updateSigName.bind(this);
+    this.updateCompanyName = this.updateCompanyName.bind(this);
     this.selected = {
       DocumentManager: 0,
       CompanyCreator: 1,
@@ -59,11 +60,19 @@ class App extends Component { //Functional component isn't aware of state and do
     this.setState({selectedName: name});
   }
 
-  updateName(key, value) {
+  updateSigName(key, value) {
     let loaded = this.state.loaded;
     loaded.sigs = loaded.sigs || {};
     loaded.sigs[key] = loaded.sigs[key] || {};
     loaded.sigs[key].name = value
+    this.setState({loaded})
+  }
+
+  updateCompanyName(key, value) {
+    let loaded = this.state.loaded;
+    loaded.companies = loaded.companies || {};
+    loaded.companies[key] = loaded.companies[key] || {};
+    loaded.companies[key].name = value
     this.setState({loaded})
   }
 
@@ -81,8 +90,8 @@ class App extends Component { //Functional component isn't aware of state and do
             <div className="mainContentContainer">
               <MainContent selected={this.selected[this.state.selectedName]} loaded={this.state.loaded}>
                 <DocumentManager />
-                <CompanyCreator />
-                <DirectorsAndOfficers sigs={this.state.loaded.sigs} updateName={this.updateName} />
+                <CompanyCreator companies={this.state.loaded.companies} updateCompanyName={this.updateCompanyName} />
+                <DirectorsAndOfficers sigs={this.state.loaded.sigs} updateSigName={this.updateSigName} />
               </MainContent>
             </div>
           </div>

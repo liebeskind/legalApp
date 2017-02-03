@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
 
+//Components
+import AddButton from '../components/AddButton'
+
 export default class DirectorsAndOfficers extends Component {
 
   constructor(props) {
@@ -39,7 +42,7 @@ export default class DirectorsAndOfficers extends Component {
   }
 
   addSignatory() {
-    let key = "Sig " + this.generateKey();
+    let key = "Sig" + this.generateKey();
     this.setState({editing: key})
     // key &&  ? this.setState({updatedName: this.props.sigs[key].name}) : this.setState({updatedName: false}) 
   }
@@ -54,7 +57,7 @@ export default class DirectorsAndOfficers extends Component {
     )
   }
 
-  renderEditHeader(key) {
+  renderEditHeader() {
     const name = this.state.updatedName;
     const addEditToggle = name ? <span >Edit {name}</span> : <span >Add Signatory </span> 
     return (
@@ -76,7 +79,7 @@ export default class DirectorsAndOfficers extends Component {
   }
 
   updateName() {
-    this.props.updateName(this.state.editing, this.state.updatedName)
+    this.props.updateSigName(this.state.editing, this.state.updatedName)
     this.setState({editing: false, updatedName: false})
   }
 
@@ -152,19 +155,10 @@ export default class DirectorsAndOfficers extends Component {
     )
   }
 
-  renderAddButton() {
-    if (this.state.editing) return
-    return (
-      <div className="subpanel-btn">
-        <a href="#" onClick = {this.addSignatory}>Add Signatory<img className="arrowIcon" src="../src/img/arrow-circle-right.svg" /></a>
-      </div>
-    )
-  }
-
   render() {
     return (
       <div>
-        {this.renderAddButton()}
+        <AddButton hide={this.state.editing} actionFunction={this.addSignatory} actionText={"Add Signatory"} />
         {this.renderEditPanel()}
         {this.renderPanels()}
       </div>
