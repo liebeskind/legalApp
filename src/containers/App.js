@@ -26,8 +26,7 @@ class App extends Component { //Functional component isn't aware of state and do
     super(props);
 
     // bind local functions
-    bindAll(['updateName', 'onSave', 'onSideNavClick', 'uploadFile'], this);
-    generatePDF(pdfTestData);
+    bindAll(['updateName', 'onSave', 'onSideNavClick', 'uploadFile', 'onExport'], this);
 
     this.selected = {
       DocumentManager: 0,
@@ -63,6 +62,11 @@ class App extends Component { //Functional component isn't aware of state and do
     saveAs(blob, name);
   }
 
+  // Should this also save? Would two files be confusing?
+  onExport() {
+    generatePDF(this.state.loaded);
+  }
+
   onSideNavClick(name) {
     this.setState({selectedName: name});
   }
@@ -82,6 +86,7 @@ class App extends Component { //Functional component isn't aware of state and do
           <NavBar />
           <div className="mainContainer">
             <button onClick={this.onSave} type='button'>Save</button>
+            <button onClick={this.onExport} type='button'>Export</button>
             <input type="file" id="input" onChange={this.uploadFile} />
             <div className="sideNavContainer" >
               <SideNav onClick={this.onSideNavClick} items={Object.keys(this.selected)} />

@@ -1,6 +1,51 @@
 import React, {Component} from 'react'
 
-export function generatePDF(input = { agreement: '[AGREEMENT]', sigs: [ {} ] }) {
+export function generatePDF(loaded) {
+  var data = formatPDF(loaded);
+  exportPDF(data);
+}
+
+function formatPDF(loaded) {
+  var initial = loaded.sigs; // sigx: {}
+  var roles;
+  var formatted = [];
+
+  var compName;
+  var name;
+  var loggedComps = {};
+
+  // generate sig objects
+  for (let comp in loaded.officers) { // compX {sigX: role}
+    loggedComps[comp] = true;
+    // link titles to sigs
+    for (let sig in loaded.officers[comp]) {
+      initial[sig] = initial[sig] || {}
+      initial[sig].companies = initial[sig].companies || [];
+      name = loaded.companies[comp] ? loaded.companies[comp].name : undefined;
+      initial[sig].companies.push({name: name, title: loaded.officers[comp][sig], key: comp});
+    }
+  }
+
+  // push sig objects
+  for (let sig in initial) {
+    name = initial[sig].name;
+    initial[sig].companies = initial[sig].companies || [];
+    if(initial[sig].companies.length){
+      initial[sig].companies.forEach((c) => formatted.push({name: name, company: c.name, title: c.title }));
+    } else {
+      formatted.push({name: name});
+    }
+  }
+
+  // push companies without sigs
+  for (let comp in loaded.companies) {
+    if(!loggedComps[comp]) formatted.push({company: loaded.companies[comp].name});
+  }
+
+  return formatted;
+}
+
+function exportPDF(input = { agreement: '[AGREEMENT]', sigs: [ {} ] }) {
   // validation
   if(Array.isArray(input)) input = {sigs: input};
   input.agreement = input.agreement || '[AGREEMENT]';
