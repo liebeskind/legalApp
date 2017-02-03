@@ -12,6 +12,14 @@ export default class SideNav extends Component {
 
   constructor(props) {
     super(props);
+    this.getFormattedText = this.getFormattedText.bind(this);
+  }
+
+  getFormattedText(text) {
+    if (text === 'DocumentManager') return "Document Manager";
+    if (text === 'CompanyCreator') return "Company Creator";
+    if (text === 'DirectorsAndOfficers') return "Directors and Officers";
+    return text;
   }
 
   render() {
@@ -20,7 +28,7 @@ export default class SideNav extends Component {
         <Paper style={style}>
           <Menu>
             {this.props.items.map((text) => 
-              <MenuItem primaryText={text} key={text} onClick={() => this.props.onClick(text)} />
+              <MenuItem primaryText={this.getFormattedText(text)} key={text} onClick={() => this.props.onClick(text)} />
             )}
           </Menu>
         </Paper>
