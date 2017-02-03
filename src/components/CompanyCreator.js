@@ -34,9 +34,9 @@ export default class CompanyCreator extends Component {
   editItem(key) {
     this.setState({editing: key})
     if (key && this.props && this.props.companies && this.props.companies[key]) {
-      this.setState({updatedName: this.props.companies[key].name}) 
+      this.setState({updatedName: this.props.companies[key].name})
     } else {
-      this.setState({updatedName: false}) 
+      this.setState({updatedName: false})
     }
   }
 
@@ -68,11 +68,11 @@ export default class CompanyCreator extends Component {
 
   renderEditHeader() {
     const name = this.state.updatedName;
-    const addEditToggle = name ? <span >Edit {name}</span> : <span >Add Company </span> 
+    const addEditToggle = name ? <span >Edit {name}</span> : <span >Add Company </span>
     return (
       <div className="panel-header">
         {addEditToggle}
-        
+
         <ul className="panel-action-list">
           <li>
             <a href="#" className="panel-action-item" onClick = {()=>this.editItem(false)}><img src="../src/img/close.svg" /></a>
@@ -100,16 +100,16 @@ export default class CompanyCreator extends Component {
         <div className="panel-body">
           <div className="row space-4">
             <label className="col-sm-3">
-              Name: 
+              Name:
             </label>
             <div className="col-sm-9">
               <TextField id={key} value={name} onChange={this.nameChanged} />
-            </div>            
+            </div>
           </div>
         </div>
         <List>
           <Subheader>Signatories</Subheader>
-          {this.generateSignatoryList(this.props.sigs)}
+          {this.generateSignatoryList(this.props.sigs, this.props.officersOfCompany)}
         </List>
         <div className="row">
           <div className="col-sm-12">
@@ -119,8 +119,8 @@ export default class CompanyCreator extends Component {
               </li>
               <li>
                 <a href="#" onClick = {this.updateName} className="panel-action-item btn-primary btn">Save</a>
-              </li>            
-            </ul>              
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -168,29 +168,29 @@ export default class CompanyCreator extends Component {
   }
 
   signatorySelected(key, checked) {
-    console.log(key + " " + checked)
+    console.log(key + " " + checked);
+    this.props.selectSignatory(this.state.editing, key, checked);
   }
 
-  signatoryTitleChanged(event, data) {
-    console.log(data);
+  signatoryTitleChanged(key, title) {
+    console.log(key + " changed to " + title);
+    this.props.updateSignatoryTitle(this.state.editing, key, title);
   }
 
-
-
-  generateSignatoryList(items) {
+  generateSignatoryList(sigs, officersOfCompany) {
+    var officers = officersOfCompany ? officersOfCompany[this.state.editing] : {};
     return (
-      this.mapObject(items, (key, value) => {
-        console.log(key)
-        console.log(value)
+      this.mapObject(sigs, (key, value) => {
+        var officer = (officers && officers[key]) ? officers[key] : {};
         return (
           <div key={key}>
             <ListItem
-            leftCheckbox={<Checkbox onCheck={(event, checked)=>this.signatorySelected(key, checked)} key={key} value={key} />}
+            leftCheckbox={<Checkbox onCheck={(event, checked)=>this.signatorySelected(key, checked)} key={key} checked={officer.selected} />}
             primaryText={value.name}
             key={key}
             value={key}
             secondaryText={
-              <TextField className = "signatoryTitleField" id="signatoryTitle" hintText="Title at this company" value={this.state.value} onChange={this.signatoryTitleChanged} />
+              <TextField className = "signatoryTitleField" id="signatoryTitle" hintText="Title at this company" value={officer.title} onChange={(event, title)=>this.signatoryTitleChanged(key, title)} />
             }
             >
             </ListItem>
@@ -210,4 +210,4 @@ export default class CompanyCreator extends Component {
     )
   }
 }
-  
+
