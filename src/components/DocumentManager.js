@@ -11,9 +11,10 @@ export default class DocumentManager extends Component {
     super(props);
     this.state = {
       editing: false,
-      updatedFooterTitle: false
+      updatedFooterTitle: false,
+      updatedAgreementType: false
     }
-    bindAll(['mapObject', 'renderPanelHeader', 'renderPanelBody', 'renderPanels', 'updateFooterTitle', 'addDocument'], this);
+    bindAll(['mapObject', 'renderPanelHeader', 'renderPanelBody', 'renderPanels', 'sendUpdate', 'addDocument', 'cancelEditing'], this);
   }
 
   mapObject(object, callback) {
@@ -24,7 +25,7 @@ export default class DocumentManager extends Component {
 
   editItem(key) {
     this.setState({editing: key})
-    key ? this.setState({updatedFooterTitle: this.props.documents[key].name}) : this.setState({updatedFooterTitle: false})
+    key ? this.setState({updatedFooterTitle: this.props.documents[key].footerTitle, updatedAgreementType: this.props.documents[key].agreementType}) : this.setState({updatedFooterTitle: false, updatedAgreementType: false})
   }
 
   generateKey() {
@@ -62,43 +63,49 @@ export default class DocumentManager extends Component {
 
         <ul className="panel-action-list">
           <li>
-            <a href="#" className="panel-action-item" onClick = {()=>this.editItem(false)}><img src="../src/img/close.svg" /></a>
+            <a href="#" className="panel-action-item" onClick = {this.cancelEditing}><img src="../src/img/close.svg" /></a>
           </li>
         </ul>
       </div>
     )
   }
 
-  nameChanged = (event) => {
-    console.log(event.target.value);
+  footerTitleChanged = (event) => {
     this.setState({updatedFooterTitle: event.target.value})
   }
 
-  updateFooterTitle() {
-    this.props.updateFooterTitle(this.state.editing, this.state.updatedFooterTitle)
-    this.setState({editing: false, updatedFooterTitle: false})
+  agreementTypeChanged = (event) => {
+    this.setState({updatedAgreementType: event.target.value})
+  }
+
+  sendUpdate() {
+    this.props.sendDocumentUpdate(this.state.editing, this.state.updatedFooterTitle, this.state.updatedAgreementType)
+    this.setState({editing: false, updatedFooterTitle: false, updatedAgreementType: false})
+  }
+
+  cancelEditing() {
+    this.setState({editing: false, updatedFooterTitle: false, updatedAgreementType: false})
   }
 
   renderEditBody() {
     let key = this.state.editing ? this.state.editing : 1;
-    // let name = this.props.documents[this.state.editing].footerTitle;
-    let name = this.state.updatedFooterTitle ? this.state.updatedFooterTitle : this.props.documents[this.state.editing].footerTitle;
 
     return (
       <div>
         <div className="panel-body">
           <div className="col-xs-12">
-            <h5 className="lightgray mb0">Document Title: <TextField id={key} value={name} onChange={this.nameChanged} /></h5>
+            <h5 className="lightgray mb0">Document Title: <TextField id={key} value={this.state.updatedFooterTitle} onChange={this.footerTitleChanged} /></h5>
+            <h5 className="lightgray mb0">Agreement Type: <TextField id={key} value={this.state.updatedAgreementType} onChange={this.agreementTypeChanged} /></h5>
           </div>
         </div>
         <div className="row">
           <div className="col-sm-12">
             <ul className="panel-action-list">
               <li>
-                <a href="#" onClick = {()=>this.editItem(false)} className="panel-action-item">Cancel</a>
+                <a href="#" onClick = {this.cancelEditing} className="panel-action-item">Cancel</a>
               </li>
               <li>
-                <a href="#" onClick = {this.updateFooterTitle} className="panel-action-item btn-primary btn">Save</a>
+                <a href="#" onClick = {this.sendUpdate} className="panel-action-item btn-primary btn">Save</a>
               </li>
             </ul>
           </div>
