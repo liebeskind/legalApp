@@ -3,17 +3,17 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
-import DocumentManager from '../components/DocumentManager';
-import DirectorsAndOfficers from '../components/DirectorsAndOfficers';
-import CompanyCreator from '../components/CompanyCreator';
 
 //components
 import NavBar from '../components/navbar';
 import Footer from '../components/Footer';
 import MainContent from '../components/MainContent';
+import DocumentManager from '../components/DocumentManager';
+import DirectorsAndOfficers from '../components/DirectorsAndOfficers';
+import CompanyCreator from '../components/CompanyCreator';
+import SideNav from '../components/SideNav';
 
 //containers
-import SideNav from '../containers/SideNav';
 
 class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
   constructor(props) {
@@ -52,17 +52,18 @@ class App extends Component { //Functional component isn't aware of state and do
             agreementType: 'Will'
           }
         }
-      }
+      },
+      selectedName: 'DocumentManager'
     };
-    this.selectedName = 'DocumentManager';
   }
 
   componentWillMount() {
     // this.props.fetchBenefitList();
   }
 
-  onSideNavClick() {
-    // change selected state
+  onSideNavClick(name) {
+    console.log(name);
+    this.setState({selectedName: name});
   }
 
   render() {
@@ -70,8 +71,8 @@ class App extends Component { //Functional component isn't aware of state and do
       <MuiThemeProvider>
         <div>
           <NavBar />
-          <SideNav onClick={this.onSideNavClick} />
-          <MainContent selected={this.selected[this.selectedName]} loaded={this.state.loaded}>
+          <SideNav onClick={this.onSideNavClick.bind(this)} items={Object.keys(this.selected)} />
+          <MainContent selected={this.selected[this.state.selectedName]} loaded={this.state.loaded}>
             <DocumentManager />
             <CompanyCreator />
             <DirectorsAndOfficers />
