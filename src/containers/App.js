@@ -19,9 +19,9 @@ class App extends Component { //Functional component isn't aware of state and do
       videos: [],
       loaded: { // would be an empty object
         sigs: {
-          sigX: {name: 'John'},
-          sigY: {name: 'Sally'},
-          sigZ: {name: 'Ted'}
+          sigX: {name: 'John Wilcox'},
+          sigY: {name: 'Sally Shoemaker'},
+          sigZ: {name: 'Ted Bundy'}
         },
         companies: {
           compX: {name: 'Google'},
@@ -45,10 +45,16 @@ class App extends Component { //Functional component isn't aware of state and do
   render() {
     return (
       <MuiThemeProvider>
-        <div>
+        <div className="container">
           <NavBar />
-          <SideNav />
-          <MainContent mainContentSelector={'DocumentManager'} />
+          <div className="mainContainer">
+            <div className="sideNavContainer">
+              <SideNav />
+            </div>
+            <div className="mainContentContainer">
+              <MainContent mainContentSelector={'DocumentManager'} sigs={this.state.loaded.sigs} />
+            </div>
+          </div>
           <Footer companyName="Legal App" />
         </div>
       </MuiThemeProvider>

@@ -8,11 +8,18 @@ import DirectorsAndOfficers from '../components/DirectorsAndOfficers';
 export default class MainContent extends Component {
   constructor(props) {
     super(props);
+    this.updateName = this.updateName.bind(this);
+  }
+
+  updateName(key, value) {
+    console.log(key)
+    console.log(value)
+    this.props.sigs[key].name = value
   }
 
   render() {
     return (
-      <DirectorsAndOfficers />
+      <DirectorsAndOfficers updateName={this.updateName} sigs={this.props.sigs} />
     )
   }
 }
