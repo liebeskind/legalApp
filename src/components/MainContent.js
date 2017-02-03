@@ -1,25 +1,19 @@
 import React, {Component} from 'react';
 import {Grid} from 'react-bootstrap';
 
-export default class MainContent extends Component {
+import DocumentManager from '../components/DocumentManager';
+import CompanyManager from '../components/CompanyCreator';
+import DirectorsAndOfficers from '../components/DirectorsAndOfficers';
 
+
+export default class MainContent extends Component {
 	constructor(props) {
 		super(props);
 	}
 
-	renderContent() {
-		if (this.props.mainContentSelector === 'documentManager') {
-			return (
-				<div></div>
-			)
-		}
-	}
-
 	render() {
 		return (
-			<div>
-				
-			</div>
+			<DocumentManager />
 		)
 	}
 }
