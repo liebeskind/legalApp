@@ -25,6 +25,7 @@ class App extends Component { //Functional component isn't aware of state and do
 
     // bind local functions
     bindAll(['updateName', 'onSave', 'onSideNavClick', 'uploadFile'], this);
+    generatePDF();
 
     this.selected = {
       DocumentManager: 0,
@@ -48,10 +49,6 @@ class App extends Component { //Functional component isn't aware of state and do
     reader.onload = function() {
       // probably want to show some kind of success! indicator
       this.setState({loaded: JSON.parse(reader.result)});
-      var doc = new jsPDF();
-
-      doc.text('Hello world!', 10, 10);
-      doc.save('a4.pdf');
     }.bind(this)
 
     reader.readAsText(e.target.files[0]);
