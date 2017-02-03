@@ -23,7 +23,7 @@ class App extends Component { //Functional component isn't aware of state and do
     super(props);
 
     // bind local functions
-    bindAll(['updateSigName', 'updateCompanyName', 'onSave', 'onSideNavClick', 'uploadFile', 'updateSignatoryTitle', 'selectSignatory'], this);
+    bindAll(['updateSigName', 'updateCompanyName', 'onSave', 'onSideNavClick', 'uploadFile', 'updateSignatoryTitle', 'selectSignatory', 'updateFooterTitle'], this);
 
     this.selected = {
       DocumentManager: 0,
@@ -96,6 +96,14 @@ class App extends Component { //Functional component isn't aware of state and do
     loaded.officersOfCompany[company][signatoryKey].title = title;
   }
 
+  updateFooterTitle(key, footerTitle) {
+    let loaded = this.state.loaded;
+    loaded.documents = loaded.documents || {};
+    loaded.documents[key] = loaded.documents[key] || {};
+    loaded.documents[key].footerTitle = footerTitle;
+    this.setState({loaded})
+  }
+
   render() {
     return (
       <MuiThemeProvider>
@@ -109,7 +117,7 @@ class App extends Component { //Functional component isn't aware of state and do
             </div>
             <div className="mainContentContainer">
               <MainContent selected={this.selected[this.state.selectedName]} loaded={this.state.loaded}>
-                <DocumentManager />
+                <DocumentManager documents={this.state.loaded.documents} updateFooterTitle={this.updateFooterTitle} />
                 <CompanyCreator companies={this.state.loaded.companies} sigs={this.state.loaded.sigs} officersOfCompany={this.state.loaded.officersOfCompany} selectSignatory={this.selectSignatory} updateSignatoryTitle={this.updateSignatoryTitle} updateCompanyName={this.updateCompanyName} />
                 <DirectorsAndOfficers sigs={this.state.loaded.sigs} updateSigName={this.updateSigName} />
               </MainContent>
