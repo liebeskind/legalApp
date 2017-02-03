@@ -16,7 +16,25 @@ class App extends Component { //Functional component isn't aware of state and do
   constructor(props) {
     super(props);
     this.state = {
-      videos: []
+      videos: [],
+      loaded: { // would be an empty object
+        sigs: {
+          sigX: {name: 'John'},
+          sigY: {name: 'Sally'},
+          sigZ: {name: 'Ted'}
+        },
+        companies: {
+          compX: {name: 'Google'},
+          compY: {name: 'Exxon'},
+          compZ: {name: 'Target'}
+        },
+        officers: {
+          compX: {
+            sigX: 'Director',
+            sigZ: 'Benefactor'
+          }
+        },
+      }
     };
   }
 
