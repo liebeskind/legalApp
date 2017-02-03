@@ -5,16 +5,7 @@ export default class NavBar extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			
-		}
 	}
-
-	// const NavBar = React.createClass({
-	//   handleSelect(eventKey) {
-	//     event.preventDefault();
-	//     alert(`selected ${eventKey}`);
-	//   },
 
   render() {
     return (
