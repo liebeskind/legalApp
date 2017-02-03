@@ -7,13 +7,13 @@ import DirectorsAndOfficers from '../components/DirectorsAndOfficers';
 
 
 export default class MainContent extends Component {
-	constructor(props) {
-		super(props);
-	}
+  constructor(props) {
+    super(props);
+  }
 
-	render() {
-		return (
-			<DocumentManager />
-		)
-	}
+  render() {
+    return (
+      <DocumentManager />
+    )
+  }
 }
