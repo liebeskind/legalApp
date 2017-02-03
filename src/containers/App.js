@@ -14,7 +14,8 @@ import DocumentManager from '../components/DocumentManager';
 import DirectorsAndOfficers from '../components/DirectorsAndOfficers';
 import CompanyCreator from '../components/CompanyCreator';
 import SideNav from '../components/SideNav';
-import { bindAll } from '../components/util';
+import { bindAll } from '../helpers/util';
+import { generatePDF } from '../helpers/pdf';
 
 //containers
 
@@ -47,6 +48,10 @@ class App extends Component { //Functional component isn't aware of state and do
     reader.onload = function() {
       // probably want to show some kind of success! indicator
       this.setState({loaded: JSON.parse(reader.result)});
+      var doc = new jsPDF();
+
+      doc.text('Hello world!', 10, 10);
+      doc.save('a4.pdf');
     }.bind(this)
 
     reader.readAsText(e.target.files[0]);

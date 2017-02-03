@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Paper from 'material-ui/Paper';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
-import { bindAll } from './util';
+import { bindAll } from '../helpers/util';
 
 const style = {
   display: 'inline-block',
