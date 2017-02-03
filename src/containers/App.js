@@ -38,6 +38,7 @@ class App extends Component { //Functional component isn't aware of state and do
     var reader = new FileReader();
 
     reader.onload = function() {
+      // probably want to show some kind of success! indicator
       this.setState({loaded: JSON.parse(reader.result)});
     }.bind(this)
 
@@ -46,8 +47,9 @@ class App extends Component { //Functional component isn't aware of state and do
 
   // In Chrome, this requires setting "Ask where to save each file before downloading" or it will save to default
   onSave() {
+    let name = 'Cascade_' + (new Date).getTime() + '.json';
     let blob = new Blob([JSON.stringify(this.state.loaded)], { type: 'text/plain;charset=utf-8' });
-    saveAs(blob, 'savedLegal.txt');
+    saveAs(blob, name);
   }
 
   onSideNavClick(name) {
