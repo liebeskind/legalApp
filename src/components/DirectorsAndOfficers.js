@@ -160,14 +160,20 @@ class DirectorsAndOfficers extends Component {
     )
   }
 
-  render() {
+  renderAddButton() {
     return (
-      <div>
       <div className="subpanel-btn">
         <a href="#" onClick = {this.addSignatory}>Add Signatory<img className="arrowIcon" src="../src/img/arrow-circle-right.svg" /></a>
       </div>
-      {this.renderEditPanel()}
-      {this.renderPanels()}
+    )
+  }
+
+  render() {
+    return (
+      <div>
+        {this.renderAddButton()}
+        {this.renderEditPanel()}
+        {this.renderPanels()}
       </div>
     )
   }

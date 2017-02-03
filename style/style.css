@@ -26,7 +26,8 @@
 
 /*------BUTTONS-------*/
 .subpanel-btn {
-  float: right;
+  margin-bottom: 32px;
+  text-align: center;
 }
 
 /*------PANELS-------*/
