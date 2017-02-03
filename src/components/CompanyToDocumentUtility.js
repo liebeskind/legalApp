@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { bindAll } from './util';
 
 import AddButton from '../components/AddButton';
 import TextField from 'material-ui/TextField';
@@ -6,6 +7,8 @@ import TextField from 'material-ui/TextField';
 //UI Materials components
 import Subheader from 'material-ui/Subheader';
 import Checkbox from 'material-ui/Checkbox';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 export default class CompanyToDocumentUtility extends Component {
 
@@ -13,15 +16,11 @@ export default class CompanyToDocumentUtility extends Component {
     super(props);
     this.state = {
       editing: false,
-      updatedAsField: false
+      updatedAsField: false,
+      selectedSig: false
     }
 
-    this.mapObject = this.mapObject.bind(this);
-    this.renderPanelHeader = this.renderPanelHeader.bind(this);
-    this.renderPanelBody = this.renderPanelBody.bind(this);
-    this.renderPanels = this.renderPanels.bind(this);
-    this.updateAsField = this.updateAsField.bind(this);
-    this.addCompany = this.addCompany.bind(this);
+    bindAll(['mapObject', 'renderPanelHeader', 'renderPanelBody', 'renderPanels', 'updateAsField', 'renderSelectItemList', 'selectSignatory'], this);
   }
 
   mapObject(object, callback) {
@@ -31,7 +30,6 @@ export default class CompanyToDocumentUtility extends Component {
   }
 
   editItem(key) {
-    console.log(key)
     this.setState({editing: key})
     if (key && this.props && this.props.companiesPerDocument && this.props.companiesPerDocument[this.props.documentEditing] && this.props.companiesPerDocument[this.props.documentEditing][key]) {
       this.setState({updatedAsField: this.props.companiesPerDocument[this.props.documentEditing][key].asField})
@@ -66,9 +64,6 @@ export default class CompanyToDocumentUtility extends Component {
   }
 
   renderEditHeader() {
-    console.log(this.props.companies)
-    console.log(this.state.editing)
-    console.log(this.props.companies[this.state.editing])
     const name = this.props.companies[this.state.editing].name;
     const addEditToggle = name ? <span >Edit {name}</span> : <span >Add Company </span>
     return (
@@ -93,10 +88,30 @@ export default class CompanyToDocumentUtility extends Component {
     this.setState({editing: false, updatedAsField: false})
   }
 
+  renderSelectItemList(items) {
+    var sigs = this.props.sigs;
+    return (
+      this.mapObject(items, function (key, value) {
+        if (!value.selected) return
+        return <MenuItem value={key} key={key} primaryText={`${sigs[key].name} | ${value.title}`} />;
+      })
+    )
+  }
+
+  selectSignatory(event, index, selectedType) {
+    this.setState({selectedSig: selectedType})
+  }
+
   renderEditBody() {
     let key = this.state.editing;
     let name = this.props.companies[this.state.editing].name;
     let asField = this.state.updatedAsField ? this.state.updatedAsField : '';
+    var currentValue
+
+    if (this.state.selectedSig) {
+      currentValue = this.props.sigs[this.state.selectedSig];
+      // currentValue = this.props.sigs[this.state.selectedSig].name + " | " + this.props.officersOfCompany[this.state.editing][this.state.selectedSig].title;
+    }
 
     return (
       <div>
@@ -105,6 +120,15 @@ export default class CompanyToDocumentUtility extends Component {
             <div className="col-xs-12">
               <h5 className="lightgray mb0">Name: {name}</h5>
               <h5 className="lightgray mb0">As (optional): <TextField id={key} value={asField} onChange={this.asFieldChanged} /></h5>
+              <h5 className="lightgray mb0">Signatory
+                <SelectField
+                  value={this.state.selectedSig}
+                  onChange={this.selectSignatory}
+                  maxHeight={200}
+                >
+                  {this.renderSelectItemList(this.props.officersOfCompany[this.state.editing])}
+                </SelectField>
+              </h5>
             </div>
           </div>
         </div>
@@ -154,12 +178,10 @@ export default class CompanyToDocumentUtility extends Component {
 
   renderAsField(key) {
     if (this.props.companiesPerDocument && this.props.companiesPerDocument[this.props.documentEditing] && this.props.companiesPerDocument[this.props.documentEditing][key] && this.props.companiesPerDocument[this.props.documentEditing][key].asField) {
-      console.log("As Detected")
       return (
         <h5 className="lightgray mb0">As: {this.props.companiesPerDocument[this.props.documentEditing][key].asField}</h5>
       )
     } else {
-      console.log("No As Detected")
       return <span></span>
     }
 
