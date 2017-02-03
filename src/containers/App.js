@@ -23,7 +23,7 @@ class App extends Component { //Functional component isn't aware of state and do
     super(props);
 
     // bind local functions
-    bindAll(['updateSigName', 'updateCompanyName', 'onSave', 'onSideNavClick', 'uploadFile', 'updateSignatoryTitle', 'selectSignatory', 'sendDocumentUpdate'], this);
+    bindAll(['updateSigName', 'updateCompanyName', 'onSave', 'onSideNavClick', 'uploadFile', 'updateSignatoryTitle', 'selectSignatory', 'sendDocumentUpdate', 'updateAsField'], this);
 
     this.selected = {
       DocumentManager: 0,
@@ -108,8 +108,9 @@ class App extends Component { //Functional component isn't aware of state and do
   updateAsField(documentKey, companyKey, asField) {
     let loaded = this.state.loaded;
     loaded.companiesPerDocument = loaded.companiesPerDocument || {};
-    loaded.companiesPerDocument[companyKey] = loaded.companiesPerDocument[companyKey] || {};
-    loaded.companiesPerDocument[companyKey].asField = asField
+    loaded.companiesPerDocument[documentKey] = loaded.companiesPerDocument[documentKey] || {};
+    loaded.companiesPerDocument[documentKey][companyKey] = loaded.companiesPerDocument[documentKey][companyKey] || {};
+    loaded.companiesPerDocument[documentKey][companyKey].asField = asField
     this.setState({loaded})
   }
 

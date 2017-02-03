@@ -98,7 +98,7 @@ export default class DocumentManager extends Component {
             <h5 className="lightgray mb0">Document Title: <TextField id={key} value={this.state.updatedFooterTitle} onChange={this.footerTitleChanged} /></h5>
             <h5 className="lightgray mb0">Agreement Type (optional): <TextField id={key} value={this.state.updatedAgreementType} onChange={this.agreementTypeChanged} /></h5>
             <Subheader>Companies</Subheader>
-            <CompanyToDocumentUtility updateAsField={this.props.updateAsField} documentEditing={key} sigs={this.props.loaded.sigs} documents={this.props.loaded.documents} companies={this.props.loaded.companies} officersOfCompany={this.props.loaded.officersOfCompany} companiesPerDocument={this.props.loaded.officersOfCompany} />
+            <CompanyToDocumentUtility updateAsField={this.props.updateAsField} documentEditing={key} sigs={this.props.loaded.sigs} documents={this.props.loaded.documents} companies={this.props.loaded.companies} officersOfCompany={this.props.loaded.officersOfCompany} companiesPerDocument={this.props.loaded.companiesPerDocument} />
           </div>
         </div>
         <div className="row">

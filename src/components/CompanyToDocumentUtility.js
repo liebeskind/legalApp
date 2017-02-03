@@ -66,7 +66,10 @@ export default class CompanyToDocumentUtility extends Component {
   }
 
   renderEditHeader() {
-    const name = this.props.companies[this.state.editing];
+    console.log(this.props.companies)
+    console.log(this.state.editing)
+    console.log(this.props.companies[this.state.editing])
+    const name = this.props.companies[this.state.editing].name;
     const addEditToggle = name ? <span >Edit {name}</span> : <span >Add Company </span>
     return (
       <div className="panel-header">
@@ -92,7 +95,7 @@ export default class CompanyToDocumentUtility extends Component {
 
   renderEditBody() {
     let key = this.state.editing;
-    let name = this.props.companies[this.state.editing];
+    let name = this.props.companies[this.state.editing].name;
     let asField = this.state.updatedAsField ? this.state.updatedAsField : '';
 
     return (
@@ -112,7 +115,7 @@ export default class CompanyToDocumentUtility extends Component {
                 <a href="#" onClick = {()=>this.editItem(false)} className="panel-action-item">Cancel</a>
               </li>
               <li>
-                <a href="#" onClick = {this.updateName} className="panel-action-item btn-primary btn">Save</a>
+                <a href="#" onClick = {this.updateAsField} className="panel-action-item btn-primary btn">Save</a>
               </li>
             </ul>
           </div>
@@ -149,13 +152,26 @@ export default class CompanyToDocumentUtility extends Component {
     )
   }
 
+  renderAsField(key) {
+    if (this.props.companiesPerDocument && this.props.companiesPerDocument[this.props.documentEditing] && this.props.companiesPerDocument[this.props.documentEditing][key] && this.props.companiesPerDocument[this.props.documentEditing][key].asField) {
+      console.log("As Detected")
+      return (
+        <h5 className="lightgray mb0">As: {this.props.companiesPerDocument[this.props.documentEditing][key].asField}</h5>
+      )
+    } else {
+      console.log("No As Detected")
+      return <span></span>
+    }
+
+  }
+
   renderPanelBody(key, value) {
     return (
       <div className="panel-body">
         <div className="row mb16">
           <div className="col-xs-12">
             <h5 className="lightgray mb0">Company: {value.name}</h5>
-            <h5 className="lightgray mb0">As: Optional</h5>
+            {this.renderAsField(key)}
             <h5 className="lightgray mb0">Signatory: Name | Title</h5>
           </div>
         </div>
