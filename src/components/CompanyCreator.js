@@ -3,6 +3,11 @@ import React, {Component} from 'react';
 import AddButton from '../components/AddButton';
 import TextField from 'material-ui/TextField';
 
+//UI Materials components
+import {List, ListItem} from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
+import Checkbox from 'material-ui/Checkbox';
+
 export default class CompanyCreator extends Component {
 
   constructor(props) {
@@ -102,6 +107,10 @@ export default class CompanyCreator extends Component {
             </div>            
           </div>
         </div>
+        <List>
+          <Subheader>Signatories</Subheader>
+          {this.generateSignatoryList(this.props.sigs)}
+        </List>
         <div className="row">
           <div className="col-sm-12">
             <ul className="panel-action-list">
@@ -155,6 +164,41 @@ export default class CompanyCreator extends Component {
           </div>
         </div>
       </div>
+    )
+  }
+
+  signatorySelected(key, checked) {
+    console.log(key + " " + checked)
+  }
+
+  signatoryTitleChanged(event, data) {
+    console.log(data);
+  }
+
+
+
+  generateSignatoryList(items) {
+    return (
+      this.mapObject(items, (key, value) => {
+        console.log(key)
+        console.log(value)
+        return (
+          <div key={key}>
+            <ListItem
+            leftCheckbox={<Checkbox onCheck={(event, checked)=>this.signatorySelected(key, checked)} key={key} value={key} />}
+            primaryText={value.name}
+            key={key}
+            value={key}
+            secondaryText={
+              <p>
+                <TextField id="signatoryTitle" hintText="Title at this company" value={this.state.value} onChange={this.signatoryTitleChanged} />
+              </p>
+            }
+            >
+            </ListItem>
+          </div>
+        )
+      })
     )
   }
 

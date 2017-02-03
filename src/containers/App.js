@@ -90,7 +90,7 @@ class App extends Component { //Functional component isn't aware of state and do
             <div className="mainContentContainer">
               <MainContent selected={this.selected[this.state.selectedName]} loaded={this.state.loaded}>
                 <DocumentManager />
-                <CompanyCreator companies={this.state.loaded.companies} updateCompanyName={this.updateCompanyName} />
+                <CompanyCreator companies={this.state.loaded.companies} sigs={this.state.loaded.sigs} updateCompanyName={this.updateCompanyName} />
                 <DirectorsAndOfficers sigs={this.state.loaded.sigs} updateSigName={this.updateSigName} />
               </MainContent>
             </div>
