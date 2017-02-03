@@ -5,6 +5,7 @@ import * as actions from '../actions';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
+import { bindAll } from '../components/util';
 
 import BenefitTable from '../components/benefit_table';
 
@@ -14,11 +15,8 @@ class EditProducts extends Component {
     this.state = {
       foodChoice: 'acai'
     }
-    this.mapObject = this.mapObject.bind(this);
-    this.renderSelectItemList = this.renderSelectItemList.bind(this);
-    this.setDescription = this.setDescription.bind(this);
-    this.setFunFacts = this.setFunFacts.bind(this);
-    this.setSideEffects = this.setSideEffects.bind(this);
+
+    bindAll(['mapObject', 'renderSelectItemList', 'setDescription', 'setFunFacts', 'setSideEffects'], this);
   }
 
   componentWillMount() {
@@ -74,7 +72,7 @@ class EditProducts extends Component {
           onChange={this.handleSelectedTypeChange}
           maxHeight={200}
         >
-          {this.renderSelectItemList(this.props.typeOptions)} 
+          {this.renderSelectItemList(this.props.typeOptions)}
         </SelectField>
         <BenefitTable setSelectedBenefitValue={this.props.setSelectedBenefitValue} benefitList={this.props.benefitList} />
         <TextField value={this.props.selectedDescription} onChange={this.setDescription} multiLine={true} rows={2} rowsMax={6} floatingLabelText="Description" />
@@ -92,7 +90,7 @@ class EditProducts extends Component {
           onChange={this.handleFoodChoiceChange}
           maxHeight={200}
         >
-          {this.renderSelectItemList(this.props.foodNames)} 
+          {this.renderSelectItemList(this.props.foodNames)}
         </SelectField>
         {this.renderProductCard(this.state.showProductCard)}
       </div>

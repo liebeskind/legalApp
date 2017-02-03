@@ -3,6 +3,8 @@ import TextField from 'material-ui/TextField';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { bindAll } from './util';
+
 import * as actions from '../actions';
 
 class DirectorsAndOfficers extends Component {
@@ -13,12 +15,7 @@ class DirectorsAndOfficers extends Component {
       editing: false,
       updatedName: false
     }
-    this.mapObject = this.mapObject.bind(this);
-    this.renderPanelHeader = this.renderPanelHeader.bind(this);
-    this.renderPanelBody = this.renderPanelBody.bind(this);
-    this.renderPanels = this.renderPanels.bind(this);
-    this.updateName = this.updateName.bind(this);
-    this.addSignatory = this.addSignatory.bind(this);
+    bindAll(['mapObject', 'renderPanelHeader', 'renderPanelBody', 'renderPanels', 'updateName', 'addSignatory'], this);
   }
 
   mapObject(object, callback) {
@@ -45,7 +42,7 @@ class DirectorsAndOfficers extends Component {
   addSignatory() {
     let key = "Sig " + this.generateKey();
     this.setState({editing: key})
-    // key &&  ? this.setState({updatedName: this.props.sigs[key].name}) : this.setState({updatedName: false}) 
+    // key &&  ? this.setState({updatedName: this.props.sigs[key].name}) : this.setState({updatedName: false})
   }
 
   deleteItemByKey(key) {
@@ -64,11 +61,11 @@ class DirectorsAndOfficers extends Component {
 
   renderEditHeader(key) {
     const name = this.state.updatedName;
-    const addEditToggle = name ? <span >Edit {name}</span> : <span >Add Signatory </span> 
+    const addEditToggle = name ? <span >Edit {name}</span> : <span >Add Signatory </span>
     return (
       <div className="panel-header">
         {addEditToggle}
-        
+
         <ul className="panel-action-list">
           <li>
             <a href="#" className="panel-action-item" onClick = {()=>this.editItem(false)}><img src="../src/img/close.svg" /></a>
@@ -97,11 +94,11 @@ class DirectorsAndOfficers extends Component {
         <div className="panel-body">
           <div className="row space-4">
             <label className="col-sm-3">
-              Name: 
+              Name:
             </label>
             <div className="col-sm-9">
               <TextField id={key} value={name} onChange={this.nameChanged} />
-            </div>            
+            </div>
           </div>
         </div>
         <div className="row">
@@ -112,8 +109,8 @@ class DirectorsAndOfficers extends Component {
               </li>
               <li>
                 <a href="#" onClick = {this.updateName} className="panel-action-item btn-primary btn">Save</a>
-              </li>            
-            </ul>              
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -187,7 +184,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ 
+  return bindActionCreators({
     // updateNameInDb: actions.updateName,
   }, dispatch)
 }
