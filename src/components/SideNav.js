@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Paper from 'material-ui/Paper';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
+import { bindAll } from './util';
 
 const style = {
   display: 'inline-block',
@@ -12,14 +13,16 @@ export default class SideNav extends Component {
 
   constructor(props) {
     super(props);
-    this.getFormattedText = this.getFormattedText.bind(this);
+
+    bindAll(['getFormattedText'], this);
   }
 
   getFormattedText(text) {
-    if (text === 'DocumentManager') return "Document Manager";
-    if (text === 'CompanyCreator') return "Company Creator";
-    if (text === 'DirectorsAndOfficers') return "Directors and Officers";
-    return text;
+    return {
+      DocumentManager: 'Document Manager',
+      CompanyCreator: 'Company Creator',
+      DirectorsAndOfficers: 'Directors and Officers'
+    }[text] || text;
   }
 
   render() {
@@ -27,7 +30,7 @@ export default class SideNav extends Component {
       <div>
         <Paper style={style}>
           <Menu>
-            {this.props.items.map((text) => 
+            {this.props.items.map((text) =>
               <MenuItem primaryText={this.getFormattedText(text)} key={text} onClick={() => this.props.onClick(text)} />
             )}
           </Menu>

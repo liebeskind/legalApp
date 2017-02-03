@@ -14,13 +14,17 @@ import DocumentManager from '../components/DocumentManager';
 import DirectorsAndOfficers from '../components/DirectorsAndOfficers';
 import CompanyCreator from '../components/CompanyCreator';
 import SideNav from '../components/SideNav';
+import { bindAll } from '../components/util';
 
 //containers
 
 class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
   constructor(props) {
     super(props);
-    this.updateName = this.updateName.bind(this);
+
+    // bind local functions
+    bindAll(['updateName', 'onSave', 'onSideNavClick', 'uploadFile'], this);
+
     this.selected = {
       DocumentManager: 0,
       CompanyCreator: 1,
@@ -73,10 +77,10 @@ class App extends Component { //Functional component isn't aware of state and do
         <div className="container">
           <NavBar />
           <div className="mainContainer">
-            <button onClick={this.onSave.bind(this)} type='button'>Save</button>
-            <input type="file" id="input" onChange={this.uploadFile.bind(this)} />
+            <button onClick={this.onSave} type='button'>Save</button>
+            <input type="file" id="input" onChange={this.uploadFile} />
             <div className="sideNavContainer" >
-              <SideNav onClick={this.onSideNavClick.bind(this)} items={Object.keys(this.selected)} />
+              <SideNav onClick={this.onSideNavClick} items={Object.keys(this.selected)} />
             </div>
             <div className="mainContentContainer">
               <MainContent selected={this.selected[this.state.selectedName]} loaded={this.state.loaded}>
