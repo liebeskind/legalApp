@@ -5,7 +5,7 @@ import * as actions from '../actions';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
-import { bindAll } from '../components/util';
+import { bindAll } from '../helpers/util';
 
 import BenefitTable from '../components/benefit_table';
 

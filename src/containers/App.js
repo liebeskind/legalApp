@@ -14,7 +14,8 @@ import DocumentManager from '../components/DocumentManager';
 import DirectorsAndOfficers from '../components/DirectorsAndOfficers';
 import CompanyCreator from '../components/CompanyCreator';
 import SideNav from '../components/SideNav';
-import { bindAll } from '../components/util';
+import { bindAll } from '../helpers/util';
+import { generatePDF } from '../helpers/pdf';
 
 //containers
 
@@ -57,6 +58,11 @@ class App extends Component { //Functional component isn't aware of state and do
     let name = 'Cascade_' + (new Date).getTime() + '.json';
     let blob = new Blob([JSON.stringify(this.state.loaded)], { type: 'text/plain;charset=utf-8' });
     saveAs(blob, name);
+  }
+
+  // Should this also save? Would two files be confusing?
+  onExport() {
+    generatePDF(this.state.loaded);
   }
 
   onSideNavClick(name) {
@@ -122,6 +128,7 @@ class App extends Component { //Functional component isn't aware of state and do
           <NavBar />
           <div className="mainContainer">
             <button onClick={this.onSave} type='button'>Save</button>
+            <button onClick={this.onExport} type='button'>Export</button>
             <input type="file" id="input" onChange={this.uploadFile} />
             <div className="sideNavContainer" >
               <SideNav onClick={this.onSideNavClick} items={Object.keys(this.selected)} />
