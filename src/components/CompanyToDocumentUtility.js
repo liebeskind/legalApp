@@ -20,7 +20,7 @@ export default class CompanyToDocumentUtility extends Component {
       selectedSig: false
     }
 
-    bindAll(['mapObject', 'renderPanelHeader', 'renderPanelBody', 'renderPanels', 'updateDocumentSelections', 'renderSelectItemList', 'renderSignatory', 'selectSignatory'], this);
+    bindAll(['mapObject', 'renderPanelHeader', 'renderPanelBody', 'renderPanels', 'updateDocumentSelections', 'renderSelectSignatoryList', 'renderSelectCompanyList', 'renderSignatory', 'selectSignatory', 'selectCompany', 'addCompany'], this);
   }
 
   mapObject(object, callback) {
@@ -38,19 +38,8 @@ export default class CompanyToDocumentUtility extends Component {
     }
   }
 
-  generateKey() {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-    for( var i=0; i < 6; i++ )
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-    return text;
-  }
-
   addCompany() {
-    let key = "Company" + this.generateKey();
-    this.setState({editing: key})
+    this.setState({editing: true})
   }
 
   renderEditPanel() {
@@ -64,7 +53,7 @@ export default class CompanyToDocumentUtility extends Component {
   }
 
   renderEditHeader() {
-    const name = this.props.companies[this.state.editing].name;
+    const name = this.props.companies[this.state.editing] ? this.props.companies[this.state.editing].name : false;
     const addEditToggle = name ? <span >Edit {name}</span> : <span >Add Company </span>
     return (
       <div className="panel-header">
@@ -88,7 +77,8 @@ export default class CompanyToDocumentUtility extends Component {
     this.setState({editing: false, updatedAsField: false, selectedSig: false})
   }
 
-  renderSelectItemList(items) {
+  renderSelectSignatoryList(items) {
+    if (!items) return
     var sigs = this.props.sigs;
     return (
       this.mapObject(items, function (key, value) {
@@ -103,9 +93,38 @@ export default class CompanyToDocumentUtility extends Component {
     this.props.selectSignatory(this.props.documentEditing, this.state.editing, this.state.selectedType);
   }
 
+  renderSelectCompanyList(items) {
+    if (!items) return
+    return (
+      this.mapObject(items, function (key, value) {
+        return <MenuItem value={key} key={key} primaryText={`${value.name} />;
+      })
+    )
+  }
+
+  selectCompany(event, index, selectedCompany) {
+    this.setState({editing: selectedCompany})
+  }
+
+  renderName() {
+    if (key && !name) {
+      return (
+        <SelectField
+          value={this.state.editing}
+          onChange={this.selectCompany}
+          maxHeight={200}
+        >
+          {this.renderSelectCompanyList(this.props.companies)}
+        </SelectField>
+      )
+    } else {
+      return <h5 className="lightgray mb0">Name: {name}</h5>
+    }
+  }
+
   renderEditBody() {
     let key = this.state.editing;
-    let name = this.props.companies[this.state.editing].name;
+    let name = this.props.companies[this.state.editing] ? this.props.companies[this.state.editing].name : false;
     let asField = this.state.updatedAsField ? this.state.updatedAsField : '';
     var currentValue
 
@@ -121,7 +140,7 @@ export default class CompanyToDocumentUtility extends Component {
         <div className="panel-body">
           <div className="row space-4">
             <div className="col-xs-12">
-              <h5 className="lightgray mb0">Name: {name}</h5>
+              {this.renderName(key, name)}
               <h5 className="lightgray mb0">As (optional): <TextField id={key} value={asField} onChange={this.asFieldChanged} /></h5>
               <h5 className="lightgray mb0">Signatory
                 <SelectField
@@ -129,7 +148,7 @@ export default class CompanyToDocumentUtility extends Component {
                   onChange={this.selectSignatory}
                   maxHeight={200}
                 >
-                  {this.renderSelectItemList(this.props.officersOfCompany[this.state.editing])}
+                  {this.renderSelectSignatoryList(this.props.officersOfCompany[this.state.editing])}
                 </SelectField>
               </h5>
             </div>
@@ -155,7 +174,7 @@ export default class CompanyToDocumentUtility extends Component {
     if (!this.props.companies) return <div></div>
     return (
       this.mapObject(this.props.companies, (key, value) => {
-        if (key === this.state.editing) return <div></div>
+        if (key === this.state.editing || !this.props.companiesPerDocument[this.props.documentEditing][key]) return <div></div>
         return (
           <div className="panel" key={key} id={key}>
             {this.renderPanelHeader(key, value)}
@@ -193,7 +212,6 @@ export default class CompanyToDocumentUtility extends Component {
   renderSignatory(key) {
     if (this.props.companiesPerDocument && this.props.companiesPerDocument[this.props.documentEditing] && this.props.companiesPerDocument[this.props.documentEditing][key] && this.props.companiesPerDocument[this.props.documentEditing][key].signatory) {
         // <h5 className="lightgray mb0">Signatory: {this.props.sigs[this.props.companiesPerDocument[this.props.documentEditing][key].signatory].name} | {this.props.officersOfCompany[this.props.companiesPerDocument[this.props.documentEditing][key].signatory].title}</h5>
-
       return (
         <h5 className="lightgray mb0">Signatory: {this.props.sigs[this.props.companiesPerDocument[this.props.documentEditing][key].signatory].name}</h5>
       )
