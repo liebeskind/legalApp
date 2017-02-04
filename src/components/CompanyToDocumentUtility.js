@@ -95,8 +95,10 @@ export default class CompanyToDocumentUtility extends Component {
 
   renderSelectCompanyList(items) {
     if (!items) return
+    var companiesOnDocumentAlready = this.props.companiesPerDocument[this.props.documentEditing]
     return (
       this.mapObject(items, function (key, value) {
+        if (companiesOnDocumentAlready[key]) return; //Don't want to have companies already added show up in the select list.
         return <MenuItem value={key} key={key} primaryText={`${value.name}`} />;
       })
     )
@@ -109,13 +111,15 @@ export default class CompanyToDocumentUtility extends Component {
   renderName(name) {
     if (!name) {
       return (
-        <SelectField
-          value={this.state.editing}
-          onChange={this.selectCompany}
-          maxHeight={200}
-        >
-          {this.renderSelectCompanyList(this.props.companies)}
-        </SelectField>
+        <h5 className="lightgray mb0">Select Company
+          <SelectField
+            value={this.state.editing}
+            onChange={this.selectCompany}
+            maxHeight={200}
+          >
+            {this.renderSelectCompanyList(this.props.companies)}
+          </SelectField>
+        </h5>
       )
     } else {
       return <h5 className="lightgray mb0">Name: {name}</h5>
