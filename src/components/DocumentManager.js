@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
 import Subheader from 'material-ui/Subheader';
+import {List, ListItem} from 'material-ui/List';
 
 //Components
 import AddButton from '../components/AddButton'
@@ -13,8 +14,8 @@ export default class DocumentManager extends Component {
     super(props);
     this.state = {
       editing: false,
-      updatedFooterTitle: false,
-      updatedAgreementType: false
+      updatedFooterTitle: '',
+      updatedAgreementType: ''
     }
     bindAll(['mapObject', 'renderPanelHeader', 'renderPanelBody', 'renderPanels', 'sendUpdate', 'addDocument', 'cancelEditing'], this);
   }
@@ -57,7 +58,7 @@ export default class DocumentManager extends Component {
   }
 
   renderEditHeader() {
-    const name = this.props.documents[this.state.editing].footerTitle;
+    const name = this.props.documents[this.state.editing] ? this.props.documents[this.state.editing].footerTitle : false
     const addEditToggle = name ? <span >Edit {name}</span> : <span >Add Document </span>
     return (
       <div className="panel-header">
@@ -82,11 +83,11 @@ export default class DocumentManager extends Component {
 
   sendUpdate() {
     this.props.sendDocumentUpdate(this.state.editing, this.state.updatedFooterTitle, this.state.updatedAgreementType)
-    this.setState({editing: false, updatedFooterTitle: false, updatedAgreementType: false})
+    this.setState({editing: false, updatedFooterTitle: '', updatedAgreementType: ''})
   }
 
   cancelEditing() {
-    this.setState({editing: false, updatedFooterTitle: false, updatedAgreementType: false})
+    this.setState({editing: false, updatedFooterTitle: '', updatedAgreementType: ''})
   }
 
   renderEditBody() {
@@ -97,7 +98,6 @@ export default class DocumentManager extends Component {
           <div className="col-xs-12">
             <h5 className="lightgray mb0">Document Title: <TextField id={key} value={this.state.updatedFooterTitle} onChange={this.footerTitleChanged} /></h5>
             <h5 className="lightgray mb0">Agreement Type (optional): <TextField id={key} value={this.state.updatedAgreementType} onChange={this.agreementTypeChanged} /></h5>
-            <Subheader>Companies</Subheader>
             <CompanyToDocumentUtility selectSignatory={this.props.selectSignatory} updateDocumentSelections={this.props.updateDocumentSelections} documentEditing={key} sigs={this.props.loaded.sigs} documents={this.props.loaded.documents} companies={this.props.loaded.companies} officersOfCompany={this.props.loaded.officersOfCompany} companiesPerDocument={this.props.loaded.companiesPerDocument} />
           </div>
         </div>
@@ -152,10 +152,38 @@ export default class DocumentManager extends Component {
           <div className="col-xs-12">
             <h5 className="lightgray mb0">Document Title: {value.footerTitle}</h5>
             <h5 className="lightgray mb0">Agreement Type: {value.agreementType}</h5>
+            <List>
+              <Subheader>Companies</Subheader>
+              {this.generateCompanyList(key)}
+            </List>
           </div>
         </div>
       </div>
     )
+  }
+
+  generateCompanyList(key) {
+    if (this.props.companiesPerDocument && this.state.editing) {
+      return (
+        this.mapObject(this.props.companiesPerDocument[this.state.editing], (company, value) => {
+          let primaryText = this.props.loaded.companies[company].name + value.asField ? " as " + value.asField : ''
+          let signatory = value.signatory ? "Signatory " + this.props.loaded.sigs[value.signatory].name : 'No Signatory Selected'
+          return (
+            <div key={key}>
+              <ListItem
+              primaryText={primaryText}
+              key={key}
+              value={key}
+              secondaryText={signatory}
+              >
+              </ListItem>
+            </div>
+          )
+        })
+      )
+    } else {
+      return <h5 className="lightgray mb0">No companies selected yet</h5>
+    }
   }
 
   render() {

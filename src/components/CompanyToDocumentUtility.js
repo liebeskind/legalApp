@@ -145,7 +145,7 @@ export default class CompanyToDocumentUtility extends Component {
           <div className="row space-4">
             <div className="col-xs-12">
               {this.renderName(name)}
-              <h5 className="lightgray mb0">As (optional): <TextField id={key} value={asField} onChange={this.asFieldChanged} /></h5>
+              <h5 className="lightgray mb0">As (optional): <TextField id={key?key:''} value={asField} onChange={this.asFieldChanged} /></h5>
               <h5 className="lightgray mb0">Signatory
                 <SelectField
                   value={this.state.selectedSig}
@@ -178,7 +178,7 @@ export default class CompanyToDocumentUtility extends Component {
     if (!this.props.companies) return <div></div>
     return (
       this.mapObject(this.props.companies, (key, value) => {
-        if (key === this.state.editing || !this.props.companiesPerDocument[this.props.documentEditing][key]) return <div></div>
+        if (key === this.state.editing || !this.props.companiesPerDocument || !this.props.companiesPerDocument[this.props.documentEditing] || !this.props.companiesPerDocument[this.props.documentEditing][key]) return <div></div>
         return (
           <div className="panel" key={key} id={key}>
             {this.renderPanelHeader(key, value)}
