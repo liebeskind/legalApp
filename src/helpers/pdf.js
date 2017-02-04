@@ -45,7 +45,6 @@ function formatPDF(loaded) {
 function exportPDF(input = { agreement: '[AGREEMENT]', sigs: [ {} ] }) {
   // validation
   if(Array.isArray(input)) input = {sigs: input};
-  input.agreement = input.agreement || '[AGREEMENT]';
 
   var defaults = {
     company: '[COMPANY]',
@@ -72,7 +71,7 @@ function exportPDF(input = { agreement: '[AGREEMENT]', sigs: [ {} ] }) {
 
     // add boilerplate to first page
     if(i === 0){
-      var boilerplate = doc.splitTextToSize(`\tIN WITNESS WHEREOF, each of the parties hereto has caused a counterpart of this ${input.agreement} to be duly executed and delivered as of the date first above written.`, 504);
+      var boilerplate = doc.splitTextToSize(`\tIN WITNESS WHEREOF, each of the parties hereto has caused a counterpart ${input.agreement ? `of this ${input.agreement} ` : ``}to be duly executed and delivered as of the date first above written.`, inch(7));
       doc.text(inch(0.5), inch(0.5), boilerplate);
     }
 
