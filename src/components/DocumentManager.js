@@ -163,17 +163,19 @@ export default class DocumentManager extends Component {
   }
 
   generateCompanyList(key) {
-    if (this.props.companiesPerDocument && this.state.editing) {
+    if (this.props.loaded.companiesPerDocument && this.props.loaded.companiesPerDocument[key]) {
       return (
-        this.mapObject(this.props.companiesPerDocument[this.state.editing], (company, value) => {
-          let primaryText = this.props.loaded.companies[company].name + value.asField ? " as " + value.asField : ''
-          let signatory = value.signatory ? "Signatory " + this.props.loaded.sigs[value.signatory].name : 'No Signatory Selected'
+        this.mapObject(this.props.loaded.companiesPerDocument[key], (company, value) => {
+          console.log(this.props.loaded.companies[company].name)
+          let asField = value.asField ? " as " + value.asField : '';
+          let primaryText = this.props.loaded.companies[company].name + asField;
+          let signatory = value.signatory ? "Signatory: " + this.props.loaded.sigs[value.signatory].name : 'No Signatory Selected';
           return (
-            <div key={key}>
+            <div key={company}>
               <ListItem
               primaryText={primaryText}
-              key={key}
-              value={key}
+              key={company}
+              value={company}
               secondaryText={signatory}
               >
               </ListItem>

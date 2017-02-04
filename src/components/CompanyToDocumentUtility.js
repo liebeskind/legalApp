@@ -98,7 +98,7 @@ export default class CompanyToDocumentUtility extends Component {
     var companiesOnDocumentAlready = this.props.companiesPerDocument[this.props.documentEditing]
     return (
       this.mapObject(items, function (key, value) {
-        if (companiesOnDocumentAlready[key]) return; //Don't want to have companies already added show up in the select list.
+        if (companiesOnDocumentAlready && companiesOnDocumentAlready[key]) return; //Don't want to have companies already added show up in the select list.
         return <MenuItem value={key} key={key} primaryText={`${value.name}`} />;
       })
     )
