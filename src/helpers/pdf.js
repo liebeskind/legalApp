@@ -7,12 +7,9 @@ export function generatePDF(loaded) {
 
 function formatPDF(loaded) {
   var initial = loaded.sigs; // sigx: {}
-  var roles;
   var formatted = [];
-
-  var compName;
-  var name;
   var loggedComps = {};
+  var name;
 
   // generate sig objects
   for (let comp in loaded.officers) { // compX {sigX: role}
