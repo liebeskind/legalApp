@@ -3,7 +3,7 @@ import TextField from 'material-ui/TextField';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { bindAll } from './util';
+import { bindAll } from '../helpers/util';
 
 import * as actions from '../actions';
 
