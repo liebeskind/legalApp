@@ -49,7 +49,6 @@ function exportPDF(input = { agreement: '[AGREEMENT]', sigs: [ {} ] }) {
 
   var defaults = {
     company: '[COMPANY]',
-    holdings: '[HOLDINGS]',
     name: '[NAME]',
     title: '[TITLE]'
   };
@@ -89,9 +88,10 @@ function exportPDF(input = { agreement: '[AGREEMENT]', sigs: [ {} ] }) {
     data.map((item, i) => {
       // weird but necessary formatting
       currentSig = doc.splitTextToSize(
-`${item.company},
+`${item.company}${item.holdings ? `,
 as ${item.holdings}
-
+` : `
+`}
 By:
 Name:  ${item.name}
 Title:    ${item.title}`, sigWidth);
