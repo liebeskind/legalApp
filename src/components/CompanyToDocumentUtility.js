@@ -97,7 +97,7 @@ export default class CompanyToDocumentUtility extends Component {
     if (!items) return
     return (
       this.mapObject(items, function (key, value) {
-        return <MenuItem value={key} key={key} primaryText={`${value.name} />;
+        return <MenuItem value={key} key={key} primaryText={`${value.name}`} />;
       })
     )
   }
@@ -106,8 +106,8 @@ export default class CompanyToDocumentUtility extends Component {
     this.setState({editing: selectedCompany})
   }
 
-  renderName() {
-    if (key && !name) {
+  renderName(name) {
+    if (!name) {
       return (
         <SelectField
           value={this.state.editing}
@@ -140,7 +140,7 @@ export default class CompanyToDocumentUtility extends Component {
         <div className="panel-body">
           <div className="row space-4">
             <div className="col-xs-12">
-              {this.renderName(key, name)}
+              {this.renderName(name)}
               <h5 className="lightgray mb0">As (optional): <TextField id={key} value={asField} onChange={this.asFieldChanged} /></h5>
               <h5 className="lightgray mb0">Signatory
                 <SelectField
