@@ -3,7 +3,7 @@ import TextField from 'material-ui/TextField';
 
 //Components
 import AddButton from '../components/AddButton'
-import { bindAll } from './util';
+import { bindAll } from '../helpers/util';
 
 export default class DirectorsAndOfficers extends Component {
 

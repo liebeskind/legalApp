@@ -6,7 +6,7 @@ import {List, ListItem} from 'material-ui/List';
 //Components
 import AddButton from '../components/AddButton'
 import CompanyToDocumentUtility from '../components/CompanyToDocumentUtility'
-import { bindAll } from './util';
+import { bindAll } from '../helpers/util';
 
 export default class DocumentManager extends Component {
 

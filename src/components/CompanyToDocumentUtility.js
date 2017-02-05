@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { bindAll } from './util';
+import { bindAll } from '../helpers/util';
 
 import AddButton from '../components/AddButton';
 import TextField from 'material-ui/TextField';

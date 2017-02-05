@@ -24,7 +24,7 @@ class App extends Component { //Functional component isn't aware of state and do
     super(props);
 
     // bind local functions
-    bindAll(['updateSigName', 'updateCompanyName', 'onSave', 'onSideNavClick', 'uploadFile', 'updateSignatoryTitle', 'selectSignatory', 'sendDocumentUpdate', 'updateDocumentSelections'], this);
+    bindAll(['updateSigName', 'updateCompanyName', 'onSave', 'onExport', 'onSideNavClick', 'uploadFile', 'updateSignatoryTitle', 'selectSignatory', 'sendDocumentUpdate', 'updateDocumentSelections'], this);
 
     this.selected = {
       DocumentManager: 0,
