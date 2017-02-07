@@ -7,7 +7,7 @@ import * as actions from '../actions';
 import {update} from 'react-addons-update';
 
 //components
-import NavBar from '../components/navbar';
+import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import MainContent from '../components/MainContent';
 import DocumentManager from '../components/DocumentManager';
@@ -17,7 +17,7 @@ import SideNav from '../components/SideNav';
 import { bindAll } from '../helpers/util';
 import { generatePDF } from '../helpers/pdf';
 
-//containers
+const companyName = "DocRedux"
 
 class App extends Component { //Functional component isn't aware of state and doesn't have to render or handle data flow
   constructor(props) {
@@ -55,7 +55,7 @@ class App extends Component { //Functional component isn't aware of state and do
 
   // In Chrome, this requires setting "Ask where to save each file before downloading" or it will save to default
   onSave() {
-    let name = 'Cascade_' + (new Date).getTime() + '.json';
+    let name = 'DocRedux_' + (new Date).getTime() + '.json';
     let blob = new Blob([JSON.stringify(this.state.loaded)], { type: 'text/plain;charset=utf-8' });
     saveAs(blob, name);
   }
@@ -125,11 +125,10 @@ class App extends Component { //Functional component isn't aware of state and do
     return (
       <MuiThemeProvider>
         <div className="container">
-          <NavBar />
           <div className="mainContainer">
             <button onClick={this.onSave} type='button'>Save</button>
-            <button onClick={this.onExport} type='button'>Export</button>
-            <input type="file" id="input" onChange={this.uploadFile} />
+            <button onClick={this.onExport} type='button'>Export to PDF</button>
+            <input type="file" id="importFile" onChange={this.uploadFile} />
             <div className="sideNavContainer" >
               <SideNav onClick={this.onSideNavClick} items={Object.keys(this.selected)} />
             </div>
@@ -141,7 +140,7 @@ class App extends Component { //Functional component isn't aware of state and do
               </MainContent>
             </div>
           </div>
-          <Footer companyName="Cascade" />
+          <Footer companyName={companyName} />
         </div>
       </MuiThemeProvider>
     );
