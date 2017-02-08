@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 //Components
 import AddButton from '../components/AddButton'
 import { bindAll } from '../helpers/util';
+
+import { generatePDF } from '../helpers/pdf';
 
 export default class DirectorsAndOfficers extends Component {
 
@@ -139,12 +142,17 @@ export default class DirectorsAndOfficers extends Component {
     )
   }
 
+  printBundle(key) {
+    generatePDF(this.props.loaded, key);
+  }
+
   renderPanelBody(key, value) {
     return (
       <div className="panel-body">
         <div className="row mb16">
           <div className="col-xs-12">
             <h5 className="lightgray mb0">Name: {value.name}</h5>
+            <RaisedButton label="Print PDF Bundle" primary={true} onClick={()=>this.printBundle(key)} />
           </div>
         </div>
       </div>

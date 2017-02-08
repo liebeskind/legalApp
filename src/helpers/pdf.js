@@ -1,14 +1,9 @@
 import React, {Component} from 'react'
 import jsPDF from 'jspdf'
 
-export function generatePDFBySignatory(signatory, loaded) {
-  var data = formatPDFBySignatory(signatory, loaded);
-  exportPDF(data);
-}
-
 export function generatePDF(loaded, specificSignatory) {
   var data = formatPDF(loaded);
-  exportPDF(data, specificSignatory);
+  exportPDF(data, loaded, specificSignatory);
 }
 
 function formatPDFBySignatory(signatory, loaded) {
@@ -65,7 +60,7 @@ function formatPDF(loaded) {
   return output;
 }
 
-function exportPDF(input, specificSignatory) {
+function exportPDF(input, loaded, specificSignatory) {
   // validation
   // if(Array.isArray(input)) input = {sigs: input};
 
@@ -138,7 +133,10 @@ function exportPDF(input, specificSignatory) {
     });
   });
 
-  doc.save('exampleSignaturePagesBundle.pdf');
+  var startingTitleOfPdf = 'SignaturePagesBundle.pdf';
+  if (specificSignatory) startingTitleOfPdf = loaded.sigs[specificSignatory].name.replace(/\s/g,'')  + 'SignatureBundle.pdf'
+
+  doc.save(startingTitleOfPdf);
 }
 
 //Rich's version

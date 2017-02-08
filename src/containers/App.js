@@ -136,7 +136,7 @@ class App extends Component { //Functional component isn't aware of state and do
               <MainContent selected={this.selected[this.state.selectedName]} loaded={this.state.loaded}>
                 <DocumentManager documents={this.state.loaded.documents} loaded={this.state.loaded} sendDocumentUpdate={this.sendDocumentUpdate} updateDocumentSelections={this.updateDocumentSelections} selectSignatory={this.selectSignatory} />
                 <CompanyCreator companies={this.state.loaded.companies} sigs={this.state.loaded.sigs} officersOfCompany={this.state.loaded.officersOfCompany} selectSignatory={this.selectSignatory} updateSignatoryTitle={this.updateSignatoryTitle} updateCompanyName={this.updateCompanyName} />
-                <DirectorsAndOfficers sigs={this.state.loaded.sigs} updateSigName={this.updateSigName} />
+                <DirectorsAndOfficers sigs={this.state.loaded.sigs} loaded={this.state.loaded} updateSigName={this.updateSigName} />
               </MainContent>
             </div>
           </div>
