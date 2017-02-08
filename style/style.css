@@ -19,6 +19,10 @@
   display: inline-block;
 }
 
+.signatoryTitleField {
+  height: 32px !important;
+}
+
 /*------ICONS-------*/
 .arrowIcon {
   margin-left: 16px;
