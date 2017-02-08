@@ -1,8 +1,39 @@
 import React, {Component} from 'react'
+import jsPDF from 'jspdf'
+
+export function generatePDFBySignatory(signatory, loaded) {
+  var data = formatPDFBySignatory(signatory, loaded);
+  exportPDF(data);
+}
 
 export function generatePDF(loaded) {
   var data = formatPDF(loaded);
   exportPDF(data);
+}
+
+function formatPDFBySignatory(signatory, loaded) {
+
+  var initial = loaded.sigs; // sigx: {}
+  var formatted = [];
+  var loggedComps = {};
+  var name;
+
+  var signatoryBundle = {};
+
+  for (let doc in loaded.companiesPerDocument) {
+
+    let documentData = loaded.companiesPerDocument[doc]
+    // console.log(documentData)
+    // console.log(loaded.companiesPerDocument[doc])
+    for (let company in documentData) {
+      let companyData = documentData[company]
+      signatoryBundle[companyData.signatory] = signatoryBundle[companyData.signatory] || {};
+      signatoryBundle[companyData.signatory][doc] = signatoryBundle[companyData.signatory][doc] || [];
+      signatoryBundle[companyData.signatory][doc].push(company)
+    }
+  }
+
+  console.log(signatoryBundle);
 }
 
 function formatPDF(loaded) {
@@ -11,15 +42,17 @@ function formatPDF(loaded) {
   var loggedComps = {};
   var name;
 
+  console.log(loaded.officersOfCompany)
   // generate sig objects
-  for (let comp in loaded.officers) { // compX {sigX: role}
+  for (let comp in loaded.officersOfCompany) { // compX {sigX: role}
     loggedComps[comp] = true;
+
     // link titles to sigs
-    for (let sig in loaded.officers[comp]) {
+    for (let sig in loaded.officersOfCompany[comp]) {
       initial[sig] = initial[sig] || {}
       initial[sig].companies = initial[sig].companies || [];
       name = loaded.companies[comp] ? loaded.companies[comp].name : undefined;
-      initial[sig].companies.push({name: name, title: loaded.officers[comp][sig], key: comp});
+      initial[sig].companies.push({name: name, title: loaded.officersOfCompany[comp][sig], key: comp});
     }
   }
 
@@ -42,7 +75,7 @@ function formatPDF(loaded) {
   return formatted;
 }
 
-function exportPDF(input = { agreement: '[AGREEMENT]', sigs: [ {} ] }) {
+function exportPDF(input = { agreement: '[AGREEMENT]', footerTitle: '[NAME OF DOCUMENT]', sigs: [ {} ] }) {
   // validation
   if(Array.isArray(input)) input = {sigs: input};
 
@@ -75,6 +108,11 @@ function exportPDF(input = { agreement: '[AGREEMENT]', sigs: [ {} ] }) {
       doc.text(inch(0.5), inch(0.5), boilerplate);
     }
 
+    // add document title to bottom of each page
+    var documentTitle = doc.splitTextToSize(`[Signature page to ${input.footerTitle}]`, inch(7));
+    var xOffset = ((doc.internal.pageSize.width - doc.getStringUnitWidth(documentTitle.toString()) * doc.internal.getFontSize()) / 2);
+    doc.text(documentTitle, xOffset, doc.internal.pageSize.height - 75);
+
     // standardize grouped data
     var copy;
     var data = sigs.map((item) => {
@@ -103,7 +141,7 @@ Title:    ${item.title}`, sigWidth);
     if(i < arr.length - 1) doc.addPage();
   });
 
-  doc.save('a4.pdf');
+  doc.save('exampleSignaturePagesBundle.pdf');
 }
 
 function groupSigs(sigs = []) {
