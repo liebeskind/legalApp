@@ -37,47 +37,80 @@ function formatPDFBySignatory(signatory, loaded) {
 }
 
 function formatPDF(loaded) {
-  var initial = loaded.sigs; // sigx: {}
-  var formatted = [];
-  var loggedComps = {};
-  var name;
 
-  console.log(loaded.officersOfCompany)
-  // generate sig objects
-  for (let comp in loaded.officersOfCompany) { // compX {sigX: role}
-    loggedComps[comp] = true;
+  var output = {};
 
-    // link titles to sigs
-    for (let sig in loaded.officersOfCompany[comp]) {
-      initial[sig] = initial[sig] || {}
-      initial[sig].companies = initial[sig].companies || [];
-      name = loaded.companies[comp] ? loaded.companies[comp].name : undefined;
-      initial[sig].companies.push({name: name, title: loaded.officersOfCompany[comp][sig], key: comp});
+  for (let doc in loaded.documents){
+    output[doc] = {};
+    output[doc].footerTitle = loaded.documents[doc].footerTitle;
+    output[doc].typeOfAgreement = loaded.documents[doc].agreementType;
+    output[doc].groupedBySignatory = {};
+    for (let company in loaded.companiesPerDocument[doc]) {
+      let signatory = loaded.companiesPerDocument[doc][company].signatory
+
+      var companyInfo = {};
+      companyInfo.companyName = loaded.companies[company].name;
+      companyInfo.asField = loaded.companiesPerDocument[doc][company].asField;
+
+      if (!signatory) {
+        output[doc].groupedBySignatory['unassigned'] = output[doc].groupedBySignatory['unassigned'] || {};
+        output[doc].groupedBySignatory['unassigned'][company] = companyInfo;
+      } else {
+        output[doc].groupedBySignatory[signatory] = output[doc].groupedBySignatory[signatory] || {};
+        output[doc].groupedBySignatory[signatory].signatoryName = loaded.sigs[signatory].name;
+        output[doc].groupedBySignatory[signatory][company] = companyInfo;
+        output[doc].groupedBySignatory[signatory][company].signatoryTitle = loaded.officersOfCompany[company][signatory].title
+      }
     }
   }
 
-  // push sig objects
-  for (let sig in initial) {
-    name = initial[sig].name;
-    initial[sig].companies = initial[sig].companies || [];
-    if(initial[sig].companies.length){
-      initial[sig].companies.forEach((c) => formatted.push({name: name, company: c.name, title: c.title }));
-    } else {
-      formatted.push({name: name});
-    }
-  }
-
-  // push companies without sigs
-  for (let comp in loaded.companies) {
-    if(!loggedComps[comp]) formatted.push({company: loaded.companies[comp].name});
-  }
-
-  return formatted;
+  console.log(output);
+  return output;
 }
+
+//Rich's version
+// function formatPDF(loaded) {
+//   var initial = loaded.sigs; // sigx: {}
+//   var formatted = [];
+//   var loggedComps = {};
+//   var name;
+
+//   console.log(loaded.officersOfCompany)
+//   // generate sig objects
+//   for (let comp in loaded.officersOfCompany) { // compX {sigX: role}
+//     loggedComps[comp] = true;
+
+//     // link titles to sigs
+//     for (let sig in loaded.officersOfCompany[comp]) {
+//       initial[sig] = initial[sig] || {}
+//       initial[sig].companies = initial[sig].companies || [];
+//       name = loaded.companies[comp] ? loaded.companies[comp].name : undefined;
+//       initial[sig].companies.push({name: name, title: loaded.officersOfCompany[comp][sig], key: comp});
+//     }
+//   }
+
+//   // push sig objects
+//   for (let sig in initial) {
+//     name = initial[sig].name;
+//     initial[sig].companies = initial[sig].companies || [];
+//     if(initial[sig].companies.length){
+//       initial[sig].companies.forEach((c) => formatted.push({name: name, company: c.name, title: c.title }));
+//     } else {
+//       formatted.push({name: name});
+//     }
+//   }
+
+//   // push companies without sigs
+//   for (let comp in loaded.companies) {
+//     if(!loggedComps[comp]) formatted.push({company: loaded.companies[comp].name});
+//   }
+
+//   return formatted;
+// }
 
 function exportPDF(input = { agreement: '[AGREEMENT]', footerTitle: '[NAME OF DOCUMENT]', sigs: [ {} ] }) {
   // validation
-  if(Array.isArray(input)) input = {sigs: input};
+  // if(Array.isArray(input)) input = {sigs: input};
 
   var defaults = {
     company: '[COMPANY]',
