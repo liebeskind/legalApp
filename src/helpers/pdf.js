@@ -129,7 +129,8 @@ function exportPDF(input, loaded, specificSignatory) {
       });
 
       // Only adds a new page when there are more pages necessary
-      if(i*docIndex != arr.length) doc.addPage();
+      // if(i*docIndex != arr.length)
+        doc.addPage();
     });
   });
 
