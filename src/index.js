@@ -5,8 +5,8 @@ import {createStore, applyMiddleware} from 'redux';
 import reduxThunk from 'redux-thunk';
 import ReduxPromise from 'redux-promise';
 
-import App from './src/containers/App'
-import reducers from './src/reducers'
+import App from './containers/App'
+import reducers from './reducers'
 
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
