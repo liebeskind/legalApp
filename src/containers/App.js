@@ -14,7 +14,7 @@ import CompanyCreator from '../components/CompanyCreator';
 import SideNav from '../components/SideNav';
 import { bindAll } from '../helpers/util';
 import { generatePDF } from '../helpers/pdf';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 
 const companyName = "DocRedux"
 
@@ -139,7 +139,6 @@ class App extends Component { //Functional component isn't aware of state and do
               </MainContent>
             </div>
           </div>
-          <Footer companyName={companyName} />
         </div>
       </MuiThemeProvider>
     );
