@@ -92,6 +92,11 @@
   margin-left: 16px;
 }
 
+.firstParagraph {
+  max-width: 600px;
+  font-weight: 400;
+}
+
 /*------BUTTONS-------*/
 
 #importFile {

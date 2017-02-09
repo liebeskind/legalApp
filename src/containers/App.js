@@ -101,11 +101,11 @@ class App extends Component { //Functional component isn't aware of state and do
     loaded.officersOfCompany[company][signatoryKey].title = title;
   }
 
-  sendDocumentUpdate(key, footerTitle, agreementType) {
+  sendDocumentUpdate(key, footerTitle, firstParagraph) {
     let loaded = this.state.loaded;
     loaded.documents = loaded.documents || {};
     loaded.documents[key] = loaded.documents[key] || {};
-    loaded.documents[key].agreementType = agreementType;
+    loaded.documents[key].firstParagraph = firstParagraph;
     loaded.documents[key].footerTitle = footerTitle;
     this.setState({loaded})
   }

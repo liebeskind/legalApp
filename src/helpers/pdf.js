@@ -34,7 +34,7 @@ function formatPDF(loaded) {
   for (let doc in loaded.documents){
     output[doc] = {};
     output[doc].footerTitle = loaded.documents[doc].footerTitle;
-    output[doc].typeOfAgreement = loaded.documents[doc].agreementType;
+    output[doc].typeOfAgreement = loaded.documents[doc].firstParagraph;
     output[doc].groupedBySignatory = {};
     for (let company in loaded.companiesPerDocument[doc]) {
       let signatory = loaded.companiesPerDocument[doc][company].signatory
@@ -86,8 +86,8 @@ function exportPDF(input, loaded, specificSignatory) {
 
   // var groupedSigs = groupSigs(input.sigs);
 
-  Object.keys(input).forEach((key, docIndex, docArray) => {
-    var docOutput = input[key];
+  Object.keys(input).forEach((docKey, docIndex, docArray) => {
+    var docOutput = input[docKey];
   // })
 
     Object.keys(docOutput.groupedBySignatory).forEach((key, i, arr) => {
@@ -96,8 +96,8 @@ function exportPDF(input, loaded, specificSignatory) {
       verticalOffset = marginTop;
 
       // add boilerplate to first page
-      if(i === 0){
-        var boilerplate = doc.splitTextToSize(`\t\tIN WITNESS WHEREOF, each of the parties hereto has caused a counterpart ${docOutput.agreementType ? `of this ${docOutput.agreementType} ` : ``}to be duly executed and delivered as of the date first above written.`, documentWidth-marginLeft-marginRight);
+      if(i === 0 && loaded.documents[docKey].firstParagraph){
+        var boilerplate = doc.splitTextToSize(`\t\t${loaded.documents[docKey].firstParagraph}`, documentWidth-marginLeft-marginRight);
         doc.text(marginLeft, verticalOffset, boilerplate);
         verticalOffset = marginTop + inch(1.0); //Spacing between first paragraph and signature blocks
       }

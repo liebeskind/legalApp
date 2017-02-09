@@ -15,7 +15,7 @@ export default class DocumentManager extends Component {
     this.state = {
       editing: false,
       updatedFooterTitle: '',
-      updatedAgreementType: ''
+      updatedFirstParagraph: ''
     }
     bindAll(['mapObject', 'renderPanelHeader', 'renderPanelBody', 'renderPanels', 'sendUpdate', 'addDocument', 'cancelEditing'], this);
   }
@@ -28,7 +28,7 @@ export default class DocumentManager extends Component {
 
   editItem(key) {
     this.setState({editing: key})
-    key ? this.setState({updatedFooterTitle: this.props.documents[key].footerTitle, updatedAgreementType: this.props.documents[key].agreementType}) : this.setState({updatedFooterTitle: false, updatedAgreementType: false})
+    key ? this.setState({updatedFooterTitle: this.props.documents[key].footerTitle, updatedFirstParagraph: this.props.documents[key].firstParagraph}) : this.setState({updatedFooterTitle: false, updatedFirstParagraph: false})
   }
 
   generateKey() {
@@ -77,17 +77,17 @@ export default class DocumentManager extends Component {
     this.setState({updatedFooterTitle: event.target.value})
   }
 
-  agreementTypeChanged = (event) => {
-    this.setState({updatedAgreementType: event.target.value})
+  firstParagraphChanged = (event) => {
+    this.setState({updatedFirstParagraph: event.target.value})
   }
 
   sendUpdate() {
-    this.props.sendDocumentUpdate(this.state.editing, this.state.updatedFooterTitle, this.state.updatedAgreementType)
-    this.setState({editing: false, updatedFooterTitle: '', updatedAgreementType: ''})
+    this.props.sendDocumentUpdate(this.state.editing, this.state.updatedFooterTitle, this.state.updatedFirstParagraph)
+    this.setState({editing: false, updatedFooterTitle: '', updatedFirstParagraph: ''})
   }
 
   cancelEditing() {
-    this.setState({editing: false, updatedFooterTitle: '', updatedAgreementType: ''})
+    this.setState({editing: false, updatedFooterTitle: '', updatedFirstParagraph: ''})
   }
 
   renderEditBody() {
@@ -97,7 +97,7 @@ export default class DocumentManager extends Component {
         <div className="panel-body">
           <div className="col-xs-12">
             <h5 className="lightgray mb0">Document Title: <TextField id={key} value={this.state.updatedFooterTitle} onChange={this.footerTitleChanged} /></h5>
-            <h5 className="lightgray mb0">Agreement Type (optional): <TextField id={key} value={this.state.updatedAgreementType} onChange={this.agreementTypeChanged} /></h5>
+            <h5 className="lightgray mb0">First Paragraph (optional): <TextField id={key} value={this.state.updatedFirstParagraph} onChange={this.firstParagraphChanged} /></h5>
             <CompanyToDocumentUtility selectSignatory={this.props.selectSignatory} updateDocumentSelections={this.props.updateDocumentSelections} documentEditing={key} sigs={this.props.loaded.sigs} documents={this.props.loaded.documents} companies={this.props.loaded.companies} officersOfCompany={this.props.loaded.officersOfCompany} companiesPerDocument={this.props.loaded.companiesPerDocument} />
           </div>
         </div>
@@ -151,7 +151,7 @@ export default class DocumentManager extends Component {
         <div className="row mb16">
           <div className="col-xs-12">
             <h5 className="lightgray mb0">Document Title: {value.footerTitle}</h5>
-            <h5 className="lightgray mb0">Agreement Type: {value.agreementType}</h5>
+            <h5 className="lightgray firstParagraph mb0">First Paragraph: {value.firstParagraph}</h5>
             <List>
               <Subheader>Companies</Subheader>
               {this.generateCompanyList(key)}
