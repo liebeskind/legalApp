@@ -135,7 +135,7 @@ export default class DocumentManager extends Component {
   renderPanelHeader(key, value) {
     return (
       <div className="panel-header">
-        {value.footerTitle}
+        {value.footerTitle ? value.footerTitle : "[Add Document Title]"}
         <ul className="panel-action-list">
           <li>
             <a href="#" className="panel-action-item" onClick = {()=>this.editItem(key)}>Edit</a>
