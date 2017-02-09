@@ -7,7 +7,6 @@ import * as actions from '../actions';
 // import {update} from 'react-addons-update';
 
 //components
-import Footer from '../components/Footer';
 import MainContent from '../components/MainContent';
 import DocumentManager from '../components/DocumentManager';
 import DirectorsAndOfficers from '../components/DirectorsAndOfficers';
@@ -15,6 +14,7 @@ import CompanyCreator from '../components/CompanyCreator';
 import SideNav from '../components/SideNav';
 import { bindAll } from '../helpers/util';
 import { generatePDF } from '../helpers/pdf';
+import Footer from '../components/Footer';
 
 const companyName = "DocRedux"
 
