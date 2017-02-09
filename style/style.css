@@ -92,6 +92,11 @@
   margin-left: 16px;
 }
 
+.firstParagraph {
+  max-width: 600px;
+  font-weight: 400;
+}
+
 /*------BUTTONS-------*/
 
 #importFile {
@@ -99,6 +104,20 @@
 }
 
 /*Default Styling*/
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #sectionToPrint, #sectionToPrint * {
+    visibility: visible;
+  }
+  #sectionToPrint {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
 
 #superfood-container div {
   font-family: Helvetica, Arial, sans-serif;
