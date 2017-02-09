@@ -11,9 +11,6 @@ import reducers from './reducers'
 import injectTapEventPlugin from "react-tap-event-plugin";
 injectTapEventPlugin();
 
-// import injectTapEventPlugin from "react-tap-event-plugin";
-// injectTapEventPlugin();
-
 const createStoreWithMiddleware = applyMiddleware(reduxThunk, ReduxPromise)(createStore);
 
 ReactDOM.render(
