@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 
-import {update} from 'react-addons-update';
+// import {update} from 'react-addons-update';
 
 //components
 import NavBar from '../components/NavBar';
