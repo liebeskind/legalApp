@@ -7,11 +7,12 @@ export default class Footer extends Component {
   }
 
   render() {
+    const date = new Date().getFullYear();
     return (
       <div>
         <hr />
         <footer>
-          <p>© {this.props.companyName} {new Date().getFullYear()}</p>
+          <p> {"©"+this.props.companyName} {date}</p>
         </footer>
       </div>
     )
