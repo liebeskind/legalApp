@@ -1,6 +1,9 @@
 {
   "name": "legalApp",
   "version": "1.0.0",
+  "engines": {
+    "node": "6.9.5"
+  },
   "description": "Legal app",
   "main": "index.js",
   "repository": "git@github.com:liebeskind/legalApp.git",
