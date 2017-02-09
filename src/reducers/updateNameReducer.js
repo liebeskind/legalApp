@@ -1,6 +1,6 @@
 export default function (state = null, action) {
   switch (action.type) {
-    case 'SET_SELECTED_BENEFIT_VALUE':
+    case 'UPDATE_NAME':
       return action.payload;
   }
 
