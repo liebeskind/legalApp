@@ -7,7 +7,6 @@ import * as actions from '../actions';
 // import {update} from 'react-addons-update';
 
 //components
-import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import MainContent from '../components/MainContent';
 import DocumentManager from '../components/DocumentManager';
