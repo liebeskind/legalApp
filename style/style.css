@@ -105,6 +105,20 @@
 
 /*Default Styling*/
 
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #sectionToPrint, #sectionToPrint * {
+    visibility: visible;
+  }
+  #sectionToPrint {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
 #superfood-container div {
   font-family: Helvetica, Arial, sans-serif;
   font-size-adjust: none;

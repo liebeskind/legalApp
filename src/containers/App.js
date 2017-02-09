@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import jsPDF from 'jspdf'
+
 import * as actions from '../actions';
 
 // import {update} from 'react-addons-update';
@@ -23,7 +25,7 @@ class App extends Component { //Functional component isn't aware of state and do
     super(props);
 
     // bind local functions
-    bindAll(['updateSigName', 'updateCompanyName', 'onSave', 'onExport', 'onSideNavClick', 'uploadFile', 'updateSignatoryTitle', 'selectSignatory', 'sendDocumentUpdate', 'updateDocumentSelections'], this);
+    bindAll(['updateSigName', 'updateCompanyName', 'onSave', 'onExport', 'printCurrentPage', 'onSideNavClick', 'uploadFile', 'updateSignatoryTitle', 'selectSignatory', 'sendDocumentUpdate', 'updateDocumentSelections'], this);
 
     this.selected = {
       DocumentManager: 0,
@@ -62,6 +64,10 @@ class App extends Component { //Functional component isn't aware of state and do
   // Should this also save? Would two files be confusing?
   onExport() {
     generatePDF(this.state.loaded);
+  }
+
+  printCurrentPage() {
+    window.print(); //Uses CSS to limit print area.
   }
 
   onSideNavClick(name) {
@@ -127,11 +133,12 @@ class App extends Component { //Functional component isn't aware of state and do
           <div className="mainContainer">
             <button onClick={this.onSave} type='button'>Save</button>
             <button onClick={this.onExport} type='button'>Export to PDF</button>
+            <button onClick={this.printCurrentPage} type='button'>Print current page</button>
             <input type="file" id="importFile" onChange={this.uploadFile} />
             <div className="sideNavContainer" >
               <SideNav onClick={this.onSideNavClick} items={Object.keys(this.selected)} />
             </div>
-            <div className="mainContentContainer">
+            <div className="mainContentContainer" id="sectionToPrint">
               <MainContent selected={this.selected[this.state.selectedName]} loaded={this.state.loaded}>
                 <DocumentManager documents={this.state.loaded.documents} loaded={this.state.loaded} sendDocumentUpdate={this.sendDocumentUpdate} updateDocumentSelections={this.updateDocumentSelections} selectSignatory={this.selectSignatory} />
                 <CompanyCreator companies={this.state.loaded.companies} sigs={this.state.loaded.sigs} officersOfCompany={this.state.loaded.officersOfCompany} selectSignatory={this.selectSignatory} updateSignatoryTitle={this.updateSignatoryTitle} updateCompanyName={this.updateCompanyName} />
