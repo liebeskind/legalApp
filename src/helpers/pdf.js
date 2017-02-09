@@ -120,7 +120,8 @@ function exportPDF(input, loaded, specificSignatory) {
   as ${item.asField}
   ` : `
   `}
-  By:
+
+  By:_______________________________
   Name:  ${item.signatoryName ? item.signatoryName : "[NAME]"}
   Title:    ${item.signatoryTitle ? item.signatoryTitle : "[TITLE]"}`, sigWidth);
 
